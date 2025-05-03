@@ -479,7 +479,7 @@ and the lower bound
 \begin{equation}\label{bv-lower}
   \sum_{y < p \leq x} b(p) \leq \frac{1-\frac{2}{\sqrt{y}}}{\log x} \int_y^x b(t)\ dt - \|b\|_{\mathrm{TV}^*(y,x]} \frac{E(x)}{\log x}.
 \end{equation}
-One can also replace all occurrences of $E(x)$ here by the classical error term $O(x \exp(-c \sqrt{\log x}))$ for some absolute constant $c>0$ (in which case the $\frac{2}{\sqrt{t}}$ type terms can be absorbed into the error term).
+One can also replace all occurrences of $E(x)$ by the classical error term $O(x \exp(-c \sqrt{\log x}))$ for some absolute constant $c>0$ (in which case the $\frac{2}{\sqrt{t}}$ type terms can be absorbed into the error term).
 \end{lemma}
 
 We remark that the accuracy in \eqref{bv-exact}, \eqref{pix} in particular is on par with what would be provided by the Riemann hypothesis, as long as $x$ is not too large (e.g., $x \leq 10^{18}$).  The other estimates in this lemma are not quite as precise, but still adequate for our applications.  The error term $E(x)$ can be improved somewhat for large $x$ (see \eqref{etil-def}), but this simplified version will suffice for our analysis (in particular, the contribution of the second term in \eqref{tilde-e} will be negligible for our applications).  We make the easy remark that $E(x)$ is non-decreasing in $x$, while $E(x)/x$ is non-increasing.
@@ -620,7 +620,7 @@ and hence by \eqref{lp-upper}
 \begin{equation}\label{mnt}
   M(N,t) \leq N + 445
 \end{equation}
-for this choice of $N,t$.  In fact, as discussed later in this section, we know that equality holds in this particular case.  For $N \leq 10^4$, we found that the linear programming upper bound on $t(N)$ is in fact tight except when
+for this choice of $N,t$.  In fact, as discussed later in this section, we know that equality holds in this particular case.  For $N \leq 10^4$, we found that the linear programming upper bound on $t(N)$ is tight except when
 $N=155,765,1528,1618,1619,2574,2935,3265,5122,5680,9633$, in which case integer programming was needed to precisely compute $t(N)$.  The values of $t(N)$ thus computed are  plotted in \Cref{fig-long}.
 
 \begin{figure}
@@ -867,7 +867,7 @@ as $N \to \infty$.
     for $N$ sufficiently large depending on $\eps$.
 
     For $N$ large enough, we have $\frac{t}{\lfloor\sqrt{t}\rfloor} \leq \frac{N}{\log^3 N}$.
-    On the interval $[1/\log^3 N,1]$, the piecewise smooth function $f_{N/t}$ is bounded by $O(1)$ thanks to \eqref{falpha-bound}, and has an (augmented) total variation of $O(\log^3 N)$; the same is then true for the rescaled function $x \mapsto f_{N/t}(x/N)$ on $[N/\log^3 N,N]$.   This implies that $x \mapsto \frac{1}{\log x} f_{N/t}(x/N)$ has an (augmented) total variation of $O(\log^2 N)$.
+    On the interval $[1/\log^3 N,1]$, the piecewise smooth function $f_{N/t}$ is bounded by $O(1)$ thanks to \eqref{falpha-bound}, and has an (augmented) total variation of $O(\log^3 N)$; the same is then true for the rescaled function $x \mapsto f_{N/t}(x/N)$ on the interval $[N/\log^3 N,N]$.   This implies that $x \mapsto \frac{1}{\log x} f_{N/t}(x/N)$ has an (augmented) total variation of $O(\log^2 N)$.
    By \Cref{osc-lemma} (with classical error term), we conclude that the left-hand side of \eqref{targ-sum} is at least
     $$ \int_{N/\log^3 N}^N f_{N/t}(x/N) \frac{dx}{\log x} + O\left( N \exp(-c\sqrt{\log N}) \right)$$
     for some $c>0$.  Performing a change of variable, we reduce to showing that
@@ -1014,7 +1014,7 @@ We now form a modification $\tuple'$ of the multiset $\tuple$ by multiplying eac
 \begin{itemize}
   \item Initialize $\tuple'$ to be empty.
   \item Choose a large natural number $r$.
-  \item For each $k \geq 1$, and each element $m$ of $\tuple$ that lies in the interval $[\alpha N/p_0^{r+k}, \alpha N/p_0^{r+k-1})$, add $p_0^{r+k} m$ to $\tuple'$.
+  \item For each $k \geq 1$, and each element $m$ of $\tuple$ in the interval $[\alpha N/p_0^{r+k}, \alpha N/p_0^{r+k-1})$, add $p_0^{r+k} m$ to $\tuple'$.
   \item For the $\lfloor (\sum_{\ell \geq p_0^r} a_\ell) N \rfloor$ smallest elements $m$ of $\tuple$ that are at least $\alpha N/p_0^r$, add $p_0^r m$ to $\tuple'$.
   \item For the $\lfloor a_{p_0^r-1} N \rfloor$ next smallest elements $m$ of $\tuple$ that are at least $\alpha N/p_0^r$, add $(p_0^r-1)m$ to $\tuple'$.
   \item Repeat the previous step with $p_0^r-1$ replaced in turn by $a_{p_0^r-2}, \dots, a_2$, halting if no further elements of $\tuple$ remain.
@@ -1100,7 +1100,7 @@ We can now define the weights $a_\ell$ as follows:
 
 By \Cref{asym-crit}, it suffices to verify the conditions \eqref{i-eq}, \eqref{l-eq}.  We begin with \eqref{i-eq}.  If $p$ is not equal to $2$ or in the range $[p_-,p_+]$, then both sides of \eqref{i-eq} vanish.  If $p$ is in $[p_-,p_+]$, then a routine computation shows that both sides are equal to $\mu_p$.  For $p=2$, the right-hand side can be simplified using \eqref{telescope} to
 $$ \sum_{0 \leq m \leq M}^* \frac{1}{2} \frac{m}{2^m} = 1 - O\left( \frac{M}{2^M} \right)$$
-where the $*$ indicates that the final term $m=M$ is doubled (thus $\sum_{0 \leq m \leq M}^* f(m) = \sum_{0 \leq m<M} f(m) + 2 f(M)$).  Meanwhile, the left-hand side can be computed to equal
+where the $*$ indicates that the final term $m=M$ in the sum is doubled (so that we have $\sum_{0 \leq m \leq M}^* f(m) = \sum_{0 \leq m<M} f(m) + 2 f(M)$).  Meanwhile, the left-hand side can be computed as
 \begin{align*}
   &\sum_{m=1}^\infty \frac{C_0 m^2}{2^m} \mu_+ \\
   & + \sum_{p_- \leq p \leq 2^{C_0} p_-} C_0 \frac{\mu_p}{p} \\
@@ -1729,9 +1729,9 @@ From \Cref{delta3-alpha3-bound} and \eqref{pi-upper} one has
 \delta_3 &\leq \frac{(4A+3)\kappa_{4.5}}{3} \left(
 \frac{1}{3K \log \frac{N}{3K}} + \frac{1.2762}{3K \log^2 \frac{N}{3K}}
 + \frac{\log N}{\sqrt{N} \log \sqrt{N}\log 5 } + \frac{1.2762 \log N}{\sqrt{N} \log^2 \sqrt{N}\log 5 } \right) \\
-&\leq \frac{(4A+3)\kappa_{4.5}}{3} \left(
-  \frac{1}{3K \log\frac{N_0}{3K}} + \frac{1.2762}{3K \log^2\frac{N_0}{3K}}
-  + \frac{\log N_0}{\sqrt{N_0} \log \sqrt{N_0}\log 5 } + \frac{1.2762 \log N_0}{\sqrt{N_0} \log^2 \sqrt{N_0}\log 5 } \right) \\
+&\leq \frac{(4A+3)\kappa_{4.5}}{3} \left(\!
+  \frac{1}{3K \log\frac{N_0}{3K}} + \frac{1.2762}{3K \log^2\!\frac{N_0}{3K}}
+  + \frac{\log N_0}{\sqrt{N_0} \log\! \sqrt{N_0}\log 5 } + \frac{1.2762 \log N_0}{\sqrt{N_0} \log^2 \!\!\sqrt{N_0}\log 5 } \!\right) \\
 &\leq 0.051574 \delta
 \end{align*}
 for all $N \geq N_0$.
