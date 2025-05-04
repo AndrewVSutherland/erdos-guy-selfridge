@@ -12,6 +12,7 @@
 \usepackage{cleveref}
 \usepackage{siunitx}
 \usepackage{tikz-cd}
+\usepackage{nicefrac}
 \usepackage{stix}
 \usepackage{bm}
 \DeclareMathAlphabet\mathbfcal{LS2}{stixcal}{b}{n}
@@ -513,15 +514,31 @@ This procedure clearly halts in finite time to produce a $t$-admissible subfacto
 $$ \{7 \times 1, 5 \times 1, 3 \times 1, 3 \times 1, 3 \times 1, 3 \times 1, 2 \times 2, 2 \times 2, 2 \times 2 \}$$
 which recovers the bound $M(9,3) \geq 9$ (and hence $t(9) \geq 3$) from \Cref{nine}, albeit with a slightly different subfactorization, in which the $8$ is replaced by $4$.
 
-This procedure is efficient for small $N$, for instance attaining the exact value of $t(N)$ for all $N \leq 79$, though it begins to degrade for larger $N$; see \Cref{fig-zoom}.  The performance is also respectable (though not optimal) for medium $N$; for instance, when $N=3 \times 10^5$ and $t=N/3$, it establishes the lower bound $M(N,t) \geq N+372$, which is close to the exact value of $M(N,t) = N+455$ which we could establish by the linear programming methods of the next section (see \eqref{mnt}).
+This procedure works well for small $N$, for instance attaining the exact value of $t(N)$ for all $N \leq 79$, though it begins to degrade for larger $N$; see \Cref{fig-zoom}.  Its performance is also respectable (though not optimal) for medium $N$; for instance, when $N=3 \times 10^5$ and $t=N/3$, it establishes the lower bound $M(N,t) \geq N+372$, which is close to the exact value of $M(N,t) = N+455$ we are able establish using the linear programming methods of the next section (see \eqref{mnt}).
 
-{\bf discuss modifications to the algorithm to make it perform both faster and more accurately; talk about hints}
+Our implementation of the greedy algorithm relies on three observations. The first is that for large primes $p|N$, we expect to use factors of the form $mp$ with $m=\lceil t/p\rceil$ minimal. This is obvious for $p > t$ (where $m=1$), and more generally, if we fix a small prime $\ell < M$ and consider
+\begin{equation}\label{eq:gval}
+v_\ell\left(\prod_{M<p\le N} \left\lceil\tfrac{t}{p}\right\rceil^{v_p(N!)}\right),
+\end{equation}
+we expect this to be less than $v_{\ell}(N!)\approx \frac{N}{\ell-1}$ for $M\ge N^{\nicefrac{1}{2}}$, and in practice we find this is always true for $M\ge \sqrt{t}$ (our implementation verifies this assumption).
 
-In order to get this algorithm to validate all $8 \times 10^4 \leq N \leq 10^{11}$ on commodity hardware in a reasonable amount of time, two major modifications were implemented. 
+Assuming this, we partition the range $(M,N]$ into subintervals $I_{m,n}=(a_{m,n},b_{m,n}]$ such that for every prime $p\in I_{m,n}$ we have $\lceil \nicefrac{t}{p}\rceil=m$ and $v_p(N!)=n$.  We can then compute the number of factors produced by the greedy algorithm that are divisible by a prime $p>M$ as
+\begin{equation}\label{eq:picount}
+\sum_{m,n} n\left(\pi(b_{m,n})-\pi(a_{m,n})\right).
+\end{equation}
+If $\lceil \nicefrac{t}{p}\rceil=m$ and $v_p(N!)$ with $t\in (\nicefrac{N}{4},\nicefrac{N}{2})$ and $p> N^{\nicefrac{1}{2}}$, then $n = \lfloor \nicefrac{N}{p}\rfloor\in [2m-1,4m]$, and it follows that the sum contains $O(N^{\nicefrac{1}{2}})$ terms.  There are analytic methods to compute $\pi(x)$ in $O(x^{\nicefrac{1}{2}+\epsilon})$ time \cite{lagarias-odlyzko}, which in combination with sieving primes up to $N^{\nicefrac{3}{4}}$ would allow one to compute \eqref{eq:picount} in $O(N^{\nicefrac{3}{4}+\epsilon})$ time. However, most practical implementations for computing $\pi(x)$ use the $O(x^{\nicefrac{2}{3}+\epsilon})$ algorithm described in \cite{deleglise-rivat,lagarias-miller-odlyzko}.  In this case the optimal asymptotic approach is to sieve primes up to $N^{5/6}$, yielding an $O(N^{\nicefrac{5}{6}+\epsilon})$-time algorithm. In our implementation we used a  slightly smaller sieving bound to better balance the time spent sieving primes versus counting them in the range $N\le 10^{12}$ using the \texttt{primesieve} \cite{walisch-primesieve} and \texttt{primecount} \cite{walisch-primecount} libraries that we employed in our implementation.
 
-First, when trying to improve an inequality $t(N) \geq \lambda N$ for all $N$ in some range, one can avoid running the algorithm for every single $N$ in that range by instead proving a stronger inequality on a sparse subset. Namely, if one can show that $t(N_0) \geq (\lambda + \eps)N_0$, it follows that $t(N) \geq \lambda N$ for all $N \in \left[N_0, (1+\frac{\eps}{\lambda})N_0\right)$. If one can fix $\eps$, this reduces a brute force check of every value in a range of length $L$ to checking just $\log_{1+\frac{\eps}{\lambda}}(L)$ values. From the estimates in Section 1, one would expect to be able to take $\eps = \frac{1}{e}-\lambda$ asymptotically; in practice the algorithm uses slightly smaller values. 
+If we precompute the prime factorizations of the $m\le \nicefrac{t}{M}$, we can compute \eqref{eq:gval} each prime $\ell \le M$ and subtract this value from $v_\ell(N!)$ to obtain the prime factorization of the divisor of $N!$ that remains after removing all factors divisible by a  prime $p>M$ (at which point we check that the remaining valuations are nonnegative to confirm our assumption above).  It then remains only to partition this remaining $M$-smooth factor of $N!$ into factors of size at least $t$.
 
-The other major modification is related to Step (2) in the above algorithm, where one is searching for the least value of $c$ such that $cp\geq t$ and $c$ can be constructed from the remaining factors. In practice, the algorithm pre-computes and store information about all such candidates; absent any further heuristics, this amounts to storing information about all integers less than $N$, which becomes prohibitively expensive for large $N$. The key observation is that any such $c$ must satisfy a further arithmetic condition, namely that $\frac{cP^+(c)}{P^-(c)} < t$, where $P^+(c)$ and $P^-(c)$ are the largest and smallest prime factors of $c$; since otherwise one could replace $c$ by $c/P^-(c)$ and stil have $(c/P^-(c)) p \geq cP_+(c)/P^-(c) \geq t$. By only storing information about $c$ which satisfy this condition, the memory footprint is reduced by several orders of magnitude.
+Our second observation is that at any point where the greedy algorithm is attempting to determine  a suitable cofactor $m_p$ for the largest remaining $p$, the cofactor $m_p$ must be $p$-smooth and satisfy $m_pp\ge t$ (and $m$ be constructible from the remaining part of the factorization of $N!$).  This implies that for any prime $q\le p$, every suitable cofactor $m_q$ is also a suitable cofactor for $p$, and since the greedy algorithm always minimizes the choice of $m_p$, we must have $m_p\le m_q$.  This implies that as we consider primes $p$ in decreasing order we can consider cofactors $m_p$ in increasing order.  If we precompute the prime factorizations of all the $m_p$ that may arise (e.g., by sieving the interval $[1,N]$ for $M$-smooth integers), we obtain a quasilinear running time of $O(N^{1+\epsilon})$; note that at each step the algorithm will use the largest exponent $e$ such that $(m_p p)^e$ divides the remaining part of the factorization of $N!$, at which point one of $p$ or $m_p$ is eliminated, and the total number of $p$ and $m_p$ to be considered is $O(N)$. The running time is dominated by the time to precompute the prime factorizations of all the $m_p$, but in a situation where we may be considering many values of $N$ and $t$, this precomputation can be reused.
+
+Our third observation is that there is an additional constraint on $m_p$ beyond being $p$-smooth, which is that the ratio of the largest and smallest prime factors of $m_p$ is bounded by $t/m_p$. If $\ell_1$ and $\ell_2$ are prime divisors of $m_p$ with $\ell_1\le \ell_2\le p$, then $m_p \ell_2 \ge t\ell_1$ implies $(m_p/\ell_1)p\ge t$, in which case $m_p/\ell_1$ is a strictly smaller suitable cofactor for $p$ we could use in place of $m_p$. This observation decreases the number of $m_p$ one needs to consider, which can be used to reduce the memory footprint by a significant constant factor.  This constraint is sensitive to the value of $t$, which constrains the ability to reuse our precomputation of $m_p$, but for large values of $N$, memory is the limiting factor.
+
+\subsection{A fast variant of the greedy algorithm}
+We now describe a variant of the greedy algorithm that produces slightly weaker bounds on $t(N)$ in general, but obtains an $O(N^{\nicefrac{5}{6}+\epsilon})$ running time using $O(N^{\nicefrac{5}{8}})$ space (in fact the exponent $\nicefrac{5}{6}$ can be replaced by $\nicefrac{3}{4}$ and the exponent $\nicefrac{5}{8}$ can be replaced by any $c>\nicefrac{1}{2}$).  The algorithm fixes $M$ satisfying $M(M-1)\ge t$ and treats the primes $p\ge M$ as in the first phase of the greedy algorithm described above.  Rather than precomputing a list of suitable $m_p\le N$, the algorithm instead precomputes a list of $M$-smooth integers $m$ up to $N^{\nicefrac{5}{8}}$.  As it considers primes $p < M$ in decreasing order, it will eventually reach appoint where no precomputed value of $m$ is a suitable cofactor for $p$.  When this occurs it will instead look for a cofactor that is suitable for $p^2$, which will be smaller and easier to construct from the remaining part of the factorization of $N!$.  It will continue in this faction to consider suitable cofactors for both $p$ and $p^2$ until it eventually reaches a point where neither can be found, and which point $p$ will be quite small (not much bigger than $N^{\nicefrac{3}{16}}$) at which point the algorithm will simply construct factors of $N!$ larger than $t$ by combining available remaining primes in decreasing order.  This will occasionally result in factors that are larger than the original greedy algorithm would use, but the difference is small and the algorithm can construct these factors more quickly using less memory, which allows it to handle large values of $N$ much more efficiently.
+
+\subsection{Optimizing bounds on $t(N)$ produced by the greedy algorithm} 
+(details to be added here)
 
 By using the greedy method, \Cref{main}(ii) can be verified for $N \leq 3 \times 10^5$, and \Cref{main}(iii) can be verified for $67425 \leq N \leq 10^{12}$ {\bf provide more details and links to code}.    Thus, to resolve these claims, it remains to only establish \Cref{main}(iii) in the regime $43632 \leq N < 67425$ and $N > 10^{12}$, and also to show that this claim fails for $N=43631$.
 
@@ -2104,6 +2121,8 @@ J. B\"uthe, \emph{An analytic method for bounding $\psi(x)$
 %\bibitem{dusart}
 %P. Dusart, \emph{In\'egalit\'es explicites pour $\psi(x)$, $\theta(x)$, $\pi(x)$ et les nombres premier}, C. R. Math. Rep. Acad. Sci. Canada Vol. \textbf{21} (2) 1999, pp. 53--59.
 
+\bibitem{deleglise-rivat}
+M.Del\'eglise, J. Rivat, \emph{Computing $\pi(x)$: the Meissel, Lehmer, Lagarias, Miller, Odlyzko method}, Math. Comp. \textbf{65} (1996), no. 213, 235--245.  
 
 \bibitem{dusart}
 P. Dusart, \emph{Explicit estimates of some functions over primes}, Ramanujan J. \textbf{45} (2018) 227--251.
@@ -2126,6 +2145,12 @@ R. K. Guy, J. L. Selfridge, \emph{Factoring factorial $n$}, Amer. Math. Monthly 
 \bibitem{johnston-yang}
 D. Johnston, A. Yang, \emph{Some explicit estimates for the error term in the prime number theorem}, J. Math. Anal. Appl., \textbf{527} (2) (2023), Paper No. 127460.
 
+\bibitem{lagarias-odlyzko}
+J. C. Lagarias and A. M. Odlyzko, \emph{Computing $\pi(x)$: An analytic method}, J. Algorithms \textbf{8} (1987), no. 2, 173--191.
+
+\bibitem{lagarias-miller-odlyzko}
+J. C. Lagarias and A. M. Odlyzko, \emph{Computing $\pi(x)$: The Miessel--Lehmer method}, Math. Comp. \textbf{44} (1985), no. 170, 537--560.
+
 \bibitem{platt-rh}
 D. Platt, T. Trudgian, \emph{The Riemann hypothesis is true up to $3\cdot10^{12}$}, Bull. Lond. Math. Soc. \textbf{53} (2021), no. 3, 792--797.
 
@@ -2146,6 +2171,12 @@ T. Tao, \emph{Verifying the Guy--Selfridge conjecture}, Github repository, 2025.
 
 \bibitem{vaaler}
 J. D. Vaaler, \emph{Some extremal functions in Fourier analysis}, Bulletin (New Series) of the American Mathematical Society, Bull. Amer. Math. Soc. (N.S.) \textbf{12}(2), 183--216, (April 1985).
+
+\bibitem{walisch-primecount}
+K. Walisch, \texttt{primecount}, Version 7.17, \url{https://github.com/kimwalisch/primecount}, accessed April 24, 2025. 
+
+\bibitem{walisch-primesieve}
+K. Walisch, \texttt{primesieve}, Version 12.8, \url{https://github.com/kimwalisch/primesieve}, accessed April 24, 2025. 
 
 \end{thebibliography}
 
