@@ -563,17 +563,17 @@ In section \ref{sec:fast-greedy} we describe a variant of the greedy algorithm t
 
 \subsection{Implementation of the greedy algorithm}
 We assume $1< N/4< t < N/2$ throughout the rest of this section and fix $M \approx N^{\nicefrac{1}{2}}$.
-Let $x_0=\lfloor N/M\rfloor \approx N^{\nicefrac{1}{2}}$, and partition the interval $(M,N]$ into subintervals $(x_k,x_{k+1})$ on which the step functions $f_t(x)\coloneqq\lceil t/x\rceil$ and $g_N(x)\coloneqq\lfloor N/x\rfloor$ are both constant, such that $x_r=N$, and $x_k$ is a point of discontinuity for at least one of $f_t(x)$ and $g_N(x)$ for $0<k<r$.  Under our assumption that the greedy algorithm uses optimal cofacters $m_i=\lceil t/p_i\rceil=f_t(p_i)$ for each prime $p_i>M$, we will have $g_N(x_k)$ factors $m_ip_i\ge t$ with $m_i=f_t(x_{k+1})$ for each prime $p_i\in (x_k,x_{k+1}]$, and we can compute the number of factors produced by the greedy algorithm that are divisible by a prime $p>M$ as
+Let $x_0=\lfloor N/M\rfloor \approx N^{\nicefrac{1}{2}}$, and partition the interval $(M,N]$ into subintervals $(x_k,x_{k+1})$ on which the step functions $f_t(x)\coloneqq\lceil t/x\rceil$ and $g_N(x)\coloneqq\lfloor N/x\rfloor$ are both constant, such that $x_r=N$, and $x_k$ is a point of discontinuity for at least one of $f_t(x)$ and $g_N(x)$ for $0<k<r$.  Under our assumption that the greedy algorithm uses optimal cofactors $m_i=\lceil t/p_i\rceil=f_t(p_i)$ for each prime $p_i>M$, we will have $g_N(x_k)$ factors $m_ip_i\ge t$ with $m_i=f_t(x_{k+1})$ for each prime $p_i\in (x_k,x_{k+1}]$, and we can compute the number of factors produced by the greedy algorithm that are divisible by a prime $p>M$ as
 \begin{equation}\label{eq:picount}
 \sum_{k=0}^{r-1} f_N(x_k)\left(\pi(x_{k+1})-\pi(x_k)\right).
 \end{equation}
 If $\tuple$ is the multiset of the factors $m_ip_i$ with $p_i\ge M$, for primes $p < M$ we can compute
 \begin{equation}\label{eq:rval}
-v_p\left(N!/\prod \tuple\right) = v_p(N!) - \sum_{k=0}^{r-1} f_N(x_k)v_p(f_t(x_{k+1}))
+\nu_p\left(N!/\prod \tuple\right) = \nu_p(N!) - \sum_{k=0}^{r-1} f_N(x_k)\nu_p(f_t(x_{k+1}))
 \end{equation}
-using a precomputed table of factorizations of integers $m < N^{\nicefrac{1}{2}}$ and $v_p(N!)=\sum_{e=1}^{\lfloor \log_p(N)\rfloor} \Bigl\lfloor \frac{N}{p^e}\Bigr\rfloor$ in $O(N^{\nicefrac{1}{2}+\epsilon})$ time.  For $p < M$ we expect to have
+using a precomputed table of factorizations of integers $m < N^{\nicefrac{1}{2}}$ and $\nu_p(N!)=\sum_{e=1}^{\lfloor \log_p(N)\rfloor} \Bigl\lfloor \frac{N}{p^e}\Bigr\rfloor$ in $O(N^{\nicefrac{1}{2}+\epsilon})$ time.  For $p < M$ we expect to have
 \[
-\sum_{k=0}^{r-1}f_N(x_k)v_p(f_t(x_{k+1})) \approx \frac{1}{p-1}\int_M^t \frac{N}{x\log x}dx \approx\frac{\log 2}{p-1} < \frac{1}{p-1} \approx v_p(N!),
+\sum_{k=0}^{r-1}f_N(x_k)\nu_p(f_t(x_{k+1})) \approx \frac{1}{p-1}\int_M^t \frac{N}{x\log x}dx \approx\frac{\log 2}{p-1} < \frac{1}{p-1} \approx \nu_p(N!),
 \]
 which motivates our observation (a) above. While out algorithm operates on the assumption that \eqref{eq:rval} is nonnegative for all $p<M$, it verifies this assumption at runtime (this verification did not fail in any of our computations, but if it did one could simply increase $M$).
 
