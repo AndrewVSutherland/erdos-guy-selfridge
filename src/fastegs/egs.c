@@ -712,9 +712,8 @@ int main (int argc, char *argv[])
             }
         }
     }
-    // We need N at least 45 to ensure t=N/4 works
-    if ( minN < 45 || maxN > MAXN ) { fprintf(stderr,"N-range [%ld,%ld] must be contained in [45,%ld)\n", minN, maxN, MAXN); return -1; }
-    if ( t && t < cdiv(minN,4) ) { fprintf(stderr,"t=%ld must be at least N/4\n", t); return -1; }
+    if ( minN < 14 || maxN > MAXN ) { fprintf(stderr,"N-range [%ld,%ld] must be contained in [14,%ld)\n", minN, maxN, MAXN); return -1; }
+    if ( t && 4*t <= maxN ) { fprintf(stderr,"t=%ld must be greater than N/4\n", t); return -1; }
 
     double start = get_time();
     int64_t maxt = 2*maxN/5;
@@ -731,7 +730,7 @@ int main (int argc, char *argv[])
     if ( verbosity > 0 ) fprintf(stderr,"Computed %d-smooth factorizations of m <= %d using %.3fMB of memory (%.3fs)\n", MAXP,MAXM,4.0*(MAXM+(Fend-F))/(1<<20),get_time()-start);
 
     char rbuf[32];
-    if ( a == 1 ) sprintf(rbuf,"N/%d",b); else sprintf(rbuf,"%dN/%d",a,b);
+    if ( a == 1 ) sprintf(rbuf,"ceil(N/%d)",b); else sprintf(rbuf,"%dN/%d",a,b);
 
     start = get_time();
     if ( maxN > minN ) {
