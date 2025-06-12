@@ -730,7 +730,7 @@ int main (int argc, char *argv[])
     if ( verbosity > 0 ) fprintf(stderr,"Computed %d-smooth factorizations of m <= %d using %.3fMB of memory (%.3fs)\n", MAXP,MAXM,4.0*(MAXM+(Fend-F))/(1<<20),get_time()-start);
 
     char rbuf[32];
-    if ( a == 1 ) sprintf(rbuf,"ceil(N/%d)",b); else sprintf(rbuf,"%dN/%d",a,b);
+    if ( a == 1 ) sprintf(rbuf,"ceil(N/%d)",b); else sprintf(rbuf,"ceil(%dN/%d)",a,b);
 
     start = get_time();
     if ( maxN > minN ) {
