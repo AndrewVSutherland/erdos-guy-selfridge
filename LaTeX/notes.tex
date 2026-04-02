@@ -1,7 +1,7 @@
 %\pdfoutput=1
 \documentclass[10pt,a4paper,reqno]{amsart}
-\newcommand\hmmax{0}
-\newcommand\bmmax{0}
+% \newcommand\hmmax{0}
+% \newcommand\bmmax{0}
 \usepackage{amssymb}
 \usepackage{amscd}
 \usepackage[pdftex,pdfpagelabels]{hyperref}
@@ -37,12 +37,6 @@
 %\DeclareMathOperator*\FT{FT} (commented because yield bad display for \FT_q
 %replaced with \newcommand...)
 
-\DeclareMathOperator*\swan{swan}
-\DeclareMathOperator*\cond{cond}
-\DeclareMathOperator*\Gal{Gal}
-
-\newcommand{\FT}{\mathrm{FT}}
-\newcommand{\Kl}{\mathcal{K}\ell}
 % Setup for ``caption''.
 %\DeclareCaptionLabelSeparator{separation}{:\quad}
 %\captionsetup{
@@ -52,9 +46,9 @@
   %width=0.8\textwidth
 %}
 
-\DeclareFontFamily{OT1}{rsfs}{}
-\DeclareFontShape{OT1}{rsfs}{n}{it}{<-> rsfs10}{}
-\DeclareMathAlphabet{\mathscr}{OT1}{rsfs}{n}{it}
+% \DeclareFontFamily{OT1}{rsfs}{}
+% \DeclareFontShape{OT1}{rsfs}{n}{it}{<-> rsfs10}{}
+% \DeclareMathAlphabet{\mathscr}{OT1}{rsfs}{n}{it}
 
 \addtolength{\textwidth}{3 truecm}
 \addtolength{\textheight}{1 truecm}
@@ -161,9 +155,9 @@
 \subjclass[2020]{11A51}
 
 \begin{abstract}  Let $t(N)$ denote the largest number such that $N!$ can be expressed as the product of $N$ integers greater than or equal to $t(N)$.
-The bound $t(N)/N = 1/e-o(1)$ was apparently established in unpublished work of Erd\H{o}s, Selfridge, and Straus; but the proof is lost.  Here we obtain the more precise asymptotic 
+The bound $t(N)/N = 1/e-o(1)$ was apparently established in unpublished work of Erd\H{o}s, Selfridge, and Straus; but the proof is lost.  Here we obtain the more precise asymptotic
 $$ \frac{t(N)}{N} = \frac{1}{e} - \frac{c_0}{\log N} + O\left( \frac{1}{\log^{1+c} N} \right)$$
-for an explicit constant $c_0 = 0.30441901\dots$ and some absolute constant $c>0$, answering a question of Erd\H{o}s and Graham.  For the upper bound, a further lower order term in the asymptotic expansion is also obtained.  With numerical assistance, we obtain highly precise computations of $t(N)$ for wide ranges of $N$, establishing several explicit conjectures of Guy and Selfridge on this sequence.  For instance, we show that $t(N) \geq N/3$ for $N \geq 43632$, with the threshold shown to be best possible. 
+for an explicit constant $c_0 = 0.30441901\dots$ and some absolute constant $c>0$, answering a question of Erd\H{o}s and Graham.  For the upper bound, a further lower order term in the asymptotic expansion is also obtained.  With computer assistance, we obtain highly precise computations of $t(N)$ for wide ranges of $N$, establishing several explicit conjectures of Guy and Selfridge on this sequence.  For instance, we show that $t(N) \geq N/3$ for $N \geq 43632$, with the threshold shown to be best possible.
 \end{abstract}
 
 
@@ -179,9 +173,9 @@ where each $a$ appears according to its multiplicity in $\tuple$. More generally
 
 \begin{example}\label{nine}  The multiset
   $$ \{ 3,3,3,3,4,4,5,7,8\}$$
-  is a $3$-admissible factorization of 
+  is a $3$-admissible factorization of
 $$ \prod \{ 3,3,3,3,4,4,5,7,8\} = 3^4 \times 4^2 \times 5 \times 7 \times 8 = 9!$$
-of cardinality 
+of cardinality
 $$|\{ 3,3,3,3,4,4,5,7,8\}| = 9,$$
  hence $t(9) \geq 3$.  One can check that no $4$-admissible factorization of $9!$ of this cardinality exists, hence $t(9) = 3$.
 \end{example}
@@ -213,12 +207,13 @@ see \Cref{fig1}.  In \cite[p.75]{erdos-graham} it was reported that an unpublish
 \end{equation}
 for some constant $c>0$ and sufficiently large $N$ (see \cite[Section B22, p.\ 122--123]{guy} and problem {\#}391 in \url{https://www.erdosproblems.com}); it was also noted that similar results were obtained in \cite{algr77} if one restricted the $a_i$ to be prime powers.  However, as later reported in \cite{erdos-96}, Erd\H{o}s ``believed that Straus had written up our proof [of \eqref{t1}]. Unfortunately Straus suddenly died and no trace was ever found of his notes. Furthermore, we never could reconstruct our proof, so our assertion now can be called only a conjecture''.   In \cite{guy-selfridge} it was observed that the lower bound $\frac{t(N)}{N} \geq \frac{3}{16}-o(1)$ could be obtained by rearranging powers of $2$ in the standard factorization $N! = \prod \{1,\dots,N\}$, i.e., by removing some powers of $2$ from some of the terms and redistributing them to other terms.  It was also claimed that this bound could be improved to $\frac{t(N)}{N} \geq \frac{1}{4}$ for sufficiently large $N$ by rearranging powers of $2$ and $3$, however we have found surprisingly that this is not the case; see \Cref{main}(v) below.
 
-The following conjectures in \cite{guy-selfridge} were also made\footnote{The second and third conjectures also appear in \cite{guy}.}:
+The following conjectures in \cite{guy-selfridge} were also made:
 \begin{enumerate}
 \item One has $t(N) \leq N/e$ for $N \neq 1,2,4$.
 \item One has $t(N) \geq \lfloor 2N/7 \rfloor$ for $N \neq 56$.
-\item One has $t(N) \geq N/3$ for $N \geq 3 \times 10^5$.  (It was also asked if the threshold $3 \times 10^5$ could be lowered.) 
+\item One has $t(N) \geq N/3$ for $N \geq 3 \times 10^5$.  (It was also asked if the threshold $3 \times 10^5$ could be lowered.)
 \end{enumerate}
+The second and third conjectures also appear in \cite{guy}.
 
 In this paper we answer all of these questions.
 
@@ -239,17 +234,20 @@ for some constant $c>0$, where $c_0$ is the explicit constant
 \end{split}
 \end{equation}
 and for any $\alpha>0$, $f_\alpha \colon (0,\infty) \to \R$ denotes the piecewise smooth function
-\begin{equation}\label{falpha-def} 
+\begin{equation}\label{falpha-def}
   f_\alpha(x) \coloneqq \left\lfloor \frac{1}{x} \right\rfloor \log \frac{\lceil \nicefrac{1}{\alpha x} \rceil}{\nicefrac{1}{\alpha x}}.
 \end{equation}
-In particular, \eqref{t1} and \eqref{Tbound} hold.  In fact the upper bound can be sharpened to
-\begin{equation}\label{tna} 
-  \frac{t(N)}{N} \leq \frac{1}{e} - \frac{c_0}{\log N} - \frac{c_1+o(1)}{\log^2 N} 
-\end{equation}
-for an explicit constant $c_1=0.75554808\dots$; see \Cref{upper-bound}.
+In particular, \eqref{t1} and \eqref{Tbound} hold.
 \item[(v)]  The largest $N$ for which one can demonstrate $t(N) \geq N/4$ purely by rearranging powers of $2$ and $3$ in the standard factorization $N! = \prod \{1,\dots,N\}$ is $26244$.
 \end{itemize}
 \end{theorem}
+
+\begin{remark} In fact the upper bound \eqref{Tbound} can be sharpened to
+\begin{equation}\label{tna}
+  \frac{t(N)}{N} \leq \frac{1}{e} - \frac{c_0}{\log N} - \frac{c_1+o(1)}{\log^2 N}
+\end{equation}
+for an explicit constant $c_1=0.75554808\dots$; see \Cref{upper-bound}.
+\end{remark}
 
 \begin{figure}[hbp!]
   \centering
@@ -285,7 +283,7 @@ In \Cref{c0-app} we give some details on the numerical computation of the consta
 \begin{remark}\label{old} In a previous version \cite{tao} of this manuscript, the weaker bounds
   $$ \frac{1}{e} - \frac{O(1)}{\log N} \leq \frac{t(N)}{N} \leq \frac{1}{e} - \frac{c_0+o(1)}{\log N}$$
 were established, which were enough to recover \eqref{t1}, \eqref{Tbound}, and \Cref{main}(i). Numerically, the upper bound in \eqref{tna} appears to be a rather good approximation, and we conjecture that it is a lower bound as well.
-\end{remark}  
+\end{remark}
 
 
 As one might expect, the proof of \Cref{main} proceeds by a combination of both theoretical analysis and numerical calculations.  Our main tools to obtain upper and lower bounds on $t(N)$ can be summarized as follows (and in \Cref{cases-table}):
@@ -331,7 +329,7 @@ The final approach is significantly more complicated than the other four, but gi
 \begin{equation}\label{approx_factor}
    N! \approx \left(\prod_{j \in I} j\right)^A
 \end{equation}
-for some relatively small natural number $A$ (e.g., $A = \lfloor \log^2 N \rfloor$) and a suitable set $I$ of natural numbers greater than or equal to $t$; there is some freedom to select parameters here, and we will take $I$ to be the natural numbers in $(t, t(1+\sigma)]$ that are $3$-rough (coprime to $6$), where $t$ is the target lower bound for $t(N)$ we wish to establish, and $\sigma \coloneqq \frac{3N}{tA}$ is chosen to bring the number of terms in the approximate factorization close to $N$.  With this choice of $I$, the product in \eqref{approx_factor} contains approximately the right number of copies of $p$ for medium-sized primes $p$; but it has the ``wrong'' number of copies of large primes, and is also constructed to avoid the ``tiny'' primes $p=2,3$.  One then performs a number of alterations to this approximate factorization to correct for the ``surpluses'' or ``deficits'' at various primes $p>3$, using the supply of available tiny primes $p=2,3$ as a sort of ``liquidity pool'' to efficiently reallocate primes in the factorization.  A key point will be that the incommensurability of $\log 2$ and $\log 3$ (i.e., the irrationality of $\log 3/\log 2$) means that the $3$-smooth numbers (numbers of the form $2^n 3^m$) are asymptotically dense (in logarithmic scale), allowing for other factors to be exchanged for $3$-smooth factors with little loss\footnote{The weaker results alluded to in \Cref{old} only used the prime $2$ as a supply of ``liquidity'', and thus encountered inefficiencies due to the inability to ``make change'' when approximating another factor by a power of two.}.
+for some relatively small natural number $A$ (e.g., $A = \lfloor \log^2 N \rfloor$) and a suitable set $I$ of natural numbers greater than or equal to $t$; there is some freedom to select parameters here, and we will take $I$ to be the natural numbers in $(t, t(1+\sigma)]$ that are $3$-rough (coprime to $6$), where $t$ is the target lower bound for $t(N)$ we wish to establish, and $\sigma \coloneqq \frac{3N}{tA}$ is chosen to bring the number of terms in the approximate factorization close to $N$.  With this choice of $I$, the product in \eqref{approx_factor} contains approximately the right number of copies of $p$ for medium-sized primes $p$; but it has the ``wrong'' number of copies of large primes, and is also constructed to avoid the ``tiny'' primes $p=2,3$.  One then performs a number of alterations to this approximate factorization to correct for the ``surpluses'' or ``deficits'' at various primes $p>3$, using the supply of available tiny primes $p=2,3$ as a sort of ``liquidity pool'' to efficiently reallocate primes in the factorization.  A key point will be that the incommensurability of $\log 2$ and $\log 3$ (i.e., the irrationality of $\log 3/\log 2$) means that the $3$-smooth numbers (numbers of the form $2^n 3^m$) are asymptotically dense (in logarithmic scale), allowing for other factors to be exchanged for $3$-smooth factors with little loss.  The weaker results mentioned in \Cref{old}  only used the prime $2$ as a supply of ``liquidity'', and thus encountered inefficiencies due to the inability to ``make change'' when approximating another factor by a power of two.
 
 \subsection{Linear and integer programming solvers}
 
@@ -384,21 +382,21 @@ AVS is supported by Simons Foundation Grant 550033.  TT is supported by NSF gran
 
 In this paper the natural numbers $\N=\{1,2,3,\dots\}$ will start at $1$.
 
-We use the usual asymptotic notation $X = O(Y)$, $X \ll Y$, or $Y \gg X$ to denote an inequality of the form $|X| \leq CY$ for some absolute constant $C$; if we need this constant to depend on additional parameters, we will indicate this by subscripts, thus for instance $O_M(Y)$ denotes a quantity bounded in magnitude by $C_M Y$ for some $C_M$ depending on $M$.  We also write $X \asymp Y$ for $X \ll Y \ll X$. For effective estimates, we will use the more precise notation $O_{\leq}(Y)$ to denote any quantity whose magnitude is bounded by exactly at most $Y$. We also use $O_{\leq}(Y)^+$ to denote a quantity of size $O_{\leq}(Y)$ that is also non-negative, that is to say it lies in the interval $[0,Y]$.  We also use $o(X)$ to denote any quantity bounded in magnitude by $c(N) X$, for some $c(N)$ that goes to zero as $N \to \infty$. We also use $X = \Omega(Y)$ to denote an inequality of the form $|X| \geq CY$ for some absolute constant $C$. 
+We use the usual asymptotic notation $X = O(Y)$, $X \ll Y$, or $Y \gg X$ to denote an inequality of the form $|X| \leq CY$ for some absolute constant $C$; if we need this constant to depend on additional parameters, we will indicate this by subscripts, thus for instance $O_M(Y)$ denotes a quantity bounded in magnitude by $C_M Y$ for some $C_M$ depending on $M$.  We also write $X \asymp Y$ for $X \ll Y \ll X$. For effective estimates, we will use the more precise notation $O_{\leq}(Y)$ to denote any quantity whose magnitude is bounded by exactly at most $Y$. We also use $O_{\leq}(Y)^+$ to denote a quantity of size $O_{\leq}(Y)$ that is also non-negative, that is to say it lies in the interval $[0,Y]$.  We also use $o(X)$ to denote any quantity bounded in magnitude by $c(N) X$, for some $c(N)$ that goes to zero as $N \to \infty$. We also use $X = \Omega(Y)$ to denote an inequality of the form $|X| \geq CY$ for some absolute constant $C$.
 
 If $S$ is a statement, we use $1_S$ to denote its indicator, thus $1_S=1$ when $S$ is true and $1_S=0$ when $S$ is false.  If $x$ is a real number, we use $\lfloor x \rfloor$ to denote the greatest integer less than or equal to $x$, and $\lceil x \rceil$ to be the least integer greater than or equal to $x$.
 
-Throughout this paper, the symbol $p$ (or $p_0$, $p_1$, etc.) is always understood to be restricted to be prime.  
-We use $(a,b)$ to denote the greatest common divisor of $a$ and $b$, $a|b$ to denote the assertion that $a$ divides $b$, and $\pi(x) = \sum_{p \leq x} 1$ to denote the usual prime counting function.  For a natural number $n$, we use $P_+(n)$ and $P_-(n)$ to denote the largest and smallest prime factors of $n$, respectively, with the convention that $P_-(1) = P_+(1) = 1$. 
+Throughout this paper, the symbol $p$ (or $p_0$, $p_1$, etc.) is always understood to be restricted to be prime.
+We use $(a,b)$ to denote the greatest common divisor of $a$ and $b$, $a|b$ to denote the assertion that $a$ divides $b$, and $\pi(x) = \sum_{p \leq x} 1$ to denote the usual prime counting function.  For a natural number $n$, we use $P_+(n)$ and $P_-(n)$ to denote the largest and smallest prime factors of $n$, respectively, with the convention that $P_-(1) = P_+(1) = 1$.
 
 We use $\nu_p(a/b) = \nu_p(a)-\nu_p(b)$ to denote the $p$-adic valuation of a positive rational number $a/b$, that is to say the number of times $p$ divides the numerator $a$, minus the number of times $p$ divides the denominator $b$.  For instance, $\nu_2(32/27)=5$ and $\nu_3(32/27)=-3$.
 If one applies a logarithm to the fundamental theorem of arithmetic, one obtains the identity
 \begin{equation}\label{ftoa}
   \sum_p \nu_p(r) \log p = \log r
 \end{equation}
-for any positive rational $r$.  
+for any positive rational $r$.
 For a natural number $n$, we can write
-\begin{equation}\label{nup-form} 
+\begin{equation}\label{nup-form}
   \nu_p(n) = \sum_{j=1}^\infty 1_{p^j|n}.
 \end{equation}
 Upon taking partial sums, we recover Legendre's formula
@@ -407,31 +405,33 @@ Upon taking partial sums, we recover Legendre's formula
 \end{equation}
 where $s_p(N)$ is the sum of the digits of $N$ in the base $p$ expansion.
 
-Given a multiset of integers $\tuple$ that is a putative factorization of $N!$,  
+Given a multiset of integers $\tuple$ that is a putative factorization of $N!$,
 we refer to the quantity $\nu_p\left( \frac{N!}{\prod \tuple} \right)$ as the \emph{$p$-surplus} of $\tuple$ with respect to the target $N!$, and similarly refer to the negative $-\nu_p\left( \frac{N!}{\prod \tuple} \right) = \nu_p\left( \frac{\prod \tuple}{N!} \right)$ of this surplus as the \emph{$p$-deficit}, with the multiset being \emph{$p$-balanced} if the $p$-surplus (or $p$-deficit) is zero.  Thus, $\tuple$ is a (complete) factorization of $N!$ if it is balanced at every prime $p$, and it is a subfactorization if it is in balance or surplus at every prime $p$.
 
-Let $M(N,t)$ denote the maximal cardinality of a $t$-admissible subfactorization of $N!$; thus, by \Cref{subfac}, $t(N) \geq t$ if and only if $M(N,t) \geq N$. 
+Let $M(N,t)$ denote the maximal cardinality of a $t$-admissible subfactorization of $N!$; thus, by \Cref{subfac}, $t(N) \geq t$ if and only if $M(N,t) \geq N$.
 
 To bound the factorial, we have the explicit Stirling approximation \cite{robbins}
 \begin{equation}\label{stirling}
 \log N! = N \log N - N + \log \sqrt{2\pi N} + O_\leq^+\left(\frac{1}{12N}\right),
 \end{equation}
-valid for all natural numbers $N$. 
+valid for all natural numbers $N$.
 
-\subsection{Approximation by \texorpdfstring{$3$}{3}-smooth numbers} 
+\subsection{Approximation by \texorpdfstring{$3$}{3}-smooth numbers}
 
-The primes $2,3$ will play a special role\footnote{One could also run analogous arguments with other sets of tiny primes; for instance, the initial version \cite{tao} of this paper only utilized the prime $2$ in this fashion.} in this paper and will be referred to as \emph{tiny primes}. 
-Call a natural number \emph{$3$-smooth} if it is the product of tiny primes, i.e., it is of the form $2^n 3^m$ for some natural numbers $n,m$, and \emph{$3$-rough} if it is not divisible by any tiny prime, that is to say it is coprime to $6$.  Given a positive real number $x$, we use $\lceil x \rceil^{\langle 2,3 \rangle}$ to denote the smallest $3$-smooth number greater than or equal to $x$.  For instance, $\lceil 5 \rceil^{\langle 2,3 \rangle} = 6$ and $\lceil 10 \rceil^{\langle 2,3 \rangle} = 12$.  
+The primes $2,3$ will play a special role\footnote{One could also run analogous arguments with other sets of tiny primes; for instance, the initial version \cite{tao} of this paper only utilized the prime $2$ in this fashion.} in this paper and will be referred to as \emph{tiny primes}.
+Call a natural number \emph{$3$-smooth} if it is the product of tiny primes, i.e., it is of the form $2^n 3^m$ for some natural numbers $n,m$, and \emph{$3$-rough} if it is not divisible by any tiny prime, that is to say it is coprime to $6$.  Given a positive real number $x$, we use $\lceil x \rceil^{\langle 2,3 \rangle}$ to denote the smallest $3$-smooth number greater than or equal to $x$.  For instance, $\lceil 5 \rceil^{\langle 2,3 \rangle} = 6$ and $\lceil 10 \rceil^{\langle 2,3 \rangle} = 12$.
 
-It will be convenient to introduce a variant of this quantity that is close to a power\footnote{The significance of the base $12$ is that the $3$-smooth portion $2^{\nu_2(N!)} 3^{\nu_3(N!)}$ of $N!$, which serves as our ``liquidity pool'', is approximately $2^N 3^{N/2} = \sqrt{12}^{N}$; see \eqref{legendre} above.  This makes $\log \sqrt{12}$ a natural ``unit of currency'' in which to conduct various factor exchanges, with various integer linear combinations of $\log 2$ and $\log 3$ usable as ``small change'' to approximate quantities that are not integer multiples of $\log \sqrt{12} = \log 2 + \frac{1}{2} \log 3$.} of $12$.  If $1 \leq L \leq x$ is an additional real parameter, we define
+It will be convenient to introduce a variant of this quantity that is close to a power of $12$. The significance of the base $12$ is that the $3$-smooth portion $2^{\nu_2(N!)} 3^{\nu_3(N!)}$ of $N!$, which serves as our ``liquidity pool'', is approximately $2^N 3^{N/2} = \sqrt{12}^{N}$; see \eqref{legendre} above.  This makes $\log \sqrt{12}$ a natural ``unit of currency'' in which to conduct various factor exchanges, with various integer linear combinations of $\log 2$ and $\log 3$ usable as ``small change'' to approximate quantities that are not integer multiples of $\log \sqrt{12} = \log 2 + \frac{1}{2} \log 3$.
+
+If $1 \leq L \leq x$ is an additional real parameter, we define
 \begin{equation}\label{fancy-kappa-def}
   \lceil x \rceil^{\langle 2,3\rangle}_L \coloneqq 12^a \lceil x/12^a \rceil^{\langle 2,3 \rangle}
 \end{equation}
 for any real $x \geq L \geq 1$, where $a \coloneqq \left\lfloor \frac{x/L}{\log 12} \right\rfloor$ is the largest integer such that $12^a \leq x/L$.
 
 For any $L \geq 1$, let $\kappa_L$ be the least quantity such that
-\begin{equation}\label{kappa-def}  
-  x \leq \lceil x \rceil^{\langle 2,3\rangle} \leq \exp(\kappa_L) x 
+\begin{equation}\label{kappa-def}
+  x \leq \lceil x \rceil^{\langle 2,3\rangle} \leq \exp(\kappa_L) x
 \end{equation}
 holds for all $x \geq L$; see \Cref{fig:nextsmooth}.  In \Cref{power-sec} we establish the following facts:
 
@@ -439,26 +439,26 @@ holds for all $x \geq L$; see \Cref{fig:nextsmooth}.  In \Cref{power-sec} we est
   \centering
   \includegraphics[width=0.8\textwidth]{next_smooth.png}
   \vspace{-8pt}
-  \caption{The function $\log \frac{\lceil x \rceil^{\langle 2,3 \rangle}}{x}$, compared against $\kappa_x$. 
+  \caption{The function $\log \frac{\lceil x \rceil^{\langle 2,3 \rangle}}{x}$, compared against $\kappa_x$.
   }\label{fig:nextsmooth}
   \end{figure}
 
 
-\begin{lemma}[Approximation by $3$-smooth numbers]\label{power-lemma}\ 
+\begin{lemma}[Approximation by $3$-smooth numbers]\label{power-lemma}\
 \begin{itemize}
 \item[(i)]  We have $\kappa_{4.5} = \log\frac{4}{3} = 0.28768\dots$ and $\kappa_{40.5} = \log \frac{32}{27} = 0.16989\dots$.
 \item[(ii)]  For large $L$, one has $\kappa_L \ll \log^{-c} L$ for some absolute constant $c>0$.
 \item[(iii)]  If $1 \leq L \leq x$ are real numbers, then
 \begin{equation}\label{mod-kappa}
-  x \leq \lceil x \rceil^{\langle 2,3\rangle}_L \leq \exp(\kappa_L) x 
+  x \leq \lceil x \rceil^{\langle 2,3\rangle}_L \leq \exp(\kappa_L) x
 \end{equation}
 and for any $0 \leq \gamma < 1$ we have
 \begin{equation}\label{12-2}
-\frac{\nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L) - 2 \gamma \nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma} \leq \frac{\log x  + \kappa^{(2)}_{L,\gamma} }{\log \sqrt{12}} 
+\frac{\nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L) - 2 \gamma \nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma} \leq \frac{\log x  + \kappa^{(2)}_{L,\gamma} }{\log \sqrt{12}}
 \end{equation}
 and
 \begin{equation}\label{12-3}
-\frac{2\nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L) - \gamma \nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma} \leq \frac{\log x + \kappa^{(3)}_{L,\gamma} }{\log \sqrt{12}} 
+\frac{2\nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L) - \gamma \nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma} \leq \frac{\log x + \kappa^{(3)}_{L,\gamma} }{\log \sqrt{12}}
 \end{equation}
 where
 \begin{equation}\label{kappastar-2-def}
@@ -497,7 +497,7 @@ for $x \geq 599$ and
 \begin{equation}\label{pi-upper}
   \pi(x) \leq \frac{x}{\log x} + \frac{1.2762 x}{\log^2 x}
 \end{equation}
-for $x >1$.  
+for $x >1$.
 
 We will also need to control sums of somewhat oscillatory functions over primes, for which the bounds in \eqref{pi-lower}, \eqref{pi-upper} are of insufficient strength. Let $y<x$ be real numbers. Given a function $b \colon (y,x] \to \R$, its \emph{total variation}
 $\|b\|_{\mathrm{TV}(y,x]}$ is defined as the supremum of the quantities $\sum_{j=0}^{J-1} |b(x_{j+1})-b(x_j)|$ for $y < x_0 \leq \dots \leq x_J \leq x$, and the \emph{augmented total variation} $\|b\|_{\mathrm{TV}^*(y,x]}$ is defined as
@@ -508,7 +508,9 @@ where $b(y^+) \coloneqq \lim_{t \to y^+} b(t)$ denotes the right limit of $b$ at
 
 We will use this augmented total variation to control sums over primes.  More precisely, in \Cref{primes-sec} we will show
 
-\begin{lemma}[Effective bounds for oscillatory sums over primes]\label{osc-lemma}  Let $1423 \leq y \leq x$, and let $b: (y,x] \to \R$ be of bounded total variation.  Then we have the bound
+\begin{lemma}[Effective bounds for oscillatory sums over primes]\label{osc-lemma}  Let $1423 \leq y \leq x$, and let $b: (y,x] \to \R$ be of bounded total variation.
+  \begin{itemize}
+    \item [(i)] Wwe have the bound
 \begin{equation}\label{bv-exact}
     \sum_{y < p \leq x} b(p) \log p = \int_y^x \left(1-\frac{2}{\sqrt{t}}\right) b(t)\ dt + O_{\leq}(\|b\|_{\mathrm{TV}^*(y,x]} E(x))
 \end{equation}
@@ -516,13 +518,11 @@ where the error function $E(x)$ is defined as
 \begin{equation}\label{tilde-e}
   E(x) \coloneqq 0.95 \sqrt{x} + 3.83 \times 10^{-9} x.
 \end{equation}
-In particular one has
+  \item[(ii)] One has
 \begin{equation}\label{pix}
-  \pi(x) - \pi(y) = \int_y^x \left(1-\frac{2}{\sqrt{t}}\right)\frac{dt}{\log t} + O_\leq\left(2 \frac{E(x)}{\log y}\right);
+  \pi(x) - \pi(y) = \int_y^x \left(1-\frac{2}{\sqrt{t}}\right)\frac{dt}{\log t} + O_\leq\left(2 \frac{E(x)}{\log y}\right),
 \end{equation}
-estimating
-$$ 1-\frac{2}{\sqrt{y}} \leq 1-\frac{2}{\sqrt{t}} \leq 1$$
-and using the convexity of $t \mapsto \frac{1}{\log t}$, we obtain the upper bound
+the upper bound
 \begin{equation}\label{pixy-upper}
  \pi(x) - \pi(y) \leq \frac{x-y}{2\log y} + \frac{x-y}{2\log x} + 2 \frac{E(x)}{\log y}
 \end{equation}
@@ -530,9 +530,7 @@ and the lower bound
 \begin{equation}\label{pixy-lower}
   \pi(x) - \pi(y) \geq \left(1-\frac{2}{\sqrt{y}}\right) \frac{x-y}{\log \frac{x+y}{2}} - 2 \frac{E(x)}{\log y}.
 \end{equation}
-For non-negative $b$ and the trivial inequalities
-$$ \frac{b(p) \log p}{\log x}  \leq b(p) \leq \frac{b(p) \log p}{\log y} $$
-we similarly obtain the upper bound
+  \item[(iii)] If $b$ is non-negative, we have the upper bound
 \begin{equation}\label{bv-upper}
    \sum_{y < p \leq x} b(p) \leq \frac{1}{\log y} \int_y^x b(t)\ dt + \|b\|_{\mathrm{TV}^*(y,x]} \frac{E(x)}{\log y}
 \end{equation}
@@ -540,6 +538,7 @@ and the lower bound
 \begin{equation}\label{bv-lower}
   \sum_{y < p \leq x} b(p) \leq \frac{1-\frac{2}{\sqrt{y}}}{\log x} \int_y^x b(t)\ dt - \|b\|_{\mathrm{TV}^*(y,x]} \frac{E(x)}{\log x}.
 \end{equation}
+\end{itemize}
 One can replace all occurrences of $E(x)$ here by the classical error term $O(x \exp(-c \sqrt{\log x}))$ for some absolute constant $c>0$ (in which case the $\frac{2}{\sqrt{t}}$ type terms can be absorbed into the error term).
 \end{lemma}
 
@@ -565,9 +564,9 @@ We therefore turn to the question of how to algorithmically obtain good upper an
 The following \textit{greedy algorithm} produces reasonably good lower bounds on $M(N,t)$:
 
 \begin{enumerate}
-\item[Step 0:] Initialize $\tuple$ to be the empty multiset. 
-\item[Step 1:] If $\tuple$ is not a factorization of $N!$, determine the largest $p$ in surplus: $\nu_p\bigl(N!/\prod \tuple\bigr) > 0$. 
-\item[Step 2:] If $N! / \prod \tuple$ is divisible by a multiple of $p$ greater than or equal to $t$, determine the smallest such multiple, add it to $\tuple$, and return to Step 1.  Otherwise, \texttt{HALT}. 
+\item[Step 0:] Initialize $\tuple$ to be the empty multiset.
+\item[Step 1:] If $\tuple$ is not a factorization of $N!$, determine the largest $p$ in surplus: $\nu_p\bigl(N!/\prod \tuple\bigr) > 0$.
+\item[Step 2:] If $N! / \prod \tuple$ is divisible by a multiple of $p$ greater than or equal to $t$, determine the smallest such multiple, add it to $\tuple$, and return to Step 1.  Otherwise, \texttt{HALT}.
 \end{enumerate}
 
 This procedure clearly halts in finite time and produces a $t$-admissible subfactorization of $N!$.
@@ -675,7 +674,7 @@ The GitHub repository \cite{github} associated to this paper contains lists of t
 
 It thus remains to establish \Cref{main}(iii) in the region $43632 \leq N < 67425$ and $N > 10^{14}$, and to show that $t(N)<N/3$ for $N=43631$.
 
-      
+
 \begin{table}[htp!]
   \centering
   \begin{tabular}{|c|c|c|c|c|r|}
@@ -727,7 +726,7 @@ $9 \times 10^8$ & $\num{316560601}$ & $t(N)_- - \num{3137853}$ & 0.153 & $t(N)_-
 \section{Linear programming}\label{linprog-sec}
 
 It turns out that linear programming and integer programming methods are quite effective at bounding $M(N,t)$, both from above and below.  The starting point is the following integer program interpretation of $M(N,t)$. For any $t,N$, let $J_{t,N}$ be the collection of all $j \geq t$ that divide $N!$, and which do not have any proper factor $j' < j$ that is also greater than or equal to $t$.  For instance,
-$$ J_{4,5} = \{ 4, 5, 6, 9 \}.$$ 
+$$ J_{4,5} = \{ 4, 5, 6, 9 \}.$$
 
 \begin{proposition}[Integer programming description of $t(N)$]\label{fip}  For any $N,t \geq 1$, $M(N,t)$ is the maximum value of
 \begin{equation}\label{mj-sum}
@@ -741,7 +740,7 @@ for all primes $p \leq N$.
 \end{proposition}
 
 \begin{proof}  If $m_j, j \in J_{t,N}$ are non-negative integers obeying \eqref{constraints}, then clearly
-  \begin{equation}\label{mj-subfac} 
+  \begin{equation}\label{mj-subfac}
     \prod_{j \geq t} j^{m_j}
   \end{equation}
 is a $t$-admissible subfactorization of $N!$, so that $M(N,t)$ is greater than or equal to \eqref{mj-sum}. Conversely, suppose that $M(N,t) \geq M$, thus we have a $t$-admissible subfactorization of $N!$ into $M$ factors.  Clearly, each of these factors $j$ is at least $t$, and divides $N!$.
@@ -755,7 +754,7 @@ For larger $N$, the sets $J_{t,N}$ become somewhat large, and the integer progra
 For upper bounds, we can relax the integer program to a linear program.  Let $M_\R(N,t)$ denote the maximum value of \eqref{mj-sum} where the $m_j, j \in J_{t,N}$ are now non-negative \emph{real} numbers obeying \eqref{constraints}.  Clearly we have the upper bound
 $$ M(N,t) \leq M_\R(N,t)$$
 which can be improved slightly to
-\begin{equation}\label{lp-upper} 
+\begin{equation}\label{lp-upper}
   M(N,t) \leq \lfloor M_\R(N,t)\rfloor
 \end{equation}
 since $M(N,t)$ is an integer.  We refer to these bounds as the \emph{linear programming upper bounds}.
@@ -771,7 +770,7 @@ subject to the constraints that the $w_p$ are weakly increasing, thus
 \begin{equation}\label{wp-decrease}
 w_{p_2} \geq w_{p_1}
 \end{equation}
-whenever $p_2 \geq p_1$, and 
+whenever $p_2 \geq p_1$, and
 \begin{equation}\label{pj}
   \sum_{p \leq N} w_p \nu_p(j) \geq 1
  \end{equation}
@@ -796,10 +795,10 @@ $$ \sum_{j \in J_{t,N}} m_j  \leq \sum_{j \in J_{t,N}} m_j \sum_{p \leq N} w_p \
 and hence \eqref{hyp} is an upper bound for $M_\R(N,t)$.
 
 In the opposite direction, we need to locate weakly increasing non-negative weights $w_p$ obeying \eqref{pj} for $t \leq j \leq N$ for which
-\begin{equation}\label{wpm} 
+\begin{equation}\label{wpm}
   \sum_{p \leq N} w_p \nu_p(N!) = M_\R(N,t).
 \end{equation}
-To do this, we first make the technical observation that in the definition of $M_\R(N,t)$, we can enlarge the index set $J_{t,N}$ to the larger set $J'_{t,N}$ of natural numbers $j \geq t$ that divide $N!$.  This follows by repeating the proof of \Cref{fip}: if $m_j$ were non-zero for some $j \geq t$ dividing $N!$ that had a proper factor $j' \geq t$, then one could transfer the mass of $m_j$ to $m_{j'}$ (i.e., replace $m_{j'}$ with $m_{j'}+m_j$ and then set $m_j$ to zero) without affecting \eqref{constraints}.  
+To do this, we first make the technical observation that in the definition of $M_\R(N,t)$, we can enlarge the index set $J_{t,N}$ to the larger set $J'_{t,N}$ of natural numbers $j \geq t$ that divide $N!$.  This follows by repeating the proof of \Cref{fip}: if $m_j$ were non-zero for some $j \geq t$ dividing $N!$ that had a proper factor $j' \geq t$, then one could transfer the mass of $m_j$ to $m_{j'}$ (i.e., replace $m_{j'}$ with $m_{j'}+m_j$ and then set $m_j$ to zero) without affecting \eqref{constraints}.
 
 If we then invoke the duality theorem of linear programming, we can find weights $w_p \geq 0$ for $p \leq N$ obeying \eqref{wpm} as well as \eqref{pj} for all $j \in J'_{t,N}$ (not just $j \in J_{t,N}$).  To conclude the proof, it suffices to show that the $w_p$ are weakly increasing. Suppose for contradiction that there are primes $p_1 < p_2 \leq N$ such that $w_{p_1} > w_{p_2}$.  Let $\eps>0$ be a sufficiently small quantity, and define the modification $\tilde w_p$ to $w_p$ by decreasing $w_{p_1}$ by $\eps$ and leaving all other $w_p$ unchanged.  This decreases the left-hand side of \eqref{wpm}, so to get a contradiction with the already-obtained lower bound, it suffices to show that
   $$ \sum_p \tilde w_p \nu_p(j) \geq 1$$
@@ -807,7 +806,7 @@ If we then invoke the duality theorem of linear programming, we can find weights
   $$ \sum_p \tilde w_p \nu_p(j) \geq \sum_p w_p \nu_p\left(\frac{p_2}{p_1} j\right);$$
 since $\frac{p_2}{p_1} j \geq j \geq t$, we are done unless $\frac{p_2}{p_1} j$ is not divisible by $N!$. This only occurs when $\nu_{p_2}(j) = \nu_{p_2}(N!)$, but then
 $$ \frac{j}{p_1} \geq p_2^{\nu_{p_2}(N!)} \geq p_2^{\lfloor N/p_2\rfloor}.$$
-We claim that the right-hand side is at least $N/2$.  This is clear for $p_2 \geq N/2$, and also for $\sqrt{N/2} \leq p_2 < N/2$ since $\lfloor N/p_2\rfloor \geq 2$ in this case.  For $p_2 < \sqrt{N/2}$ one has 
+We claim that the right-hand side is at least $N/2$.  This is clear for $p_2 \geq N/2$, and also for $\sqrt{N/2} \leq p_2 < N/2$ since $\lfloor N/p_2\rfloor \geq 2$ in this case.  For $p_2 < \sqrt{N/2}$ one has
 $$  p_2^{\lfloor N/p_2\rfloor} \geq 3^{\lfloor \sqrt{2N} \rfloor} \geq \frac{N}{2}$$
 for all $N$ (here we use that $3^k \geq \frac{(k+1)^2}{4}$ for $k \geq 1$).  Thus in all cases we have $j/p_1 \geq N/2 \geq t$, contradicting the hypothesis that $j$ has no proper factor that is at least $t$.
 \end{proof}
@@ -834,7 +833,7 @@ The exact bound obtained is $M(43631,14544) \le 43631 - \frac{47}{1257}$.
   \end{figure}
 
 
-With integer programming, we could also establish\footnote{Explicit factorizations in this range can be found at \url{https://github.com/teorth/erdos-guy-selfridge/tree/main/Data/factorizations}.} $t(N) \geq N/3$ for all $43632 \leq N \leq 8 \times 10^4$. 
+With integer programming, we could also establish\footnote{Explicit factorizations in this range can be found at \url{https://github.com/teorth/erdos-guy-selfridge/tree/main/Data/factorizations}.} $t(N) \geq N/3$ for all $43632 \leq N \leq 8 \times 10^4$.
   In particular, when combined with the greedy algorithm computations from the previous section, this resolves \Cref{main}(iii) except in the asymptotic range $N > 10^{14}$, where it suffices to establish the lower bound $t(N) \geq N/3$.
 
 
@@ -887,7 +886,7 @@ For larger $N$ (e.g., $3 \times 10^5 \leq N \leq 9 \times 10^8$), the floor+resi
   \vspace{-16pt}
   \caption{Lower bounds on $t(N)/N$ coming from various linear programming and greedy methods for sample values of $N$ in the range $10^4 \leq N \leq 10^{12}$, as well as upper bounds coming from linear programming and \Cref{upper-crit}.  Even if one simply takes floors from the linear program and discards residuals, the resulting lower bound is asymptotically almost indistinguishable from the upper bound. }\label{fig-verylarge}
 \end{figure}
-    
+
     \begin{table}[ht]
       \centering
       \begin{tabular}{|c|c|c|c|c|}
@@ -956,8 +955,8 @@ It is easy to check using \eqref{ftoa} that the weights $w_p \coloneqq \frac{\lo
   \end{lemma}
 
 \begin{proof} We introduce the weights
-  $$ 
-w_p \coloneqq  \begin{cases} 
+  $$
+w_p \coloneqq  \begin{cases}
   \frac{\log p}{\log t}, & p  \leq \frac{t}{\lfloor \sqrt{t} \rfloor}, \\
   \frac{\log p}{\log t} - \frac{\log \frac{\lceil t/p \rceil}{t/p}}{\log t} = 1 - \frac{\log \lceil t/p \rceil}{\log t}, & p  > \frac{t}{\lfloor \sqrt{t} \rfloor}.
 \end{cases}
@@ -968,16 +967,14 @@ If $j \in J_{t,N}$ is of the form $j = mp_1$ where $p_1 > \frac{t}{\lfloor \sqrt
 \begin{align*}
 \sum_p w_p \nu_p(j) &= \frac{\sum_p \nu_p(j) \log p}{\log t}
 - \frac{\log \frac{\lceil t/p_1 \rceil}{t/p_1}}{\log t}\\
-&= \frac{\log(mp_1)}{\log t} -  \frac{\log \frac{m}{t/p_1}}{\log t} \\
-&= 1.
+&= \frac{\log(mp_1)}{\log t} -  \frac{\log \frac{m}{t/p_1}}{\log t} = 1.
 \end{align*}
 Finally, if $j \in J_{t,N}$ is divisible by two primes $p_1, p_2 > {t}{\lfloor \sqrt{t} \rfloor}$ (possibly equal), then
 \begin{align*}
   \sum_p w_p \nu_p(j) &\geq
   1 - \frac{\log \lceil t/p_1 \rceil}{\log t} + 1 - \frac{\log \lceil t/p_1 \rceil}{\log t} \\
   &\geq
-  1 - \frac{\log \sqrt{t}}{\log t} + 1 - \frac{\log \sqrt{t}}{\log t} \\
-  &= 1.
+  1 - \frac{\log \sqrt{t}}{\log t} + 1 - \frac{\log \sqrt{t}}{\log t} = 1.
 \end{align*}
 Thus we have verified \eqref{pj} for all $j \in J_{t,N}$.  Finally, from \eqref{ftoa}, \eqref{legendre}, \eqref{contra} we have
 \begin{align*}
@@ -991,7 +988,7 @@ giving \eqref{hyp}.  The claim follows.
 
 
 In practice, \Cref{upper-crit} gives quite good upper bounds on $N$, especially when $N$ is large, although for medium $N$ the linear programming method is superior: see \Cref{fig1}, \Cref{fig1-alt}, and \Cref{fig-zoom}.
-    
+
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{newplot_600.png}
@@ -1006,7 +1003,7 @@ In practice, \Cref{upper-crit} gives quite good upper bounds on $N$, especially 
   \caption{A histogram of an optimal factorization of $N!$ for $N=43632$, demonstrating that $t(N) = N/3+1 = 14545$.  Of the $N$ factors, most ($\num{32147}$) of them are of the form $p \lceil t/p \rceil$ for $p > \frac{t}{\lfloor \sqrt{t} \rfloor}$, thus directly contributing to the left-hand side of \Cref{upper-crit}.  (The factors arising from very large primes lie to the right of the displayed graph, as a long tail of the histogram.)  The remaining $\num{11485}$ factors stay close to $t(N)$, with the largest being $\num{14941}$.
   }\label{fig-factor}
   \end{figure}
-  
+
 
 We can now prove the upper bound portion of \Cref{main}(iv):
 
@@ -1025,7 +1022,7 @@ We discuss the numerical evaluation of these constants in \Cref{c0-app}.
   Numerically, this bound is a reasonably good approximation for medium-sized $N$, see \Cref{fig-long}, \Cref{fig-longer}, although it may be possible to improve the approximation further with additional terms.  Based on these numerics it seems natural to conjecture that one in fact has
   $$\frac{t(N)}{N} = \frac{1}{e} - \frac{c_0}{\log N} - \frac{c_1 + o(1)}{\log^2 N}$$
 as $N \to \infty$.
-    
+
     \begin{proof}[Proof of \Cref{upper-bound}]
     We apply \Cref{upper-crit} with
       $$ t \coloneqq \frac{1}{e} - \frac{c_0}{\log N} - \frac{c_1-\eps}{\log^2 N}$$
@@ -1041,16 +1038,16 @@ as $N \to \infty$.
     On the interval $[1/\log^3 N,1]$, the piecewise smooth function $f_{N/t}$ is bounded by $O(1)$ thanks to \eqref{falpha-bound}, and has an (augmented) total variation of $O(\log^3\! N)$; the same is true of the rescaled function $x \mapsto f_{N/t}(x/N)$ on $[N/\log^3\! N,N]$.   This implies that $x \mapsto \frac{1}{\log x} f_{N/t}(x/N)$ has an (augmented) total variation of $O(\log^2 N)$.
    By \Cref{osc-lemma} (with classical error term), we conclude that the left-hand side of \eqref{targ-sum} is at least
     $$ \int_{N/\log^3 N}^N f_{N/t}(x/N) \frac{dx}{\log x} + O\left( N \exp(-c\sqrt{\log N}) \right)$$
-    for some $c>0$.  Performing a change of variable, we reduce to showing that
-    $$  \int_{1/\log^3 N}^1 f_{N/t}(x) \frac{\log N}{\log(Nx)}\ dx 
+    for some $c>0$.  Performing a change of variable, it suffices to show that
+    $$  \int_{1/\log^3 N}^1 f_{N/t}(x) \frac{\log N}{\log(Nx)}\ dx
     \geq  ec_0 + \frac{ec_1 - \frac{1}{2} e^2 c_0^2 - e \eps + o(1)}{\log N}.$$
     By Taylor expansion, we have
     $$ \frac{\log N}{\log(Nx)} = 1 + \frac{\log \frac{1}{x}}{\log N}  + o\left(\frac{1}{\log N}\right)$$
     and from dominated convergence we have
   $$
   \int_{1/\log^3 N}^1 f_{N/t}(x) \log \frac{1}{x}\ dx = ec'_1 + o(1)$$
-and hence by definition of $c_1$, we reduce to showing that
-$$  \int_{1/\log^3 N}^1 f_{N/t}(x)\ dx 
+and hence by definition of $c_1$, it suffices to show that
+$$  \int_{1/\log^3 N}^1 f_{N/t}(x)\ dx
 \geq  ec_0 + \frac{ec_0 c''_1 - e^2 c_0^2 - e\eps + o(1)}{\log N}.$$
 By performing a rescaling by $N/et = 1 + \frac{ec_0+o(1)}{\log N}$, the left-hand side may be written as
 $$ \left(1 - \frac{ec_0+o(1)}{\log N}\right) \int_{N/et\log^3 N}^{N/et}
@@ -1071,20 +1068,20 @@ since $\frac{N}{etk} = \frac{1}{k} + \frac{ec_0}{k \log N}$, we can lower bound 
 $$ \frac{ec_0+o(1)}{\log N} \sum_{k=1}^K \frac{1}{k} \log\left(\frac{e}{k} \left\lceil \frac{k}{e} \right\rceil\right)$$
 for sufficiently large $N$.  Since the sum here can be made arbitrarily close to $c''_0$ by increasing $K$, we obtain the claim.
 \end{proof}
-    
-We can now establish \Cref{main}(i): 
+
+We can now establish \Cref{main}(i):
 
 \begin{proposition}\label{tne} One has $t(N)/N < 1/e$ for $N \neq 1,2,4$.
 \end{proposition}
 
 \begin{proof}  From existing data on $t(N)$ (or the linear programming method) one can verify this claim for $N < 80$ (see \Cref{fig1}), so we assume that $N\geq 80$.
-  
+
 Applying \Cref{upper-crit} and \eqref{stirling}, it suffices to show that
 \begin{equation}\label{base-test-ineq}
    \sum_{p \geq \frac{N/e}{\lfloor\sqrt{N/e}\rfloor}} f_{e}(p/N) > \frac{1}{2} \log(2\pi N) + \frac{1}{12N}.
 \end{equation}
 This may be easily verified numerically in the range $80 \leq N \leq 5000$ (see \Cref{fig2}).
-We will discard the $\lfloor\sqrt{N/e}\rfloor$ denominator, and reduce to showing
+We will discard the $\lfloor\sqrt{N/e}\rfloor$ denominator, so it suffices to show
 \begin{equation}\label{test-ineq}
   \sum_{N/e < p \leq N} f_{e}(p/N) > \frac{1}{2} \log(2\pi N) + \frac{1}{12N}
 \end{equation}
@@ -1092,7 +1089,7 @@ for $N > 5000$.  On $[1/e,1]$, one can compute
 $$ \|f_e\|_{\mathrm{TV}^*(1/e,1]}
 = 4 - 2 \log 2$$
 so by \Cref{osc-lemma} (noting that $5000/e > 1423$) we have
-$$ \sum_{N/e < p \leq N} f_{e}(p/N) 
+$$ \sum_{N/e < p \leq N} f_{e}(p/N)
 \geq \frac{N \left(1-\frac{2}{\sqrt{N/e}}\right)}{\log N} \int_{1/e}^1 f_e(x)\ dx - (4 - 2 \log 2) \frac{E(N)}{\log N}
 $$
 and so it suffices to show that
@@ -1120,7 +1117,7 @@ We need some notation.  Define a \emph{downset} to be a finite set ${\mathcal D}
   \item If $d \in {\mathcal D}$ then all factors of $d$ lie in ${\mathcal D}$.
   \item If $pd \in {\mathcal D}$ for some prime $p$, then $p'd \in {\mathcal D}$ for all primes $p'<p$.
 \end{itemize}
-For instance, $\{1,2,3,4,6\}$ is a downset.  
+For instance, $\{1,2,3,4,6\}$ is a downset.
 
 If $d$ is an element of a downset ${\mathcal D}$, we define $A_{d,\mathcal{D}}$ to be the set of natural numbers not divisible by any prime $p$ with $p < P_+(d)$ or $pd \in \mathcal{D}$.  For instance, if ${\mathcal D} = \{1,2,3,4\}$, then
 \begin{itemize}
@@ -1158,35 +1155,32 @@ We can use this partition to rearrange the standard factorization $\{1,\dots,N\}
   $$ \tuple \coloneqq \biguplus_{d \in {\mathcal D}} \left(A_{d,{\mathcal D}} \cap \left[1,\frac{N}{d}\right]\right).$$
   Thus $\tuple$ has cardinality $|\tuple| = N$, and is a subfactorization of $N!$ with surplus
   \begin{equation}\label{p-surplus-1}
-  \begin{split}
-   \nu_p\left( \frac{N!}{\prod \tuple} \right) &= \sum_{d \in {\mathcal D}} \nu_p(d) \left|A_{d,{\mathcal D}} \cap \left[1,\frac{N}{d}\right]\right| \\
-   &\geq      \sum_{\ell=1}^\infty \nu_p(\ell) a_\ell N
-  \end{split}
+   \nu_p\left( \frac{N!}{\prod \tuple} \right) = \sum_{d \in {\mathcal D}} \nu_p(d) \left|A_{d,{\mathcal D}} \cap \left[1,\frac{N}{d}\right]\right| \geq      \sum_{\ell=1}^\infty \nu_p(\ell) a_\ell N
   \end{equation}
-  thanks to \eqref{i-eq-1}.  In particular this multiset is in balance for all primes $p \not \in {\mathcal D}$. 
-  
+  thanks to \eqref{i-eq-1}.  In particular this multiset is in balance for all primes $p \not \in {\mathcal D}$.
+
   The multiset $\tuple$ will contain elements that are smaller than $\alpha N$; but we can compute the number of such elements  precisely.  Indeed, for any natural number $\ell$, the number of elements of $\tuple$ that are less than $\alpha N/\ell$ is
   \begin{equation}\label{N-sum-1}
-    \sum_{d \in {\mathcal D}} \left|A_{d,{\mathcal D}} \cap \left[1,\frac{N}{d}\right] \cap \left[1,\frac{\alpha N}{\ell}\right)\right| 
+    \sum_{d \in {\mathcal D}} \left|A_{d,{\mathcal D}} \cap \left[1,\frac{N}{d}\right] \cap \left[1,\frac{\alpha N}{\ell}\right)\right|
     \leq  \sum_{\ell' > \ell} a_{\ell'} N
   \end{equation}
   by \eqref{l-eq-1}.
-    
+
   We now form a modification $\tuple'$ of the multiset $\tuple$ by multiplying each element of $\tuple$ by an appropriate natural number to make it at least $\alpha N$.  More precisely, we perform the following algorithm.
   \begin{itemize}
     \item Initialize $\tuple'$ to be empty, and initialize $\ell$ to be the largest natural number for which $a_\ell > 0$.  (From \eqref{i-eq-1} and the hypothesis that the $a_\ell N$ are integers, it is easy to see that $\ell$ exists.)
     \item For the $a_\ell N$ smallest elements $m$ of $\tuple$ not already selected, add $\ell m$ to $\tuple'$ (counting multiplicity).
     \item Decrement $\ell$ by one, and repeat the previous step until $\ell=1$, or until all elements of $\tuple$ have been selected.
-    \item For any remaining elements $m$ of $\tuple$ that have not been involved in any previous step, add $m$ to $\tuple'$. 
+    \item For any remaining elements $m$ of $\tuple$ that have not been involved in any previous step, add $m$ to $\tuple'$.
   \end{itemize}
   It is clear that $\tuple'$ has the same cardinality $N$ as $\tuple$.  If $p \not \in {\mathcal D}$, the hypothesis \eqref{i-eq-1} forces $a_\ell=0$ for all $\ell$ that are divisible by $p$; because of this, $\tuple'$ remains in balance at those primes.  For the primes $p$ in ${\mathcal D}$, we see from construction that the $p$-surplus of $\tuple'$ has decreased from $\tuple$ by at most
   $\sum_\ell \nu_p(\ell) a_\ell N$, and so from \eqref{p-surplus-1}, $\tuple'$ is either in $p$-surplus or in $p$-balance, and is thus a subfactorization of $N!$.
-  
+
 It remains to verify that $\tuple'$ is $\alpha N$-admissible.  From an inspection of the algorithm, we see that the only way this can fail to be the case is if, for some $\ell$, the number of elements of $\tuple$ in $[1, \alpha N/\ell)$ exceeds the quantity $\sum_{\ell' > \ell} a_{\ell'} N$.  But this is ruled out by \eqref{N-sum-1}.
 \end{proof}
 
 One advantage of this criterion is that it is amenable to taking asymptotic limits as $N \to \infty$, holding the downset ${\mathcal D}$ and the ratio $\alpha$ fixed.  From the Chinese remainder theorem we observe that the sets $A_{d,{\mathcal D}}$ have density
-$$ \sigma_{d,{\mathcal D}} \coloneqq \prod_{p < P_+(d) \hbox{ or } pd \in {\mathcal D}} \left(1-\frac{1}{p}\right),$$
+$$ \sigma_{d,{\mathcal D}} \coloneqq \prod_{p < P_+(d) \text{ or } pd \in {\mathcal D}} \left(1-\frac{1}{p}\right),$$
 in the sense that
 \begin{equation}\label{crt}
  |A_{d,{\mathcal D}} \cap I| = \sigma_{d,{\mathcal D}} |I| + O(1)
@@ -1245,7 +1239,7 @@ $$ a'_\ell \coloneqq \left\lfloor \left(a_\ell + \frac{1_{\ell \in S}}{\sqrt{\el
 where $S$ is the set of all natural numbers $\ell > \ell_0$ that are only divisible by primes in ${\mathcal D}$.
 Clearly the $N a'_\ell$ are integers, so by \Cref{rearrange-crit} it will suffice to verify the hypotheses \eqref{i-eq-1}, \eqref{l-eq-1}.
 
-We begin with \eqref{i-eq-1}.  By construction, both sides vanish for $p \not \in {\mathcal D}$, so we only need to verify the finite number of cases when $p \in {\mathcal D}$.  By \eqref{crt}, the right-hand side of \eqref{i-eq-1} is 
+We begin with \eqref{i-eq-1}.  By construction, both sides vanish for $p \not \in {\mathcal D}$, so we only need to verify the finite number of cases when $p \in {\mathcal D}$.  By \eqref{crt}, the right-hand side of \eqref{i-eq-1} is
 $$ \sum_{d \in {\mathcal D}} \sigma_{d,{\mathcal D}} \frac{\nu_p(d)}{d} + O\left(\frac{1}{N} \right).$$
 The left-hand side is at most
 $$ \sum_{\ell=1}^\infty \nu_p(\ell) a_\ell + \sum_{\ell \in S} \frac{\nu_p(\ell)}{\sqrt{\ell}}.$$
@@ -1255,7 +1249,7 @@ Now we turn to \eqref{l-eq-1}.  For the finite number of cases $\ell \leq \ell_0
 $$ \sum_{d \in {\mathcal D}} \sigma_{d,{\mathcal D}} \min\left( \frac{1}{d}, \frac{\alpha}{\ell}\right) + O\left(\frac{1}{N} \right).$$
 Using the lower bound $a'_\ell \geq a_\ell - O(1/N)$ for $\ell \leq \sqrt{N}$, as well as \eqref{tail}, the left-hand side is at least
 $$ \sum_{\ell' > \ell} a_{\ell'} - O\left(\frac{1}{\sqrt{N}} \right) - O\left(\frac{1}{\log N} \right).$$
-Since we have strict inequality in \eqref{l-eq}, we obtain \eqref{l-eq-1} for all sufficiently large $N$ in the regime $\ell \leq \ell_0$.
+Since we have strict inequality in \eqref{l-eq}, we obtain \eqref{l-eq-1} for all sufficiently large $N$ under the regime $\ell \leq \ell_0$.
 
 In the case $\ell>N$ the claim \eqref{l-eq-1} is trivial because the right-hand side vanishes, so it remains to consider the case $\ell_0 < \ell \leq N$. Here the right-hand side can be crudely bounded by $O(1/\ell)$.  On the other hand, by using the powers of $p_0$ in $S$ one can lower bound the left-hand side by $\gg 1/\sqrt{\ell}$.  For $\ell_0$ large enough, the claim follows.
 \end{proof}
@@ -1281,7 +1275,7 @@ Furthermore, the solutions to the linear programs can be verified with relativel
 \begin{proposition}[\Cref{main}(iii) for sufficiently large $N$ only] \label{onethird-large} Let $N$ be sufficiently large.  Then $t(N) \ge N/3$.
 \end{proposition}
 \begin{proof}[Computer-assisted proof]
-If one makes the ansatz $a_{2^r} = c / 2^r$ for some $c>0$ and all $r \geq r_0$, with $a_\ell = 0$ for all other $\ell > 2^{r_0}$, then the task of locating weights $a_r$ obeying the hypotheses of \Cref{asym-crit} becomes a \emph{finite} linear programming problem.  
+If one makes the ansatz $a_{2^r} = c / 2^r$ for some $c>0$ and all $r \geq r_0$, with $a_\ell = 0$ for all other $\ell > 2^{r_0}$, then the task of locating weights $a_r$ obeying the hypotheses of \Cref{asym-crit} becomes a \emph{finite} linear programming problem.
 Numerically\footnote{\url{https://github.com/teorth/erdos-guy-selfridge/blob/main/src/dnup/data.py}}, we were able to locate such weights for $\alpha=1/3$, ${\mathcal D} = \{d: 1 \leq d \leq 2^{11}\}$, and $r_0=11$.
 Once the weights were found, they were converted into rational numbers and the linear program was verified\footnote{\url{https://github.com/teorth/erdos-guy-selfridge/blob/main/src/dnup/verify.py}} in exact arithmetic, thus establishing that $t(N) \geq N/3$ for sufficiently large $N$.
 \end{proof}
@@ -1367,27 +1361,24 @@ Suppose for contradiction that there is an $N/4$-admissible factorization of $N!
   $$ \sum_{k < \ell} a_k \leq \frac{1}{N} \sum_{d \in \N^{\langle 2,3 \rangle}} \sum^*_{N/4\ell \leq m \leq N/d} 1,$$
   where $\N^{\langle 2,3 \rangle}$ is the set of $3$-smooth numbers.
   The inner sum vanishes for $d > 4\ell$, and is at most $1$ for $d = 4\ell$.  For $d < 4\ell$ we can apply \Cref{lit} to conclude
-  $$ \sum_{k < \ell} a_k \leq \sum_{d \in \N^{\langle 2,3 \rangle}: d < 4\ell} \left(\frac{1}{d}-\frac{1}{4\ell} + \frac{4}{3N}\right) + \frac{1}{N}.$$ 
+  $$ \sum_{k < \ell} a_k \leq \sum_{d \in \N^{\langle 2,3 \rangle}: d < 4\ell} \left(\frac{1}{d}-\frac{1}{4\ell} + \frac{4}{3N}\right) + \frac{1}{N}.$$
   Thus, for any non-negative weights $c_2, c_3$, and $w_\ell$ for $3$-smooth $\ell$ such that
   \begin{equation}\label{ell-cond}
      c_2 \nu_2(\ell) + c_3 \nu_3(\ell) + \sum_{\ell' > \ell} w_{\ell'} \geq 1
   \end{equation}
   for all $3$-smooth $\ell$, we have
-  \begin{align*}
-    1 &= \sum_\ell a_\ell \\
-    &\leq c_2 \sum_\ell \nu_2(\ell) a_\ell + c_3 \sum_\ell \nu_3(\ell) a_\ell + \sum_{\ell} w_\ell \sum_{k < \ell} a_k\\
-    &\leq 1 - \eps  + \frac{C}{N}
-  \end{align*}
+  $$  1= \sum_\ell a_\ell \leq c_2 \sum_\ell \nu_2(\ell) a_\ell + c_3 \sum_\ell \nu_3(\ell) a_\ell + \sum_{\ell} w_\ell \sum_{k < \ell} a_k \leq 1 - \eps  + \frac{C}{N}
+  $$
   where
-  $$ \eps \coloneqq 1 -  
+  $$ \eps \coloneqq 1 -
 c_2 - \frac{c_3}{2} - \sum_{\ell} w_\ell \sum_{d \in \N^{\langle 2,3 \rangle}: d < 4\ell} \left( \frac{1}{d} - \frac{1}{4\ell} \right),$$
   $$ C \coloneqq \sum_\ell w_\ell \left(\frac{4}{3} \# \left\{ d \in \N^{\langle 2,3 \rangle}: d < 4\ell \right\} + 1\right).$$
  Thus, once one produces weights for which $\eps>0$, one obtains a contradiction for $N > C/\eps$.
-  Numerical computation reveals that if one selects\footnote{These coefficients were discovered by applying a linear program to a finite truncation of the problem, choosing the truncation so as to optimize the threshold.} $c_2 = 2/32$, $c_3 = 3/32$, $w_1 = 2/32$, and $w_\ell = 1/32$ for all $3$-smooth $1 < \ell \leq 2^2 3^9$ with $\nu_2(\ell) \leq 2$, with $w_\ell=0$ otherwise, then  \eqref{ell-cond} holds for all $3$-smooth $\ell$ (note that this is automatic once $\nu_2(\ell)$ or $\nu_3(\ell)$ is large enough, so this is a finite check) with
+  Numerical computation reveals that if one selects $c_2 = 2/32$, $c_3 = 3/32$, $w_1 = 2/32$, and $w_\ell = 1/32$ for all $3$-smooth $1 < \ell \leq 2^2 3^9$ with $\nu_2(\ell) \leq 2$, with $w_\ell=0$ otherwise, then  \eqref{ell-cond} holds for all $3$-smooth $\ell$ (note that this is automatic once $\nu_2(\ell)$ or $\nu_3(\ell)$ is large enough, so this is a finite check) with
 $$\eps = \frac{218038591}{4458050224128} > 0$$
 and
 $$ C = \frac{1559}{24}$$
-and then we obtain the desired contradiction for $N > 1328148 = \lceil\frac{C}{\eps}\rceil$.
+and then we obtain the desired contradiction for $N > 1328148 = \lceil\frac{C}{\eps}\rceil$. These coefficients were discovered by applying a linear program to a finite truncation of the problem, choosing the truncation so as to optimize the threshold.
 
 As in \Cref{onethird-large}, we verified\footnote{\url{https://github.com/teorth/erdos-guy-selfridge/blob/main/src/dnup/one_fourth.py}} the linear programming certificate in exact arithmetic.
 However, in this case we note that the proof is fundamentally human-checkable.
@@ -1446,10 +1437,8 @@ By \Cref{asym-crit}, it suffices to verify the conditions \eqref{i-eq}, \eqref{l
 $$ \sum_{0 \leq m \leq M}^* \frac{1}{2} \frac{m}{2^m} = 1 - O\left( \frac{M}{2^M} \right)$$
 where the $*$ means that the term with $m=M$ is doubled (so $\sum_{0 \leq m \leq M}^* f(m) = \sum_{0 \leq m<M} f(m) + 2 f(M)$).  Meanwhile, the left-hand side can be computed to equal
 \begin{align*}
-  &\sum_{m=1}^\infty \frac{C_0 m^2}{2^m} \mu_+ \\
-  & + \sum_{p_- \leq p \leq 2^{C_0} p_-} C_0 \frac{\mu_p}{p} \\
-  & + \sum_{2^{C_0} p_- < p < p_+/2} (1-c_0) \frac{\mu_p}{p} \\
-  & + \sum_{p_+/2 \leq p \leq p_+} \sum_{m=1}^\infty \frac{(C_0+m) m}{2^m} \frac{\mu_p}{p}
+  \sum_{m=1}^\infty \frac{C_0 m^2}{2^m} \mu_+ & + \sum_{p_- \leq p \leq 2^{C_0} p_-} C_0 \frac{\mu_p}{p} \\
+   + \sum_{2^{C_0} p_- < p < p_+/2} (1-c_0) \frac{\mu_p}{p} & + \sum_{p_+/2 \leq p \leq p_+} \sum_{m=1}^\infty \frac{(C_0+m) m}{2^m} \frac{\mu_p}{p}
 \end{align*}
 which simplifies using \eqref{telescope} and summation in $m$ to
 $$ 1 - c_0 + O_{C_0}\left( \mu_+ + \sum_{p_- \leq p \leq 2^{C_0} p_-} \frac{\mu_p}{p} + \sum_{p_+/2 \leq p \leq p_+} \frac{\mu_p}{p}\right).$$
@@ -1470,13 +1459,13 @@ $$ \sum_{0 \leq m \leq M}^* \frac{1}{2} \min\left( \frac{1}{2^m}, \frac{\alpha}{
 Thus it suffices to show that
 \begin{equation}\label{lint} \sum_{0 \leq m \leq M}^* \frac{1}{2} \min\left( \frac{1}{2^m}, \frac{\alpha}{\ell}\right) < \sum_{m: 2^m > \ell} \frac{C_0 m}{2^m}.
 \end{equation}
-But the left-hand side is $\ll \frac{\log (2+\ell)}{\ell}$ and the right-hand side is $\gg C_0 \frac{\log (2+\ell)}{\ell}$, giving the claim.
+But the left-hand side is $\ll \frac{\log (2+\ell)}{\ell}$ and the right-hand side is $\gg C_0 \frac{\log (2+\ell)}{\ell}$, giving the claim \eqref{l-eq} in this case.
 
-Next, we consider the case $\ell \geq p_+$.  The left-hand side of \eqref{l-eq} is at least 
-$$ \sum_{m: 2^m > \ell} \frac{C_0 m}{2^m} \mu_+ 
+Next, we consider \eqref{l-eq} in the case $\ell \geq p_+$.  The left-hand side of \eqref{l-eq} is at least
+$$ \sum_{m: 2^m > \ell} \frac{C_0 m}{2^m} \mu_+
 + \sum_{p_+/2 \leq p \leq p_+} \sum_{m: 2^{m+C_0} p > \ell} \frac{m}{2^m} \frac{\mu_p}{p}$$
 and the right-hand side is at most
-\begin{equation}\label{amp} 
+\begin{equation}\label{amp}
   \sum_{0 \leq m \leq M}^* \frac{1}{2} \min(\frac{1}{2^m}, \frac{\alpha}{\ell})\mu_+ + \sum_{0 \leq m \leq M}^* \frac{1}{2} \sum_{p_- \leq p \leq p_+} \min\left(\frac{1}{2^mp}, \frac{\alpha}{\ell}\right) \mu_p.
 \end{equation}
 By \eqref{lint} it suffices to show that
@@ -1489,9 +1478,9 @@ By \eqref{mertens} and \Cref{osc-lemma}, the right-hand side may be bounded by
 $$ \ll (\log p_-) \sum_{m=0}^\infty \int_{p_-}^{p_+} \min\left(\frac{1}{2^m t}, \frac{1}{\ell}\right)\ \frac{dt}{\log^2 t}.$$
 We can perform the summation over $m$ and bound this by
 $$ \ll \frac{\log p_-}{\ell} \int_{p_-}^{p_+} \log\left(2 + \frac{\ell}{t}\right)\ \frac{dt}{\log^2 t},$$
-and the claim then follows from a routine computation.
+and the claim \eqref{l-eq} in this case then follows from a routine computation.
 
-Finally, we consider the case $2^{C_0} p_- < \ell < p_+$.  
+Finally, we consider the case $2^{C_0} p_- < \ell < p_+$.
 Note that if we redefined $a_{\ell'}$ to make rules (iii), (iv) apply for all $p_- \leq p \leq p_+$, and delete rules (ii) and (v), then this amounts to transferring the mass of $a_{\ell'}$ from larger $\ell'$ to smaller $\ell'$, so that the sum $\sum_{\ell' > \ell} a_{\ell'}$ does not increase.  From this observation, we see that we can lower bound the left-hand side of \eqref{l-eq} by
 $$
 \sum_{m: 2^m > \ell} \frac{C_0 m}{2^m} \mu_+ + \sum_{p_- \leq p \leq p_+} \frac{\mu_p}{p} \left( c_0 1_{p>\ell} + (1-c_0) 1_{2p>\ell}\right),
@@ -1502,7 +1491,7 @@ while the right-hand side is at most \eqref{amp}.  By \eqref{lint}, it suffices 
 \geq
 \sum_{0 \leq m \leq M}^* \frac{1}{2} \sum_{p_- \leq p \leq p_+} \min\left(\frac{1}{2^mp}, \frac{\alpha}{\ell}\right) \mu_p.
 \end{equation}
-Applying \eqref{mertens}, \Cref{osc-lemma}, we can bound the right-hand side of \eqref{test} by
+Applying \eqref{mertens} and \Cref{osc-lemma}, we can bound the right-hand side of \eqref{test} by
 $$ \left( 1 + O\left(\frac{1}{\log^{10} p_-}\right)\right) \frac{\log p_-}{2} \sum_{0 \leq m \leq M}^* \int_{p_-}^{p_+} \min\left(\frac{1}{2^m t}, \frac{\alpha}{\ell}\right)\ \frac{dt}{\log^2 t}.$$
 The minimum $\min(\frac{1}{2^m t}, \frac{\alpha}{\ell})$ is equal to $\frac{1}{2^m t}$ for $t \geq \ell/(2^m \alpha)$ and $\frac{\alpha}{\ell}$ for $t < \ell/(2^m \alpha)$.  Routine estimation then gives
 \begin{align*}
@@ -1528,7 +1517,7 @@ Since $\alpha < 1/e$, we can ensure that $c_0 \log 2 < \log\frac{1}{e\alpha}$ by
 \section{The accounting equation}\label{accounting-sec}
 
 Given a $t$-admissible multiset $\tuple$ (which we view as an approximate factorization of $N!$), we can apply the fundamental theorem of arithmetic \eqref{ftoa} to the rational number  $N!/\prod \tuple$ and rearrange to obtain the \emph{accounting equation}
-\begin{equation}\label{accounting} 
+\begin{equation}\label{accounting}
   \excess_t(\tuple) + \sum_p \nu_p\left( \frac{N!}{\prod \tuple} \right) \log p = \log N! - |\tuple| \log t
 \end{equation}
 where we define the \emph{$t$-excess} $\excess_t(\tuple)$ of the multiset $\tuple$ by the formula
@@ -1544,8 +1533,8 @@ where we define the \emph{$t$-excess} $\excess_t(\tuple)$ of the multiset $\tupl
   $$ \excess_3(\tuple) = \log \frac{2}{3} + \log \frac{3}{3} + \log \frac{4}{3} + \log \frac{5}{3}  = 0.3930\dots,$$
   bringing the accounting equation back into balance.
 \end{example}
-  
-In view of \Cref{subfac}, one can now equivalently describe 
+
+In view of \Cref{subfac}, one can now equivalently describe
 $t(N)$ as follows:
 
 \begin{lemma}[Equivalent description of $t(N)$]\label{t-descrip}  $t(N)$ is the largest quantity $t$ for which there exists a $t$-admissible subfactorization of $N!$ with
@@ -1556,19 +1545,19 @@ One can view $\log N! - N\log t$ as an available ``budget'' that one can ``spend
 
 \section{Modified approximate factorizations}\label{approx-sec}
 
-In this section we present and then analyze an algorithm that starts with an \emph{approximate} factorization $\tuple^{(0)}$ of $N!$, which is $t$-admissible but omits all tiny primes, and is approximately in balance in small and medium primes, and attempts to ``repair'' this factorization to establish a lower bound of the form $t(N) \geq t$.  
+In this section we present and then analyze an algorithm that starts with an \emph{approximate} factorization $\tuple^{(0)}$ of $N!$, which is $t$-admissible but omits all tiny primes, and is approximately in balance in small and medium primes, and attempts to ``repair'' this factorization to establish a lower bound of the form $t(N) \geq t$.
 
 To describe the criterion for the algorithm to succeed, it will be convenient to introduce the following notation.
 For $a_+,a_- \in [0,+\infty]$, we define the asymmetric norm $|x|_{a_+,a_-}$ of a real number $x$ by the formula
-$$ 
-|x|_{a_+,a_-} \coloneqq  \begin{cases} 
+$$
+|x|_{a_+,a_-} \coloneqq  \begin{cases}
   a_+ |x| & x\geq 0 \\
   a_- |x| & x\leq 0,
 \end{cases}
 $$
 with the usual convention $+\infty \times 0 = 0$.
 If $a_+,a_-$ are finite, this function is Lipschitz with constant $\max(a_+,a_-)$.  One can think of $a_+$ as the ``cost'' of making $x$ positive, and $a_-$ as the
-``cost'' of making $x$ negative. 
+``cost'' of making $x$ negative.
 
 The analysis of the algorithm is now captured by the following proposition.
 
@@ -1577,7 +1566,7 @@ The analysis of the algorithm is now captured by the following proposition.
     \frac{t}{K} \geq \sqrt{N}; \qquad \frac{t}{K^2} \geq K \geq 5.
 \end{equation}
 We also assume that there are additional parameters $\kappa_* > 0$ and $0 \leq \gamma_2, \gamma_3 < 1$, such that there exist $3$-smooth numbers
-\begin{equation}\label{tlip} 
+\begin{equation}\label{tlip}
   t \leq 2^{n_2} 3^{m_2}, 2^{n_3} 3^{m_3} \leq e^{\kappa_*} t
 \end{equation}
 such that
@@ -1593,7 +1582,7 @@ Let $\tuple^{(0)}$ be a $t$-admissible multiset of natural numbers, with all ele
 and
 \begin{equation}\label{alpha-cond}
   \sum_{i=1}^7 \alpha_i \leq 1
-\end{equation} 
+\end{equation}
 where
 \begin{align}
 \delta_1 &\coloneqq \frac{1}{N} \excess_t(\tuple^{(1)}) \label{delta1-def}  \\
@@ -1604,7 +1593,7 @@ where
 \delta_6 &\coloneqq \frac{\kappa_{4.5}}{N} \label{delta6-def}  \\
 \delta_7 &\coloneqq \frac{\kappa_*}{\log t} \left( \log \sqrt{12} - B_2 \log 2 - B_3 \log 3\right)\label{delta7-def}  \\
 \delta_8 &\coloneqq \frac{2(\log t + \kappa_*)}{N} \label{delta8-def}\\
-\delta &\coloneqq \frac{1}{N} \log N! - \log t\label{delta-def}  
+\delta &\coloneqq \frac{1}{N} \log N! - \log t\label{delta-def}
 \end{align}
 \begin{align}
 \alpha_1 &\coloneqq \frac{1}{N} \left\| \left( \nu_{2}\left(\prod \tuple^{(0)}\right), \nu_{3}\left(\prod \tuple^{(0)}\right)\right) \right\|_\gamma \label{alpha1-def}  \\
@@ -1613,14 +1602,21 @@ where
 \alpha_4 &\coloneqq \frac{1}{\log \sqrt{12}} \sum_{K < p_1 \leq t/K} \left(\log \frac{t}{p_1} + \kappa_{**}\right) A_{p_1} \label{alpha4-def}  \\
 \alpha_5 &\coloneqq \frac{1}{\log \sqrt{12}} \sum_{3 < p_1 \leq K} \left|A_{p_1} - B_{p_1}\right|_{\frac{\log p_1}{\log(t/K^2)} (\log K^2 + \kappa_{**}), \log p_1 + \kappa_{**}} \label{alpha5-def}  \\
 \alpha_6 &\coloneqq \frac{\log t + \kappa_{**}}{N\log \sqrt{12}}  \label{alpha6-def}  \\
-\alpha_7 &\coloneqq \max\left( \frac{\log(2N)}{(1-\gamma_2)N\log 2},  \frac{\log(3N)}{(1-\gamma_3)N\log \sqrt{3}}\right)\label{alpha7-def}  
+\alpha_7 &\coloneqq \max\left( \frac{\log(2N)}{(1-\gamma_2)N\log 2},  \frac{\log(3N)}{(1-\gamma_3)N\log \sqrt{3}}\right)\label{alpha7-def}
 \end{align}
 \begin{align}
 \kappa_{**} &\coloneqq \max(\kappa^{(2)}_{4.5, \gamma_2}, \kappa^{(3)}_{4.5, \gamma_3}) \label{kappastar-def}  \\
 A_{p_1} &\coloneqq \frac{1}{N} \sum_m \nu_{p_1}(m) | \{ a \in \tuple^{(0)}: a = mp \hbox{ for a prime } p > t/K \}| \label{A-def} \\
-B_{p_1} &\coloneqq \frac{1}{N} \sum_{m \leq K} \nu_{p_1}(m) \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \left \lfloor \frac{N}{p} \right\rfloor,\label{B-def} 
+B_{p_1} &\coloneqq \frac{1}{N} \sum_{m \leq K} \nu_{p_1}(m) \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \left \lfloor \frac{N}{p} \right\rfloor,\label{B-def}
 \end{align}
-with the convention that the upper bound $p < \frac{t}{m-1}$ in \eqref{B-def} is vacuous when $m=1$.  Then $t(N) \geq t$.
+with the convention that the upper bound $p < \frac{t}{m-1}$ in \eqref{B-def} is vacuous when $m=1$.  Here:
+\begin{itemize}
+  \item The set ${\mathcal B}^{(1)}$ is defined by applying steps (a) and (b) below.
+  \item The excess $\excess_t$ is defined in \eqref{excess-def}.
+  \item The function $f_{N/t}$ is defined in \eqref{falpha-def}.
+  \item The constant $\kappa_{4.5}$ is given by \eqref{kappa-45}.
+\end{itemize}
+Then $t(N) \geq t$.
 \end{proposition}
 
 In practice, the parameter $K$ will be quite small compared to $N$, and the quantities $\gamma_2, \gamma_3, \kappa_{*}$ will also be somewhat smaller than $1$.
@@ -1646,7 +1642,7 @@ Initially, the multiset $\tuple^{(0)}$ may have the ``wrong'' number of factors 
 We let $\tuple^{(1)}$ be the multiset formed after completing both Step (a) and Step (b).  We make two simple observations:
 \begin{itemize}
 \item[(A)] Since the elements of $\tuple^{(0)}$ are at most $(t/K)^2$, all the elements removed in Step (a) are of the form $mp$ where $m \leq t/K$.
-\item[(B)] For each large prime $p$ considered in Step (b),  one has $\nu_p(N!) = \lfloor N/p \rfloor$ by \eqref{legendre} and \eqref{conditions}, while $\lceil t/p \rceil \leq K \leq t/K$ (again by \eqref{conditions}).  
+\item[(B)] For each large prime $p$ considered in Step (b),  one has $\nu_p(N!) = \lfloor N/p \rfloor$ by \eqref{legendre} and \eqref{conditions}, while $\lceil t/p \rceil \leq K \leq t/K$ (again by \eqref{conditions}).
 \end{itemize}
 From this, we see that $\tuple^{(1)}$ is automatically $t$-admissible, and is in balance at any large prime $p > t/K$:
 $$ \nu_p\left(\frac{N!}{\prod \tuple^{(1)}}\right) = 0.$$
@@ -1659,8 +1655,8 @@ In particular, we have from \eqref{alpha1-def}, \eqref{alpha2-def} and the trian
 \frac{1}{N} \left\|\left( \nu_2\left(\prod \tuple^{(1)}\right), \nu_3\left(\prod \tuple^{(1)}\right)\right)\right\|_\gamma \leq \alpha_1 + \alpha_2.
 \end{equation}
 
-Each element removed in Step (a) reduces the $t$-excess, while each element $p \lceil t/p \rceil$ added in Step (b) increases the $t$-excess by $\log \frac{\lceil t/p \rceil}{t/p}$, so each large prime $t/K < p \leq N$ contributes a total of $\lfloor \frac{N}{p} \rfloor \log \frac{\lceil t/p \rceil}{t/p} = f_{N/t}(p/N)$ to the $t$-excess.  Thus by \eqref{delta1-def}, \eqref{delta2-def} we have
-\begin{equation}\label{excess-1} 
+Each element removed in Step (a) reduces the $t$-excess, while each element $p \lceil t/p \rceil$ added in Step (b) increases the $t$-excess by $\log \frac{\lceil t/p \rceil}{t/p}$, so each large prime $t/K < p \leq N$ contributes a net of $\lfloor \frac{N}{p} \rfloor \log \frac{\lceil t/p \rceil}{t/p} = f_{N/t}(p/N)$ to the $t$-excess.  Thus by \eqref{delta1-def}, \eqref{delta2-def} we have
+\begin{equation}\label{excess-1}
   \frac{1}{N} \excess_t(\tuple^{(1)}) \leq \delta_1 + \delta_2.
 \end{equation}
 
@@ -1673,7 +1669,7 @@ Now we bring the multiset $\tuple^{(1)}$ into balance at small and medium primes
 With these observations in mind, we perform the following modifications to the multiset $\tuple^{(1)}$.
 \begin{itemize}
 \item[(c)] If there is a $p_1$-deficit $\nu_{p_1}(\prod \tuple^{(1)}/N!) > 0$ at some small or medium prime $3 < p_1 \leq t/K$, then we perform the replacement of $p_1$ in one of the elements of $\tuple^{(1)}$ with $\lceil p_1 \rceil^{\langle 2,3\rangle}_{4.5}$ as per observation (C), repeated $\nu_{p_1}(\prod \tuple^{(1)}/N!)$ times, in order to eliminate all such deficits.
-\item[(d)] If there is a $p$-surplus $\nu_p(\prod N!/\tuple^{(1)}) > 0$ at some medium prime $K < p \leq t/K$, we add the element 
+\item[(d)] If there is a $p$-surplus $\nu_p(\prod N!/\tuple^{(1)}) > 0$ at some medium prime $K < p \leq t/K$, we add the element
 $p \lceil t/p \rceil^{\langle 2,3 \rangle}_{4.5}$ to $\tuple^{(1)}$ as per observation (D), $\nu_p(\prod N!/\tuple^{(1)})$ times, in order to eliminate all such surpluses at medium primes.
 \item[(d')] If there are $p$-surpluses $\nu_p(\prod N!/\tuple^{(1)}) > 0$ at some small primes $3 < p \leq K$, we multiply all these primes together, then apply the greedy algorithm to factor them into products $m$ in the range $t/K^2 < m \leq t/K$, plus at most one exceptional product in the range $1 < m \leq t/K$.  For each of these $m$, add $m \lceil t/m \rceil^{\langle 2,3 \rangle}_{4.5}$ to $\tuple^{(1)}$ as per observation (D), to eliminate all such surpluses at small primes.
 \end{itemize}
@@ -1702,7 +1698,7 @@ $$\frac{1}{N\log \sqrt{12}} \sum_{3 < p_1 \leq K} \left|\nu_{p_1}\left( \frac{N!
 and
 $$\frac{1}{N\log \sqrt{12}} \left( \log t + \kappa_{**} \right)$$
 so by \eqref{alpha-1}, \eqref{alpha3-def}, \eqref{alpha4-def}, \eqref{alpha5-def}, \eqref{alpha6-def}, and the triangle inequality we have
-\begin{equation}\label{alpha-2} 
+\begin{equation}\label{alpha-2}
 \frac{1}{N} \| (\nu_2(\prod \tuple^{(2)}), \nu_3(\prod \tuple^{(2)})) \|_\gamma \leq \sum_{i=1}^6 \alpha_i.
 \end{equation}
 
@@ -1710,7 +1706,7 @@ By construction, the multiset $\tuple^{(2)}$ is $t$-admissible, and is in balanc
 \begin{align*}
 n - 2\gamma_2 m &= \nu_2(N!) - 2\gamma_2 \nu_3(N!) - \left(\nu_2\left(\prod \tuple^{(2)}\right) - 2\gamma_2 \nu_3\left(\prod \tuple^{(2)}\right)\right) \\
 &\geq \nu_2(N!) - 2\gamma_2 \nu_3(N!) - N (1-\gamma_2) \sum_{i=1}^6 \alpha_i \\
-&> N - 
+&> N -
  \frac{\log N}{\log 2} - 1 - \gamma_2 N - N (1-\gamma_2) (1 - \alpha_7) \\
 &= N (1-\gamma_2) \alpha_7 - \frac{\log(2N)}{\log 2} \\
 &\geq 0
@@ -1719,7 +1715,7 @@ and similarly
 \begin{align*}
   2m - \gamma_3 n &= 2\nu_3(N!) - \gamma_3 \nu_2(N!) - \left(2\nu_3\left(\prod \tuple^{(2)}\right) - \gamma_3 \nu_2\left(\prod \tuple^{(2)}\right)\right) \\
 &\geq 2\nu_3(N!) - \gamma_3 \nu_2(N!) - N (1-\gamma_3) \sum_{i=1}^6 \alpha_i \\
-&> N - \frac{\log N}{\log \sqrt{3}} - 2 - \gamma_3 N - N (1-\gamma_3) (1 - \alpha_7) \\ 
+&> N - \frac{\log N}{\log \sqrt{3}} - 2 - \gamma_3 N - N (1-\gamma_3) (1 - \alpha_7) \\
 &= N (1-\gamma_3) \alpha_7 - \frac{\log(3N)}{\log \sqrt{3}} \\
 &\geq 0.
 \end{align*}
@@ -1753,7 +1749,7 @@ Applying \Cref{t-descrip}, we conclude that $t(N) \geq t$ as claimed.
 
 In order to use \Cref{repair} for a given choice of $N,t$, we need to find a $t$-admissible multiset $\tuple^{(0)}$ and parameters $K, \kappa_*, \gamma_2, \gamma_3$ obeying \eqref{conditions} as well as good upper bounds on the quantities $\delta_i$, $i=1,\dots,8$ and $\alpha_i$, $i=1,\dots,7$, that can either be evaluated asymptotically or numerically.  Many of these terms will be straightforward to estimate; we discuss only the more difficult ones here.
 
-We introduce a further natural number parameter $A$ and define 
+We introduce a further natural number parameter $A$ and define
 \begin{equation}\label{sigma-def}
   \sigma \coloneqq \frac{3N}{At}.
 \end{equation}
@@ -1796,14 +1792,14 @@ To construct $\gamma_2, \gamma_3, \kappa_*, n_2, m_2, n_3, m_3$, we introduce an
 \end{equation}
 We define $n_2,n_3,m_2,n_3$ by setting
 $$
-2^{n_2} 3^{m_2} \coloneqq 2^{n_0} \lceil t/2^{n_0} \rceil^{\langle 2,3 \rangle}; \quad 
+2^{n_2} 3^{m_2} \coloneqq 2^{n_0} \lceil t/2^{n_0} \rceil^{\langle 2,3 \rangle}; \quad
 2^{n_3} 3^{m_3} \coloneqq 3^{m_0} \lceil t/3^{m_0} \rceil^{\langle 2,3 \rangle}$$
 where $2^{n_0}, 3^{m_0}$ are the largest powers of $2,3$ respectively that are at most $t/L$.  By construction and \eqref{kappa-def}, \eqref{tlip} holds with
 \begin{equation}\label{kappas-eq}
   \kappa_* = \kappa_L.
 \end{equation}
 We have
-$$  2m_2 \leq \frac{\log \lceil t/2^{n_0} \rceil^{\langle 2,3 \rangle}}{\log \sqrt{3}}  \leq \frac{\log(2L) + \kappa_L}{\log \sqrt{3}}  
+$$  2m_2 \leq \frac{\log \lceil t/2^{n_0} \rceil^{\langle 2,3 \rangle}}{\log \sqrt{3}}  \leq \frac{\log(2L) + \kappa_L}{\log \sqrt{3}}
 $$
 and
 $$n_2 \geq n_0 \geq \frac{\log t - \log(2L)}{\log 2};$$
@@ -1824,8 +1820,8 @@ This lets us compute the quantity $\kappa_{**}$ defined in \eqref{kappastar-def}
 To estimate $\delta_3, \alpha_3$ we use
 
 \begin{lemma}\label{val-bound} For every $3 < p \leq t/K$, one has
-\begin{equation}\label{nup} 
-  \nu_p\left(\frac{N!}{\prod \tuple^{(1)}}\right) =  
+\begin{equation}\label{nup}
+  \nu_p\left(\frac{N!}{\prod \tuple^{(1)}}\right) =
 O_{\leq}\left(\frac{4A+3}{3} \left\lceil \frac{\log N}{\log p}  \right\rceil\right).
 \end{equation}
 \end{lemma}
@@ -1838,13 +1834,13 @@ One has
     &= A \sum_{1 \leq j \leq \frac{\log N}{\log p}} \left(\frac{N}{p^j A} + O_{\leq}(4/3)\right) \\
     &= \frac{N}{p-1} - O_{\leq}^+\left(\frac{1}{p-1}\right)
     + O_{\leq}\left(\frac{4A}{3} \left\lceil \frac{\log N}{\log p}  \right\rceil\right) \\
-    &= \frac{N}{p-1} 
+    &= \frac{N}{p-1}
     - O_{\leq}^+\left(\left\lceil \frac{\log N}{\log p}  \right\rceil\right)
     + O_{\leq}\left(\frac{4A}{3} \left\lceil \frac{\log N}{\log p}  \right\rceil\right).
   \end{align*}
   Meanwhile, from \eqref{legendre} one has
   $$ \nu_p(N!) = \frac{N}{p-1} - O_{\leq}^+\left(\left\lceil \frac{\log N}{\log p}  \right\rceil\right)$$
-and the claim follows.  
+and the claim follows.
 \end{proof}
 
 \begin{corollary}\label{delta3-alpha3-bound} One has
@@ -1876,7 +1872,7 @@ With the above estimates, we can now establish the lower bound in \Cref{main}(iv
 \begin{equation}\label{main-lower}
    t \coloneqq \frac{N}{e} - \frac{c_0 N}{\log N} + \frac{N}{\log^{1+c} N} \asymp N
 \end{equation}
-and $0 < c < 1$ is a small absolute constant. We use the construction of the previous section with the parameters
+and $0 < c < 1$ is a small absolute constant. We use the construction of $\tuple^{(0)}$ and  $K, \kappa_*, \gamma_2, \gamma_3$ from the previous section with the parameters
 \begin{align}
   A &\coloneqq \lfloor \log^2 N \rfloor\label{a-asym}\\
 K &\coloneqq \lfloor \log^3 N \rfloor \label{k-asym} \\
@@ -1889,7 +1885,7 @@ so from \eqref{sigma-def} one has
 The conditions \eqref{conditions}, \eqref{t-lower} are easily verified for $N$ large enough.
 
 By \eqref{kappas-eq}, \eqref{l-asym}, and \Cref{power-lemma}(ii) we have
-\begin{equation}\label{kappas-decay} 
+\begin{equation}\label{kappas-decay}
   \kappa_* \ll \log^{-c'} N
 \end{equation}
 for some absolute constant $c'>0$ (we can assume $c$ is smaller than $c'$).  From \eqref{gammas-def}, \eqref{main-lower}, \eqref{l-asym} we have
@@ -1906,7 +1902,7 @@ Several of the quantities $\delta, \delta_i, \alpha_i$ can now be immediately es
   \delta_6 &\ll \frac{1}{N} \\
   \delta_7 &\ll \frac{\kappa_*}{\log N} \ll \frac{1}{\log^{1+c'} N} \\
   \delta_8 &\ll \frac{\log N}{N} \\
-  \delta &= \frac{ec_0}{\log N} + \frac{e}{\log^{1+c} N} + O\left( \frac{1}{\log^2 N} \right)\\  
+  \delta &= \frac{ec_0}{\log N} + \frac{e}{\log^{1+c} N} + O\left( \frac{1}{\log^2 N} \right)\\
 \end{align*}
 \begin{align*}
   \alpha_1 &= 0 \\
@@ -1931,7 +1927,7 @@ and
 \end{equation}
 By Mertens' theorem (or \Cref{osc-lemma}) and \eqref{delta4-def}, \eqref{delta5-def}, \eqref{alpha2-def}, \eqref{alpha4-def}, \eqref{alpha5-def}, \eqref{sigma-alt}, it suffices to show that
 \begin{equation}\label{ap1-bound}
-A_{p_1}, B_{p_1} \ll \frac{(\log\log N)^{O(1)}}{p_1 \log N} 
+A_{p_1}, B_{p_1} \ll \frac{(\log\log N)^{O(1)}}{p_1 \log N}
 \end{equation}
 for all $p_1 \leq K(1+\sigma)$ (recalling from \eqref{ap1-vanish} that $A_{p_1}$ vanishes for any larger $p_1$), as well as the variant
 \begin{equation}\label{ap1-diff}
@@ -1939,41 +1935,41 @@ for all $p_1 \leq K(1+\sigma)$ (recalling from \eqref{ap1-vanish} that $A_{p_1}$
 \end{equation}
 for $3 < p_1 \leq K$.
 
-For \eqref{ap1-bound} we use \eqref{ap1-small}, \eqref{B-def}, and the crude bound 
+For \eqref{ap1-bound} we use \eqref{ap1-small}, \eqref{B-def}, and the crude bound
 \begin{equation}\label{crude}
   \nu_{p_1}(m) \ll 1_{p_1|m} \log\log N
 \end{equation}
  for $m \leq K(1+\sigma)$, and reduce to showing that
-$$ \frac{A}{N} \sum_{m \leq K(1+\sigma)} 1_{p_1|m} \left( \pi\left(\frac{t(1+\sigma)}{m}\right) - \pi\left(\frac{t}{\min(m,K)} \right) \right).
+$$ \frac{A}{N} \sum_{m \leq K(1+\sigma)} 1_{p_1|m} \left( \pi\left(\frac{t(1+\sigma)}{m}\right) - \pi\left(\frac{t}{\min(m,K)} \right) \right)
 \ll \frac{(\log\log N)^{O(1)}}{p_1 \log N}$$
 and
 $$ \frac{1}{N} \sum_{m \leq K} 1_{p_1|m} \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \left \lfloor \frac{N}{p} \right\rfloor \ll
-\frac{(\log\log N)^{O(1)}}{p_1 \log N}.$$ 
+\frac{(\log\log N)^{O(1)}}{p_1 \log N}.$$
 But from the Brun--Titchmarsh inequality (or \Cref{osc-lemma}) and \eqref{sigma-alt} one has
 $$ \pi\left(\frac{t(1+\sigma)}{m}\right) - \pi\left(\frac{t}{\min(m,K)}\right) \ll \frac{t\sigma}{m \log N} \ll \frac{N}{Am \log N}$$
 and
 $$ \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \left \lfloor \frac{N}{p} \right\rfloor \ll \frac{tm}{m^2 \log N} \ll \frac{N}{m \log N}$$
 and the claim then follows from summing the harmonic series.
 
-It remains to show \eqref{ap1-diff}.  For $3 < p_1 \leq K$, we see from \eqref{ap1-small}, \eqref{sigma-alt}, \eqref{crude} and \Cref{osc-lemma} (with classical error term) that
+It remains to show \eqref{ap1-diff}.  If $3 < p_1 \leq K$, then from \eqref{ap1-small}, \eqref{sigma-alt}, \eqref{crude} and \Cref{osc-lemma} (with classical error term) we have
 \begin{align*}
 A_{p_1} &\geq \frac{1}{N} \sum_{m \leq K(1+\sigma)}^* \nu_{p_1}(m) \left( \frac{A t \sigma}{m \log N} + O\left( \frac{(\log\log N)^{O(1)}A t \sigma}{m \log^2 N} \right) \right) \\
 &= \frac{1}{\log N} \sum_{m \leq K(1+\sigma)}^* \nu_{p_1}(m) \frac{3}{m}+ O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right) \\
-&= \frac{1}{\log N} \sum_{m \leq K}^* \nu_{p_1}(m) \frac{3}{m}+ O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right) 
+&= \frac{1}{\log N} \sum_{m \leq K}^* \nu_{p_1}(m) \frac{3}{m}+ O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right)
 \end{align*}
-and similarly from \eqref{B-def}, \eqref{crude}, and \Cref{osc-lemma} (again with classical error term) 
+and similarly from \eqref{B-def}, \eqref{crude}, and \Cref{osc-lemma} (again with classical error term)
 \begin{align*}
   B_{p_1} &\leq
   \frac{1}{N} \sum_{m \leq K} \nu_{p_1}(m) \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \frac{N}{p}  \\
   &\leq \frac{1}{N} \sum_{m \leq K} \nu_{p_1}(m) \left( \frac{N}{\log(t/m)} \int_{t/m}^{t/(m-1)} \frac{dx}{x} + O\left( \frac{N}{\log^{10} N} \right) \right) \\
-  &\leq \frac{1}{\log N} \sum_{m \leq K} \nu_{p_1}(m) \log \frac{m}{m-1} + O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right)
+  &\leq \frac{1}{\log N} \sum_{m \leq K} \nu_{p_1}(m) \log \frac{m}{m-1} + O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right).
 \end{align*}
-so it will suffice to establish the inequality
-\begin{equation}\label{key-ineq} 
+It thus suffices to establish the inequality
+\begin{equation}\label{key-ineq}
    \sum_{m \leq K} \nu_{p_1}(m) \log \frac{m}{m-1} \leq \sum_{m \leq K}^* \nu_{p_1}(m) \frac{3}{m}
 \end{equation}
 for all $p_1 > 3$.
-  
+
 Writing $\nu_{p_1}(m) = \sum_{j \geq 1} 1_{p_1^j|m}$, it suffices to show that
   $$ \sum_{m \leq K; p^j|m} \frac{3}{m} 1_{(m,6)=1} - \log \frac{m}{m-1} \geq 0.$$
 Making the change of variables $m = p_1^j n$, it suffices to show that
@@ -1986,7 +1982,7 @@ Making the change of variables $m = p_1^j n$, it suffices to show that
   \begin{equation}\label{kb}
   \sum_{n \leq K'}^* \frac{3}{n} 1_{(n,6)=1} - \frac{1}{n-0.2} \geq 0.
   \end{equation}
-  Since 
+  Since
   $$ \sum_{n=1}^\infty \frac{1}{n-0.2}-\frac{1}{n} = \psi(0.8)-\psi(1) = 0.353473\dots,$$
   where $\psi$ here denotes the digamma function rather than the von Mangoldt summatory function, it will suffice to show that
   \begin{equation}\label{kb-2}
@@ -1998,7 +1994,7 @@ Making the change of variables $m = p_1^j n$, it suffices to show that
   &\quad > 0.
   \end{align*}
 The inequality for $K'>100$ is then easily verified from the $K' \leq 100$ data and the triangle inequality.
-  
+
   \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{key_ineq.png}
@@ -2024,9 +2020,11 @@ $$ \sigma = \frac{3N}{At}=\frac{9}{189} =0.047619\dots$$
 One can readily check the required conditions \eqref{conditions}, \eqref{t-lower} for $N \geq N_0$, so it remains to verify the hypotheses \eqref{delta-cond}, \eqref{alpha-cond} of \Cref{repair} in this range.  Some of the quantities in these hypotheses involve sums over large ranges, such as $(t/K,N]$; but one can use \Cref{osc-lemma} to obtain adequate upper or lower bounds on such quantities, leaving one with sums over short ranges such as $p \leq K$ or $p \leq K(1+\sigma)$.  As such, all of the bounds needed can be quickly computed even for very large $N$ with simple computer code\footnote{\url{https://github.com/teorth/erdos-guy-selfridge/blob/main/src/python/interval/interval_computations.py}}.
 
 Many of the bounds we will use will be monotone decreasing in $N$, so that they only need to be tested at the left endpoint $N=N_0$.  However, this is not the case for all of the bounds, as some involve subtracting one monotone quantity from another.  For those estimates, we will initially only establish bounds in two extreme cases, $N=N_0$ and $N \geq 10^{70}$, and discuss how to cover the intervening ranges $N_0 < N < 10^{70}$ at the end of the section.
-  
+
 We now bound some of the terms appearing in \Cref{repair}. From \Cref{power-lemma} we have
-$$ \kappa_{4.5} = \log \frac{4}{3} =0.28768\dots.$$
+\begin{equation}\label{kappa-45}
+  \kappa_{4.5} = \log \frac{4}{3} =0.28768\dots.
+\end{equation}
 
 From \eqref{gammas-def} one can take
 $$ \gamma_2 \coloneqq \frac{\log 2}{\log \sqrt{3}} \frac{\log(2L) + \kappa_L}{\log(N_0/3) - \log(2L)} = 0.1423165\dots$$
@@ -2037,7 +2035,7 @@ $$ \kappa_{**} \leq 6.830101\dots.$$
 
 From \eqref{stirling} one has
 $$ \delta \geq \log N - \log t = \log \frac{3}{e} = 0.0986122\dots$$
-for all $N \geq N_0$.  
+for all $N \geq N_0$.
 
 We will use this lower bound as our unit of reference for all other $\delta_i$ quantities, bounding them by suitable multiples of $\delta$.  For instance, from \eqref{delta1-bound} one has
 $$ \delta_1 \leq \frac{9}{2A} + \frac{4}{N_0} \leq 0.241447 \delta$$
@@ -2049,7 +2047,7 @@ From \eqref{delta2-def} and \Cref{osc-lemma}, and the monotonicity of $E(N)/N$, 
   &\leq \frac{0.919785}{\log(N_0/3K)}  + \frac{1159.795}{\log(N_0/3K)}  \frac{E(N_0)}{N_0} \\
   &\leq 0.504735 \delta
 \end{align*}
-for all\footnote{Despite the seemingly large numerator, the second term is in fact negligible for $N \geq N_0$, due to the square root type decay in $E(N)/N$.} $N \geq N_0$.  For $N \geq 10^{70}$ we may replace $N_0$ by $10^{70}$ and obtain the significantly better bound
+for all $N \geq N_0$.  Despite the seemingly large numerator, the second term here is in fact negligible for $N \geq N_0$, due to the square root type decay in $E(N)/N$. For $N \geq 10^{70}$ we may replace $N_0$ by $10^{70}$ and obtain the significantly better bound
 $$ \delta_2 \leq 0.060410 \delta.$$
 
 From \Cref{delta3-alpha3-bound} and \eqref{pi-upper} one has
@@ -2093,15 +2091,15 @@ for all $N \geq N_0$, and similarly from \eqref{alpha7-def} we have
 for all $N \geq N_0$.
 so the contribution of these two terms are negligible.
 
-Conveniently\footnote{Even if this were not the case, the quantities $\delta_4,\alpha_4$ should be viewed as lower order terms, and are far smaller than several of the other $\delta_i$ or $\alpha_i$ for typical choices of parameters.}, the choice of parameters $A,K$ ensures that there are no primes in the range
+Conveniently, the choice of parameters $A,K$ ensures that there are no primes in the range
 $$ 293 = K < p \leq K(1+\sigma) = K(1+\sigma)=306.952\dots$$
 and thus
 $$ \delta_4=\alpha_4 = 0$$
-for all $N \geq N_0$.
+for all $N \geq N_0$. (Even if this were not the case, the quantities $\delta_4,\alpha_4$ should be viewed as lower order terms, and are far smaller than several of the other $\delta_i$ or $\alpha_i$ for typical choices of parameters.)
 
 The remaining terms $\delta_5, \delta_7, \alpha_2, \alpha_5$ to estimate involve the quantities $A_{p_1}, B_{p_1}$ defined in \eqref{A-def}, \eqref{B-def}, and require a bit more care.  For $B_{p_1}$, we can split the expression as
 $$ B_{p_1} = \sum_{m \leq K} \nu_{p_1}(m) \sum_{k: a_{k,m} < b_{k,m}} \frac{k}{N} (\pi( N b_{k,m} ) - \pi(N a_{k,m}))$$
-where 
+where
 $$ a_{k,m} \coloneqq \max\left( \frac{1}{3m}-, \frac{1}{k} \right); \quad b_{k,m} \coloneqq \max\left( \frac{1}{3(m-1)}-, \frac{1}{k-1} \right)$$
 where the $-$ denotes the subtraction of an infinitesimal quantity to reflect the restriction to the range $\frac{t}{m} \leq p < \frac{t}{m-1}$ rather than
 $\frac{t}{m} < p \leq \frac{t}{m-1}$.  Using \Cref{osc-lemma} (and a limiting argument), we can upper bound this quantity by
@@ -2112,7 +2110,7 @@ and lower bound it by
 \end{align*}
 We caution here that while the upper bound for $B_{p_1}$ is monotone decreasing in $N$, the lower bound does not have a favorable monotonicity property, particularly as it will be used when \emph{subtracting} copies of $B_{p_1}$ rather than \emph{adding} them.
 
-From the monotonicity of the upper bound, one can use \eqref{alpha2-def} to calculate that 
+From the monotonicity of the upper bound, one can use \eqref{alpha2-def} to calculate that
 $$ \alpha_2 \leq 0.269878$$
 for all $N \geq N_0$.  For \eqref{delta7-def}, subtraction is involved, and one must proceed with more caution.  For $N=N_0$, one has
 $$ \delta_7 \leq 0.11359 \delta.$$
@@ -2122,7 +2120,7 @@ $$ \delta_7 \leq \frac{\kappa_{4.5} \log \sqrt{12}}{\log(10^{70}/3)}  \leq 0.022
 As for the $A_{p_1}$, we know from \eqref{ap1-vanish} that this vanishes unless $3 < p_1 \leq K(1+\sigma)$.  From \eqref{ap1-small} and \Cref{osc-lemma} one has the upper bound
 \begin{align*}
 A_{p_1} &\leq \sum_{m \leq K(1+\sigma)}^* \left(\frac{A \nu_{p_1}(m)}{2\log(N/3\min(m,K))} + \frac{A \nu_{p_1}(m)}{2\log(N(1+\sigma)/3m)} \right) \left( \frac{1+\sigma}{3m} - \frac{1}{3\min(m,K)}\right) \\
-& \quad \quad + \frac{A \nu_{p_1}(m)}{\log(N/3\min(m,K))} \frac{2E(N(1+\sigma)/3m)}{N}  
+& \quad \quad + \frac{A \nu_{p_1}(m)}{\log(N/3\min(m,K))} \frac{2E(N(1+\sigma)/3m)}{N}
 \end{align*}
 and the lower bound
 \begin{align*}
@@ -2151,8 +2149,8 @@ This completes the proof of \Cref{main}(iii) (and hence \Cref{main}(ii)) in the 
 $\delta_5, \delta_7, \alpha_2, \alpha_5$, thus potentially verifying the conditions \eqref{delta-cond}, \eqref{alpha-cond} simultaneously for all $N$ in such an interval.  As it turns out, there is enough room to spare in these estimates, particularly for large $N$, that this strategy works using only a small number of intervals; specifically, by considering $N$ in the intervals
 $$ [10^{11}, 5 \times 10^{11}]; \quad [5 \times 10^{11}, 10^{14}]; \quad [10^{14}, 10^{20}]; \quad [10^{20}, 10^{70}]$$
 one can check that such bounds are sufficient to verify \eqref{delta-cond}, \eqref{alpha-cond} in these cases.  This now verifies \Cref{main}(ii), (iii) for all $N \geq 10^{11}$.
-(In fact, with more effort, this verification can be pushed down to $N \geq 6 \times 10^{10}$ using the same choice of parameters $A,K,L$ \footnote{Specifically by checking $$ [6 \times 10^{10}, 6.05 \times 10^{10}]; \ \  [6.05 \times 10^{10}, 6.1 \times 10^{10}]; \ \  [6.1 \times 10^{10}, 6.5 \times 10^{10}]; \ \  [6.5 \times 10^{10}, 7 \times 10^{10}]; \ \  [7 \times 10^{10}, 10^{11}].$$}.)
-  
+(In fact, with more effort, this verification can be pushed down to $N \geq 6 \times 10^{10}$ using the same choice of parameters $A,K,L$, specifically by checking $$ [6 \times 10^{10}, 6.05 \times 10^{10}]; \ \  [6.05 \times 10^{10}, 6.1 \times 10^{10}]; \ \  [6.1 \times 10^{10}, 6.5 \times 10^{10}]; \ \  [6.5 \times 10^{10}, 7 \times 10^{10}]; \ \  [7 \times 10^{10}, 10^{11}].$$)
+
 \appendix
 
 \section{Distance to the next \texorpdfstring{$3$}{3}-smooth number}\label{power-sec}
@@ -2165,20 +2163,20 @@ while from definition of $a$ we have
 \end{equation}
 We now compute
 \begin{align*}
-  \frac{\nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L) - 2 \gamma \nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma} 
+  \frac{\nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L) - 2 \gamma \nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma}
   &= \frac{2a+b - 2\gamma(a+c)}{1-\gamma} \\
   &\leq 2a + \frac{\log x - a \log 12 + \kappa_L}{(1-\gamma) \log 2}  \\
   &= \frac{\log x}{\log \sqrt{12}} + \left( \frac{1}{(1-\gamma)\log 2} - \frac{1}{\log \sqrt{12}}\right) \left(\log x - a \log 12\right)\\
-  &\quad 
-  + \frac{\kappa_L}{(1-\gamma)\log 2} 
+  &\quad
+  + \frac{\kappa_L}{(1-\gamma)\log 2}
 \end{align*}
 giving \eqref{12-2} from \eqref{xa12}; similarly, we have
 \begin{align*}
-  \frac{2\nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L) - \gamma \nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma} 
+  \frac{2\nu_3(\lceil x \rceil^{\langle 2,3\rangle}_L) - \gamma \nu_2(\lceil x \rceil^{\langle 2,3\rangle}_L)}{1-\gamma}
   &= \frac{2(a+c) - \gamma(2a+b)}{1-\gamma} \\
   &\leq 2a + \frac{2(\log x - a \log 12 + \kappa_L)}{(1-\gamma) \log 3}  \\
   &= \frac{\log x}{\log \sqrt{12}} + \left( \frac{2}{(1-\gamma)\log 3} - \frac{1}{\log \sqrt{12}}\right) \left(\log x - a \log 12\right)\\
-  &\quad + \frac{\kappa_L}{(1-\gamma)\log \sqrt{3}} 
+  &\quad + \frac{\kappa_L}{(1-\gamma)\log \sqrt{3}}
 \end{align*}
 giving \eqref{12-3} from \eqref{xa12}.
 
@@ -2191,7 +2189,7 @@ $$ \kappa_{\min( 2^{n_1+n_2},3^{m_1+m_2})/6} \leq \log \max\left(\frac{3^{m_1}}{
 \end{lemma}
 
 \begin{proof}  If $\min( 2^{n_1+n_2},3^{m_1+m_2})/6 \leq t \leq 2^{n_2-1} 3^{m_1-1}$, then we have
-\begin{equation}\label{tb} 
+\begin{equation}\label{tb}
   t \leq 2^{n_2-1} 3^{m_1-1} \leq \max\left(\frac{3^{m_1}}{2^{n_1}}, \frac{2^{n_2}}{3^{m_2}}\right) t,
 \end{equation}
 so we are done in this case.  Now suppose that $t > 2^{n_2-1} 3^{m_1-1}$.
@@ -2213,7 +2211,7 @@ Some efficient choices of parameters for this lemma are given in \Cref{approx-ta
 \rule{0pt}{12pt}$3$ & $2$ & $\mathbf{2}$ & $\mathbf{1}$ & $3^2/2 = 4.5$ & $\log (2^2/3) = 0.28768\dots$ \\
 $3$ & $2$ & $\mathbf{5}$ & $\mathbf{3}$ & $3^4/2 = 40.5$ & $\log (2^5/3^3) = 0.16989\dots$ \\
 \hline
-\rule{0pt}{12pt}$\mathbf{3}$ & $\mathbf{2}$ & $8$ & $5$ & $2^{10}/3 = 341.33\dots$ & $\log (3^2/2^3) = 0.11778\dots$\\ 
+\rule{0pt}{12pt}$\mathbf{3}$ & $\mathbf{2}$ & $8$ & $5$ & $2^{10}/3 = 341.33\dots$ & $\log (3^2/2^3) = 0.11778\dots$\\
 $\mathbf{11}$ & $\mathbf{7}$ & $8$ & $5$ & $2^{18}/3 = 87381.33\dots$ & $\log (3^7/2^{11}) = 0.06566\dots$ \\
 \hline
 \rule{0pt}{12pt}$19$ & $12$ & $\mathbf{8}$ & $\mathbf{5}$ & $3^{17}/2 \approx 6.4 \times 10^7$ & $\log (2^8/3^5) = 0.05211\dots$ \\
@@ -2227,7 +2225,7 @@ $19$ & $12$ & $\mathbf{46}$ & $\mathbf{29}$ & $3^{41}/2 \approx 1.8 \times 10^{1
 \end{table}
 
 \begin{remark}
-It should be unsurprising that the continued fraction convergents $1/1$, $2/1$, $3/2$, $8/5$, $19/12$, $\dots$ to 
+It should be unsurprising that the continued fraction convergents $1/1$, $2/1$, $3/2$, $8/5$, $19/12$, $\dots$ to
 $$\frac{\log 3}{\log 2} = 1.5849\dots = [1; 1,1,2,2,3,1,\dots]$$
 are often excellent choices for $n_1/m_1$ or $n_2/m_2$, although other approximants such as $5/3$ or $11/7$ are also usable.
 \end{remark}
@@ -2238,10 +2236,10 @@ Finally, we establish (ii).  From the classical theory of continued fractions, w
 \end{equation}
 to the irrational number $\log 3/\log 2$, where the convergents $p_j/q_j$ obey the recursions
 $$ p_j = b_j p_{j-1} + p_{j-2}; \quad q_j = b_j q_{j-1} + q_{j-2}$$
-with $p_{-1} = 1, q={-1}=0, p_0 = b_0, q_0=1$, and 
-$$[b_0;b_1,b_2,\dots] = [1;1,1,2,2,3,1\dots]$$ 
+with $p_{-1} = 1, q={-1}=0, p_0 = b_0, q_0=1$, and
+$$[b_0;b_1,b_2,\dots] = [1;1,1,2,2,3,1\dots]$$
 is the continued fraction expansion of $\frac{\log 3}{\log 2}$.  Furthermore, $p_{2j+1}q_{2j} - p_{2j} q_{2j+1} = 1$, and hence
-\begin{equation}\label{abn-2} 
+\begin{equation}\label{abn-2}
   \frac{\log 3}{\log 2} - \frac{p_{2j}}{q_{2j}} = \frac{1}{q_{2j} q_{2j+1}}.
 \end{equation}
 By Baker's theorem (see, e.g., \cite{baker-wustholz}), $\frac{\log 3}{\log 2}$ is a Diophantine number, giving a bound of the form
@@ -2270,7 +2268,7 @@ It seems reasonable to conjecture that $c$ can be taken to be arbitrarily close 
 
 In this appendix we establish \Cref{osc-lemma}.  The key tool is
 
-\begin{lemma}[Integration by parts]\label{integ-lemma}  Let $(y,x]$ be a half-open interval in $(0,+\infty)$.  Suppose that one has a function $a \colon \N \to \R$ and a continuous function $f: (y,x] \to \R$ such that 
+\begin{lemma}[Integration by parts]\label{integ-lemma}  Let $(y,x]$ be a half-open interval in $(0,+\infty)$.  Suppose that one has a function $a \colon \N \to \R$ and a continuous function $f: (y,x] \to \R$ such that
   $$ \sum_{y < n \leq z} a_n = \int_z^y f(t)\ dt + C + O_{\leq}(A)$$
   for all $y \leq z \leq x$, and some $C \in \R$, $A>0$.  Then, for any function $b: (y,x] \to \R$ of bounded total variation, one has
 \begin{equation}\label{tve}
@@ -2288,7 +2286,7 @@ The left-hand side is $O_{\leq}(A \|b\|_{\mathrm{TV}^*(y,x]})$, and the claim fo
 \end{proof}
 
 We now prove \eqref{bv-exact}. In fact we prove the sharper estimate
-\begin{equation}\label{bsharp}  
+\begin{equation}\label{bsharp}
   \sum_{y < p \leq x} b(p) \log p = \int_y^x b(t) \left(1 - \frac{2}{\sqrt{t}}\right) \ dt
 + O_\leq\left(\|b\|_{\mathrm{TV}^*((y,x])} \tilde E(x) \right)
 \end{equation}
@@ -2317,8 +2315,8 @@ for all $x \geq 1423$.
 For $1423 \leq x \leq 10^{19}$, this claim follows from \cite[Theorem 2]{buthe-2}.  For $x > 10^{19}$, we apply \cite[(6.10), (6.11)]{buthe} to conclude that
 $$
 \sum_{p \leq x} \log p = \psi(x) - \psi(\sqrt{x}) + O_{\leq}(1.03883 (x^{1/3} + x^{1/5} + 2 (\log x) x^{1/13})),$$
-where $\psi(x) \coloneqq \sum_{n \leq x} 
-\Lambda(n)$ is the usual von Mangoldt summatory function.  
+where $\psi(x) \coloneqq \sum_{n \leq x}
+\Lambda(n)$ is the usual von Mangoldt summatory function.
 From \cite[Theorems 10,12]{rs} we have
 $$ \psi(\sqrt{x}) = \sqrt{x} + O_{\leq}(0.18 \sqrt{x}).$$
 Since
@@ -2329,14 +2327,18 @@ for $x > 10^{19}$.  The claims for $i=2,3$ follow from \cite[Theorems 1.1, 1.4]{
 $$ \psi(x) = x + O_{\leq}(\eps_0(x))$$
 is established whenever $x \geq 5000$ and $4.92 \frac{x}{\sqrt{\log x}} \leq T$, where $T$ is a height up to which the Riemann hypothesis has been established.  Using the value $T = 3 \times 10^{12}$ from \cite{platt-rh}, we can therefore cover the range $10^{19} < x < e^{55}$ (in fact we could go up to $e^{58.33} \approx 2.1 \times 10^{25}$).  For $x \geq e^{55}$, we can use \cite[Table 2]{buthe} (the value $T = 2.445 \times 10^{12}$ used there following from \cite{platt-rh}).
 
-\begin{remark} Assuming the Riemann hypothesis, the $\eps_1, \eps_2, \eps_3$ terms in the definition of $\tilde E(x)$ may be deleted, since \cite[(7.3)]{buthe} then holds for all $x \geq 5000$.  
+\begin{remark} Assuming the Riemann hypothesis, the $\eps_1, \eps_2, \eps_3$ terms in the definition of $\tilde E(x)$ may be deleted, since \cite[(7.3)]{buthe} then holds for all $x \geq 5000$.
 \end{remark}
 
-The claim \eqref{pix} now follows from \eqref{bv-exact} by setting $b(t) \coloneqq \frac{1}{\log t}$.  
+The claim \eqref{pix} now follows from \eqref{bv-exact} by setting $b(t) \coloneqq \frac{1}{\log t}$.  The bounds \eqref{pixy-upper}, \eqref{pixy-lower} then follow by estimating
+$$ 1-\frac{2}{\sqrt{y}} \leq 1-\frac{2}{\sqrt{t}} \leq 1$$
+and using the convexity of $t \mapsto \frac{1}{\log t}$.  Finally, for non-negative $b$, the bounds \eqref{bv-upper}, \eqref{bv-lower} follow from the trivial inequalities
+$$ \frac{b(p) \log p}{\log x}  \leq b(p) \leq \frac{b(p) \log p}{\log y}.$$
+
 
 \section{Computation of \texorpdfstring{$c_0$}{c\_0} and related quantities}\label{c0-app}
 
-In this appendix we give some details regarding the numerical estimation of the constants $c_0, c'_1, c''_1, c_1$ defined in \eqref{c0-def}, \eqref{c1p-def}, \eqref{c1pp-def}, \eqref{c1-def}.  
+In this appendix we give some details regarding the numerical estimation of the constants $c_0, c'_1, c''_1, c_1$ defined in \eqref{c0-def}, \eqref{c1p-def}, \eqref{c1pp-def}, \eqref{c1-def}.
 
 We begin with $c_0$.  As one might imagine from an inspection of \Cref{fig-mean}, direct application of numerical quadrature converges quite slowly due to the oscillatory singularity.  To resolve the singularity, we can perform a change of variables $x=1/y$ to express $c_0$ as an improper integral:
 \begin{equation}\label{c0-alt}
@@ -2371,7 +2373,7 @@ $$0 \leq \frac{1}{k} \log\left(\frac{e}{k} \left\lceil \frac{k}{e} \right\rceil\
 and the integral test, one has the simple tail bound
 $$ 0 \leq \sum_{k=K+1}^\infty \frac{1}{k} \log\left(\frac{e}{k} \left\lceil \frac{k}{e} \right\rceil\right) \leq \frac{e}{K}$$
 but the convergence rate here is slow.  To accelerate the convergence, we write $\lceil\frac{k}{e} \rceil = \frac{k}{e} + \{-\frac{k}{e}\}$ and use the more precise Taylor approximation
-$$ \frac{e \left\{-\frac{k}{e}\right\}}{k^2} - \frac{e^2 \left\{-\frac{k}{e}\right\}^2}{2k^3} 
+$$ \frac{e \left\{-\frac{k}{e}\right\}}{k^2} - \frac{e^2 \left\{-\frac{k}{e}\right\}^2}{2k^3}
 \leq \frac{1}{k} \log\left(\frac{e}{k} \left\lceil \frac{k}{e} \right\rceil\right) \leq \frac{e \left\{-\frac{k}{e}\right\}}{k^2}.$$
 Bounding $\{-k/e\}$ by one, we have the tail bound
 $$ 0 \leq \sum_{k=K+1}^\infty \frac{e^2 \left\{-\frac{k}{e}\right\}^2}{2k^3} \leq \frac{e^2}{4K^2}$$
@@ -2383,7 +2385,7 @@ so one can instead look at the normalized tail
 $$ \sum_{k=K+1}^\infty e\frac{\left\{-\frac{k}{e}\right\}-\frac{1}{2}}{k^2}.$$
 The Erd\H{o}s--Tur\'an inequality states that, for any absolutely convergent non-negative weights $c_k$, any interval $I \subset [0,1]$ of length $|I|$, and any real numbers $\xi_k$, and any $N \geq 1$, one has
 $$ \left|\sum_k c_k (1_I(\xi_k \mod 1) - |I|)\right| \leq \frac{1}{N+1} \sum_k c_k + \sum_{n=1}^N \left(\frac{2}{\pi n} + \frac{2}{N+1}\right) \left|\sum_k c_k e^{2\pi i n \xi_k}\right|;$$
-see the inequality\footnote{In the cited reference, only the special case in which $c_k$ is a uniform probability distribution function on $\{1,\dots,M\}$ is discussed, but it is easy to see that the argument in fact works for arbitrary absolutely convergent non-negative weights $c_k$.} after \cite[Theorem 20]{vaaler}.  Applying this for $I = [0,h]$ and then averaging in $h$ from $0$ to $1$, we conclude that
+see the inequality after \cite[Theorem 20]{vaaler}.  (In this reference, only the special case in which $c_k$ is a uniform probability distribution function on $\{1,\dots,M\}$ is discussed, but it is easy to see that the argument in fact works for arbitrary absolutely convergent non-negative weights $c_k$.)  Applying this for $I = [0,h]$ and then averaging in $h$ from $0$ to $1$, we conclude that
 $$ \left|\sum_k c_k \left(\{\xi_k\}-\frac{1}{2}\right)\right| \leq \frac{1}{N+1} \sum_k c_k + \sum_{n=1}^N \left(\frac{2}{\pi n} + \frac{2}{N+1}\right) \left|\sum_k c_k e^{2\pi i n \xi_k}\right|.$$
 In particular, we have
 $$ \left| \sum_{k=K+1}^\infty e\frac{\left\{-\frac{k}{e}\right\}-\frac{1}{2}}{k^2}\right| \leq \frac{1}{N+1} \sum_{k=K+1}^\infty \frac{e}{k^2}
@@ -2400,7 +2402,7 @@ Because the irrationality measure of $e$ is $2$, this will give error terms of t
 $$c''_1 = 1.679578996\dots$$
 and thus by \eqref{c1-def} we have
 $$ c_1 = 0.7554808\dots.$$
-
+This concludes our discussion of the numerical estimation of $c_0, c'_1, c''_1, c_1$.
 
 
 
@@ -2416,8 +2418,11 @@ S. F. Assmann, D. S. Johnson, D. J. Kleitman, J. Y.-T. Leung, \emph{On a dual ve
 \bibitem{baker-wustholz}
 A. Baker, G. W\"ustholz, \emph{Logarithmic forms and Diophantine geometry}, New Math. Monogr., 9 Cambridge University Press, Cambridge, 2007.
 
+\bibitem{lpsolve}
+M. Berkelaar, K. Eikland, P. Notebaert, \texttt{lp\_solve}, Version 5.5.2.11, \url{https://lpsolve.sourceforge.net/5.5/}, accessed May 5, 2025.
+
 \bibitem{buthe}
-J. B\"uthe, \emph{Estimating $\pi(x)$ and related functions under partial RH assumptions}, Math. Comp., 85(301), 2483--2498, Jan. 2016.
+J. B\"uthe, \emph{Estimating $\pi(x)$ and related functions under partial RH assumptions}, Math. Comp., \textbf{85} (2016), 2483--2498.
 
 \bibitem{buthe-2}
 J. B\"uthe, \emph{An analytic method for bounding $\psi(x)$
@@ -2458,12 +2463,9 @@ D. Johnston, A. Yang, \emph{Some explicit estimates for the error term in the pr
 J. C. Lagarias and A. M. Odlyzko, \emph{Computing $\pi(x)$: An analytic method}, J. Algorithms \textbf{8} (1987), no. 2, 173--191.
 
 \bibitem{lagarias-miller-odlyzko}
-J. C. Lagarias and A. M. Odlyzko, \emph{Computing $\pi(x)$: The Miessel--Lehmer method}, Math. Comp. \textbf{44} (1985), no. 170, 537--560.
+J. C. Lagarias and A. M. Odlyzko, \emph{Computing $\pi(x)$: The Meissel--Lehmer method}, Math. Comp. \textbf{44} (1985), no. 170, 537--560.
 
-\bibitem{lpsolve}
-M. Berkelaar, K. Eikland, P. Notebaert, \texttt{lp\_solve}, Version 5.5.2.11, \url{https://lpsolve.sourceforge.net/5.5/}, accessed May 5, 2025.
-
-\bibitem{platt-rh} 
+\bibitem{platt-rh}
 D. Platt, T. Trudgian, \emph{The Riemann hypothesis is true up to $3\cdot10^{12}$}, Bull. Lond. Math. Soc. \textbf{53} (2021), no. 3, 792--797.
 
 \bibitem{robbins}
@@ -2476,19 +2478,19 @@ H. Robbins, \emph{A Remark on Stirling's Formula}, Amer. Math. Monthly \textbf{6
 J. Rosser, L. Schoenfeld, \emph{Approximate formulas for some functions of prime numbers}, Illinois J. Math. 6 (1962), 64--94.
 
 \bibitem{tao}
-T. Tao, \emph{Decomposing factorials into bounded factors}, preprint, 2025. \url{https://arxiv.org/abs/2503.20170v2}
+T. Tao, \emph{Decomposing a factorial into large factors}, preprint, 2025. \url{https://arxiv.org/abs/2503.20170v2}
 
 \bibitem{github}
 T. Tao, \emph{Verifying the Guy--Selfridge conjecture}, GitHub repository, 2025.  \url{https://github.com/teorth/erdos-guy-selfridge}.
 
 \bibitem{vaaler}
-J. D. Vaaler, \emph{Some extremal functions in Fourier analysis}, Bulletin (New Series) of the American Mathematical Society, Bull. Amer. Math. Soc. (N.S.) \textbf{12}(2), 183--216, (April 1985).
+J. D. Vaaler, \emph{Some extremal functions in Fourier analysis}, Bulletin (New Series) of the American Mathematical Society, Bull. Amer. Math. Soc. (N.S.) \textbf{12} (1985), 183--216.
 
 \bibitem{walisch-primecount}
-K. Walisch, \texttt{primecount}, Version 7.17, \url{https://github.com/kimwalisch/primecount}, accessed April 24, 2025. 
+K. Walisch, \texttt{primecount}, Version 7.17, \url{https://github.com/kimwalisch/primecount}, accessed April 24, 2025.
 
 \bibitem{walisch-primesieve}
-K. Walisch, \texttt{primesieve}, Version 12.8, \url{https://github.com/kimwalisch/primesieve}, accessed April 24, 2025. 
+K. Walisch, \texttt{primesieve}, Version 12.8, \url{https://github.com/kimwalisch/primesieve}, accessed April 24, 2025.
 
 \end{thebibliography}
 
