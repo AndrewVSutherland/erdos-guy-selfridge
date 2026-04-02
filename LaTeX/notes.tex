@@ -329,7 +329,7 @@ The final approach is significantly more complicated than the other four, but gi
 \begin{equation}\label{approx_factor}
    N! \approx \left(\prod_{j \in I} j\right)^A
 \end{equation}
-for some relatively small natural number $A$ (e.g., $A = \lfloor \log^2 N \rfloor$) and a suitable set $I$ of natural numbers greater than or equal to $t$; there is some freedom to select parameters here, and we will take $I$ to be the natural numbers in $(t, t(1+\sigma)]$ that are $3$-rough (coprime to $6$), where $t$ is the target lower bound for $t(N)$ we wish to establish, and $\sigma \coloneqq \frac{3N}{tA}$ is chosen to bring the number of terms in the approximate factorization close to $N$.  With this choice of $I$, the product in \eqref{approx_factor} contains approximately the right number of copies of $p$ for medium-sized primes $p$; but it has the ``wrong'' number of copies of large primes, and is also constructed to avoid the ``tiny'' primes $p=2,3$.  One then performs a number of alterations to this approximate factorization to correct for the ``surpluses'' or ``deficits'' at various primes $p>3$, using the supply of available tiny primes $p=2,3$ as a sort of ``liquidity pool'' to efficiently reallocate primes in the factorization.  A key point will be that the incommensurability of $\log 2$ and $\log 3$ (i.e., the irrationality of $\log 3/\log 2$) means that the $3$-smooth numbers (numbers of the form $2^n 3^m$) are asymptotically dense (in logarithmic scale), allowing for other factors to be exchanged for $3$-smooth factors with little loss\footnote{The weaker results alluded to in \Cref{old} only used the prime $2$ as a supply of ``liquidity'', and thus encountered inefficiencies due to the inability to ``make change'' when approximating another factor by a power of two.}.
+for some relatively small natural number $A$ (e.g., $A = \lfloor \log^2 N \rfloor$) and a suitable set $I$ of natural numbers greater than or equal to $t$; there is some freedom to select parameters here, and we will take $I$ to be the natural numbers in $(t, t(1+\sigma)]$ that are $3$-rough (coprime to $6$), where $t$ is the target lower bound for $t(N)$ we wish to establish, and $\sigma \coloneqq \frac{3N}{tA}$ is chosen to bring the number of terms in the approximate factorization close to $N$.  With this choice of $I$, the product in \eqref{approx_factor} contains approximately the right number of copies of $p$ for medium-sized primes $p$; but it has the ``wrong'' number of copies of large primes, and is also constructed to avoid the ``tiny'' primes $p=2,3$.  One then performs a number of alterations to this approximate factorization to correct for the ``surpluses'' or ``deficits'' at various primes $p>3$, using the supply of available tiny primes $p=2,3$ as a sort of ``liquidity pool'' to efficiently reallocate primes in the factorization.  A key point will be that the incommensurability of $\log 2$ and $\log 3$ (i.e., the irrationality of $\log 3/\log 2$) means that the $3$-smooth numbers (numbers of the form $2^n 3^m$) are asymptotically dense (in logarithmic scale), allowing for other factors to be exchanged for $3$-smooth factors with little loss.  The weaker results mentioned in \Cref{old}  only used the prime $2$ as a supply of ``liquidity'', and thus encountered inefficiencies due to the inability to ``make change'' when approximating another factor by a power of two.
 
 \subsection{Linear and integer programming solvers}
 
@@ -421,7 +421,9 @@ valid for all natural numbers $N$.
 The primes $2,3$ will play a special role\footnote{One could also run analogous arguments with other sets of tiny primes; for instance, the initial version \cite{tao} of this paper only utilized the prime $2$ in this fashion.} in this paper and will be referred to as \emph{tiny primes}.
 Call a natural number \emph{$3$-smooth} if it is the product of tiny primes, i.e., it is of the form $2^n 3^m$ for some natural numbers $n,m$, and \emph{$3$-rough} if it is not divisible by any tiny prime, that is to say it is coprime to $6$.  Given a positive real number $x$, we use $\lceil x \rceil^{\langle 2,3 \rangle}$ to denote the smallest $3$-smooth number greater than or equal to $x$.  For instance, $\lceil 5 \rceil^{\langle 2,3 \rangle} = 6$ and $\lceil 10 \rceil^{\langle 2,3 \rangle} = 12$.
 
-It will be convenient to introduce a variant of this quantity that is close to a power\footnote{The significance of the base $12$ is that the $3$-smooth portion $2^{\nu_2(N!)} 3^{\nu_3(N!)}$ of $N!$, which serves as our ``liquidity pool'', is approximately $2^N 3^{N/2} = \sqrt{12}^{N}$; see \eqref{legendre} above.  This makes $\log \sqrt{12}$ a natural ``unit of currency'' in which to conduct various factor exchanges, with various integer linear combinations of $\log 2$ and $\log 3$ usable as ``small change'' to approximate quantities that are not integer multiples of $\log \sqrt{12} = \log 2 + \frac{1}{2} \log 3$.} of $12$.  If $1 \leq L \leq x$ is an additional real parameter, we define
+It will be convenient to introduce a variant of this quantity that is close to a power of $12$. The significance of the base $12$ is that the $3$-smooth portion $2^{\nu_2(N!)} 3^{\nu_3(N!)}$ of $N!$, which serves as our ``liquidity pool'', is approximately $2^N 3^{N/2} = \sqrt{12}^{N}$; see \eqref{legendre} above.  This makes $\log \sqrt{12}$ a natural ``unit of currency'' in which to conduct various factor exchanges, with various integer linear combinations of $\log 2$ and $\log 3$ usable as ``small change'' to approximate quantities that are not integer multiples of $\log \sqrt{12} = \log 2 + \frac{1}{2} \log 3$.
+
+If $1 \leq L \leq x$ is an additional real parameter, we define
 \begin{equation}\label{fancy-kappa-def}
   \lceil x \rceil^{\langle 2,3\rangle}_L \coloneqq 12^a \lceil x/12^a \rceil^{\langle 2,3 \rangle}
 \end{equation}
@@ -506,7 +508,9 @@ where $b(y^+) \coloneqq \lim_{t \to y^+} b(t)$ denotes the right limit of $b$ at
 
 We will use this augmented total variation to control sums over primes.  More precisely, in \Cref{primes-sec} we will show
 
-\begin{lemma}[Effective bounds for oscillatory sums over primes]\label{osc-lemma}  Let $1423 \leq y \leq x$, and let $b: (y,x] \to \R$ be of bounded total variation.  Then we have the bound
+\begin{lemma}[Effective bounds for oscillatory sums over primes]\label{osc-lemma}  Let $1423 \leq y \leq x$, and let $b: (y,x] \to \R$ be of bounded total variation.
+  \begin{itemize}
+    \item [(i)] Wwe have the bound
 \begin{equation}\label{bv-exact}
     \sum_{y < p \leq x} b(p) \log p = \int_y^x \left(1-\frac{2}{\sqrt{t}}\right) b(t)\ dt + O_{\leq}(\|b\|_{\mathrm{TV}^*(y,x]} E(x))
 \end{equation}
@@ -514,13 +518,11 @@ where the error function $E(x)$ is defined as
 \begin{equation}\label{tilde-e}
   E(x) \coloneqq 0.95 \sqrt{x} + 3.83 \times 10^{-9} x.
 \end{equation}
-In particular one has
+  \item[(ii)] One has
 \begin{equation}\label{pix}
-  \pi(x) - \pi(y) = \int_y^x \left(1-\frac{2}{\sqrt{t}}\right)\frac{dt}{\log t} + O_\leq\left(2 \frac{E(x)}{\log y}\right);
+  \pi(x) - \pi(y) = \int_y^x \left(1-\frac{2}{\sqrt{t}}\right)\frac{dt}{\log t} + O_\leq\left(2 \frac{E(x)}{\log y}\right),
 \end{equation}
-estimating
-$$ 1-\frac{2}{\sqrt{y}} \leq 1-\frac{2}{\sqrt{t}} \leq 1$$
-and using the convexity of $t \mapsto \frac{1}{\log t}$, we obtain the upper bound
+the upper bound
 \begin{equation}\label{pixy-upper}
  \pi(x) - \pi(y) \leq \frac{x-y}{2\log y} + \frac{x-y}{2\log x} + 2 \frac{E(x)}{\log y}
 \end{equation}
@@ -528,9 +530,7 @@ and the lower bound
 \begin{equation}\label{pixy-lower}
   \pi(x) - \pi(y) \geq \left(1-\frac{2}{\sqrt{y}}\right) \frac{x-y}{\log \frac{x+y}{2}} - 2 \frac{E(x)}{\log y}.
 \end{equation}
-For non-negative $b$ and the trivial inequalities
-$$ \frac{b(p) \log p}{\log x}  \leq b(p) \leq \frac{b(p) \log p}{\log y} $$
-we similarly obtain the upper bound
+  \item[(iii)] If $b$ is non-negative, we have the upper bound
 \begin{equation}\label{bv-upper}
    \sum_{y < p \leq x} b(p) \leq \frac{1}{\log y} \int_y^x b(t)\ dt + \|b\|_{\mathrm{TV}^*(y,x]} \frac{E(x)}{\log y}
 \end{equation}
@@ -538,6 +538,7 @@ and the lower bound
 \begin{equation}\label{bv-lower}
   \sum_{y < p \leq x} b(p) \leq \frac{1-\frac{2}{\sqrt{y}}}{\log x} \int_y^x b(t)\ dt - \|b\|_{\mathrm{TV}^*(y,x]} \frac{E(x)}{\log x}.
 \end{equation}
+\end{itemize}
 One can replace all occurrences of $E(x)$ here by the classical error term $O(x \exp(-c \sqrt{\log x}))$ for some absolute constant $c>0$ (in which case the $\frac{2}{\sqrt{t}}$ type terms can be absorbed into the error term).
 \end{lemma}
 
@@ -1373,11 +1374,11 @@ Suppose for contradiction that there is an $N/4$-admissible factorization of $N!
 c_2 - \frac{c_3}{2} - \sum_{\ell} w_\ell \sum_{d \in \N^{\langle 2,3 \rangle}: d < 4\ell} \left( \frac{1}{d} - \frac{1}{4\ell} \right),$$
   $$ C \coloneqq \sum_\ell w_\ell \left(\frac{4}{3} \# \left\{ d \in \N^{\langle 2,3 \rangle}: d < 4\ell \right\} + 1\right).$$
  Thus, once one produces weights for which $\eps>0$, one obtains a contradiction for $N > C/\eps$.
-  Numerical computation reveals that if one selects\footnote{These coefficients were discovered by applying a linear program to a finite truncation of the problem, choosing the truncation so as to optimize the threshold.} $c_2 = 2/32$, $c_3 = 3/32$, $w_1 = 2/32$, and $w_\ell = 1/32$ for all $3$-smooth $1 < \ell \leq 2^2 3^9$ with $\nu_2(\ell) \leq 2$, with $w_\ell=0$ otherwise, then  \eqref{ell-cond} holds for all $3$-smooth $\ell$ (note that this is automatic once $\nu_2(\ell)$ or $\nu_3(\ell)$ is large enough, so this is a finite check) with
+  Numerical computation reveals that if one selects $c_2 = 2/32$, $c_3 = 3/32$, $w_1 = 2/32$, and $w_\ell = 1/32$ for all $3$-smooth $1 < \ell \leq 2^2 3^9$ with $\nu_2(\ell) \leq 2$, with $w_\ell=0$ otherwise, then  \eqref{ell-cond} holds for all $3$-smooth $\ell$ (note that this is automatic once $\nu_2(\ell)$ or $\nu_3(\ell)$ is large enough, so this is a finite check) with
 $$\eps = \frac{218038591}{4458050224128} > 0$$
 and
 $$ C = \frac{1559}{24}$$
-and then we obtain the desired contradiction for $N > 1328148 = \lceil\frac{C}{\eps}\rceil$.
+and then we obtain the desired contradiction for $N > 1328148 = \lceil\frac{C}{\eps}\rceil$. These coefficients were discovered by applying a linear program to a finite truncation of the problem, choosing the truncation so as to optimize the threshold.
 
 As in \Cref{onethird-large}, we verified\footnote{\url{https://github.com/teorth/erdos-guy-selfridge/blob/main/src/dnup/one_fourth.py}} the linear programming certificate in exact arithmetic.
 However, in this case we note that the proof is fundamentally human-checkable.
@@ -2037,7 +2038,7 @@ From \eqref{delta2-def} and \Cref{osc-lemma}, and the monotonicity of $E(N)/N$, 
   &\leq \frac{0.919785}{\log(N_0/3K)}  + \frac{1159.795}{\log(N_0/3K)}  \frac{E(N_0)}{N_0} \\
   &\leq 0.504735 \delta
 \end{align*}
-for all\footnote{Despite the seemingly large numerator, the second term is in fact negligible in the regime $N \geq N_0$, due to the square root type decay in $E(N)/N$.} $N \geq N_0$.  For $N \geq 10^{70}$ we may replace $N_0$ by $10^{70}$ and obtain the significantly better bound
+for all $N \geq N_0$.  Despite the seemingly large numerator, the second term here is in fact negligible in the regime $N \geq N_0$, due to the square root type decay in $E(N)/N$. For $N \geq 10^{70}$ we may replace $N_0$ by $10^{70}$ and obtain the significantly better bound
 $$ \delta_2 \leq 0.060410 \delta.$$
 
 From \Cref{delta3-alpha3-bound} and \eqref{pi-upper} one has
@@ -2083,11 +2084,11 @@ for all $N \geq N_0$, and similarly from \eqref{alpha7-def} we have
 for all $N \geq N_0$.
 so the contribution of these two terms are negligible.
 
-Conveniently\footnote{Even if this were not the case, the quantities $\delta_4,\alpha_4$ should be viewed as lower order terms, and are far smaller than several of the other $\delta_i$ or $\alpha_i$ for typical choices of parameters.}, the choice of parameters $A,K$ ensure that there are no primes in the range
+Conveniently, the choice of parameters $A,K$ ensure that there are no primes in the range
 $$ 293 = K < p \leq K(1+\sigma) = K(1+\sigma)=306.952\dots$$
 and thus
 $$ \delta_4=\alpha_4 = 0$$
-for all $N \geq N_0$.
+for all $N \geq N_0$. (Even if this were not the case, the quantities $\delta_4,\alpha_4$ should be viewed as lower order terms, and are far smaller than several of the other $\delta_i$ or $\alpha_i$ for typical choices of parameters.)
 
 The remaining terms $\delta_5, \delta_7, \alpha_2, \alpha_5$ to estimate involve the quantities $A_{p_1}, B_{p_1}$ defined in \eqref{A-def}, \eqref{B-def}, and require a bit more care.  For $B_{p_1}$, we can split the expression as
 $$ B_{p_1} = \sum_{m \leq K} \nu_{p_1}(m) \sum_{k: a_{k,m} < b_{k,m}} \frac{k}{N} (\pi( N b_{k,m} ) - \pi(N a_{k,m}))$$
@@ -2145,7 +2146,7 @@ This completes the proof of \Cref{main}(iii) (and hence \Cref{main}(ii)) in the 
 $\delta_5, \delta_7, \alpha_2, \alpha_5$, thus potentially verifying the conditions \eqref{delta-cond}, \eqref{alpha-cond} simultaneously for all $N$ in such an interval.  As it turns out, there is enough room to spare in these estimates, particularly for large $N$, that this strategy works using only a small number of intervals; specifically, by considering $N$ in the intervals
 $$ [10^{11}, 5 \times 10^{11}]; \quad [5 \times 10^{11}, 10^{14}]; \quad [10^{14}, 10^{20}]; \quad [10^{20}, 10^{70}]$$
 one can check that such bounds are sufficient to verify \eqref{delta-cond}, \eqref{alpha-cond} in these cases.  This now verifies \Cref{main}(ii), (iii) for all $N \geq 10^{11}$.
-(In fact, with more effort, this verification can be pushed down to $N \geq 6 \times 10^{10}$ using the same choice of parameters $A,K,L$ \footnote{Specifically by checking $$ [6 \times 10^{10}, 6.05 \times 10^{10}]; \ \  [6.05 \times 10^{10}, 6.1 \times 10^{10}]; \ \  [6.1 \times 10^{10}, 6.5 \times 10^{10}]; \ \  [6.5 \times 10^{10}, 7 \times 10^{10}]; \ \  [7 \times 10^{10}, 10^{11}].$$}.)
+(In fact, with more effort, this verification can be pushed down to $N \geq 6 \times 10^{10}$ using the same choice of parameters $A,K,L$, specifically by checking $$ [6 \times 10^{10}, 6.05 \times 10^{10}]; \ \  [6.05 \times 10^{10}, 6.1 \times 10^{10}]; \ \  [6.1 \times 10^{10}, 6.5 \times 10^{10}]; \ \  [6.5 \times 10^{10}, 7 \times 10^{10}]; \ \  [7 \times 10^{10}, 10^{11}].$$)
 
 \appendix
 
@@ -2326,7 +2327,11 @@ is established whenever $x \geq 5000$ and $4.92 \frac{x}{\sqrt{\log x}} \leq T$,
 \begin{remark} Assuming the Riemann hypothesis, the $\eps_1, \eps_2, \eps_3$ terms in the definition of $\tilde E(x)$ may be deleted, since \cite[(7.3)]{buthe} then holds for all $x \geq 5000$.
 \end{remark}
 
-The claim \eqref{pix} now follows from \eqref{bv-exact} by setting $b(t) \coloneqq \frac{1}{\log t}$.
+The claim \eqref{pix} now follows from \eqref{bv-exact} by setting $b(t) \coloneqq \frac{1}{\log t}$.  The bounds \eqref{pixy-upper}, \eqref{pixy-lower} then follow by estimating
+$$ 1-\frac{2}{\sqrt{y}} \leq 1-\frac{2}{\sqrt{t}} \leq 1$$
+and using the convexity of $t \mapsto \frac{1}{\log t}$.  Finally, for non-negative $b$, the bounds \eqref{bv-upper}, \eqref{bv-lower} follow from the trivial inequalities
+$$ \frac{b(p) \log p}{\log x}  \leq b(p) \leq \frac{b(p) \log p}{\log y}.$$
+
 
 \section{Computation of \texorpdfstring{$c_0$}{c\_0} and related quantities}\label{c0-app}
 
@@ -2377,7 +2382,7 @@ so one can instead look at the normalized tail
 $$ \sum_{k=K+1}^\infty e\frac{\left\{-\frac{k}{e}\right\}-\frac{1}{2}}{k^2}.$$
 The Erd\H{o}s--Tur\'an inequality states that, for any absolutely convergent non-negative weights $c_k$, any interval $I \subset [0,1]$ of length $|I|$, and any real numbers $\xi_k$, and any $N \geq 1$, one has
 $$ \left|\sum_k c_k (1_I(\xi_k \mod 1) - |I|)\right| \leq \frac{1}{N+1} \sum_k c_k + \sum_{n=1}^N \left(\frac{2}{\pi n} + \frac{2}{N+1}\right) \left|\sum_k c_k e^{2\pi i n \xi_k}\right|;$$
-see the inequality\footnote{In the cited reference, only the special case in which $c_k$ is a uniform probability distribution function on $\{1,\dots,M\}$ is discussed, but it is easy to see that the argument in fact works for arbitrary absolutely convergent non-negative weights $c_k$.} after \cite[Theorem 20]{vaaler}.  Applying this for $I = [0,h]$ and then averaging in $h$ from $0$ to $1$, we conclude that
+see the inequality after \cite[Theorem 20]{vaaler}.  (In this reference, only the special case in which $c_k$ is a uniform probability distribution function on $\{1,\dots,M\}$ is discussed, but it is easy to see that the argument in fact works for arbitrary absolutely convergent non-negative weights $c_k$.)  Applying this for $I = [0,h]$ and then averaging in $h$ from $0$ to $1$, we conclude that
 $$ \left|\sum_k c_k \left(\{\xi_k\}-\frac{1}{2}\right)\right| \leq \frac{1}{N+1} \sum_k c_k + \sum_{n=1}^N \left(\frac{2}{\pi n} + \frac{2}{N+1}\right) \left|\sum_k c_k e^{2\pi i n \xi_k}\right|.$$
 In particular, we have
 $$ \left| \sum_{k=K+1}^\infty e\frac{\left\{-\frac{k}{e}\right\}-\frac{1}{2}}{k^2}\right| \leq \frac{1}{N+1} \sum_{k=K+1}^\infty \frac{e}{k^2}
