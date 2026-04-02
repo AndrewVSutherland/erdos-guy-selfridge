@@ -1945,7 +1945,7 @@ and
 $$ \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \left \lfloor \frac{N}{p} \right\rfloor \ll \frac{tm}{m^2 \log N} \ll \frac{N}{m \log N}$$
 and the claim then follows from summing the harmonic series.
 
-It remains to show \eqref{ap1-diff}.  For $3 < p_1 \leq K$, we see from \eqref{ap1-small}, \eqref{sigma-alt}, \eqref{crude} and \Cref{osc-lemma} (with classical error term) that
+It remains to show \eqref{ap1-diff}.  If $3 < p_1 \leq K$, then from \eqref{ap1-small}, \eqref{sigma-alt}, \eqref{crude} and \Cref{osc-lemma} (with classical error term) we have
 \begin{align*}
 A_{p_1} &\geq \frac{1}{N} \sum_{m \leq K(1+\sigma)}^* \nu_{p_1}(m) \left( \frac{A t \sigma}{m \log N} + O\left( \frac{(\log\log N)^{O(1)}A t \sigma}{m \log^2 N} \right) \right) \\
 &= \frac{1}{\log N} \sum_{m \leq K(1+\sigma)}^* \nu_{p_1}(m) \frac{3}{m}+ O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right) \\
@@ -1956,9 +1956,9 @@ and similarly from \eqref{B-def}, \eqref{crude}, and \Cref{osc-lemma} (again wit
   B_{p_1} &\leq
   \frac{1}{N} \sum_{m \leq K} \nu_{p_1}(m) \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \frac{N}{p}  \\
   &\leq \frac{1}{N} \sum_{m \leq K} \nu_{p_1}(m) \left( \frac{N}{\log(t/m)} \int_{t/m}^{t/(m-1)} \frac{dx}{x} + O\left( \frac{N}{\log^{10} N} \right) \right) \\
-  &\leq \frac{1}{\log N} \sum_{m \leq K} \nu_{p_1}(m) \log \frac{m}{m-1} + O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right)
+  &\leq \frac{1}{\log N} \sum_{m \leq K} \nu_{p_1}(m) \log \frac{m}{m-1} + O\left( \frac{(\log\log N)^{O(1)}}{\log^2 N} \right).
 \end{align*}
-so it will suffice to establish the inequality
+It thus suffices to establish the inequality
 \begin{equation}\label{key-ineq}
    \sum_{m \leq K} \nu_{p_1}(m) \log \frac{m}{m-1} \leq \sum_{m \leq K}^* \nu_{p_1}(m) \frac{3}{m}
 \end{equation}
