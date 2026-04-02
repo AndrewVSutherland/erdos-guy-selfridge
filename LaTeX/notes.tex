@@ -1,7 +1,7 @@
 %\pdfoutput=1
 \documentclass[10pt,a4paper,reqno]{amsart}
-\newcommand\hmmax{0}
-\newcommand\bmmax{0}
+% \newcommand\hmmax{0}
+% \newcommand\bmmax{0}
 \usepackage{amssymb}
 \usepackage{amscd}
 \usepackage[pdftex,pdfpagelabels]{hyperref}
@@ -37,12 +37,6 @@
 %\DeclareMathOperator*\FT{FT} (commented because yield bad display for \FT_q
 %replaced with \newcommand...)
 
-\DeclareMathOperator*\swan{swan}
-\DeclareMathOperator*\cond{cond}
-\DeclareMathOperator*\Gal{Gal}
-
-\newcommand{\FT}{\mathrm{FT}}
-\newcommand{\Kl}{\mathcal{K}\ell}
 % Setup for ``caption''.
 %\DeclareCaptionLabelSeparator{separation}{:\quad}
 %\captionsetup{
@@ -52,9 +46,9 @@
   %width=0.8\textwidth
 %}
 
-\DeclareFontFamily{OT1}{rsfs}{}
-\DeclareFontShape{OT1}{rsfs}{n}{it}{<-> rsfs10}{}
-\DeclareMathAlphabet{\mathscr}{OT1}{rsfs}{n}{it}
+% \DeclareFontFamily{OT1}{rsfs}{}
+% \DeclareFontShape{OT1}{rsfs}{n}{it}{<-> rsfs10}{}
+% \DeclareMathAlphabet{\mathscr}{OT1}{rsfs}{n}{it}
 
 \addtolength{\textwidth}{3 truecm}
 \addtolength{\textheight}{1 truecm}
@@ -213,12 +207,13 @@ see \Cref{fig1}.  In \cite[p.75]{erdos-graham} it was reported that an unpublish
 \end{equation}
 for some constant $c>0$ and sufficiently large $N$ (see \cite[Section B22, p.\ 122--123]{guy} and problem {\#}391 in \url{https://www.erdosproblems.com}); it was also noted that similar results were obtained in \cite{algr77} if one restricted the $a_i$ to be prime powers.  However, as later reported in \cite{erdos-96}, Erd\H{o}s ``believed that Straus had written up our proof [of \eqref{t1}]. Unfortunately Straus suddenly died and no trace was ever found of his notes. Furthermore, we never could reconstruct our proof, so our assertion now can be called only a conjecture''.   In \cite{guy-selfridge} it was observed that the lower bound $\frac{t(N)}{N} \geq \frac{3}{16}-o(1)$ could be obtained by rearranging powers of $2$ in the standard factorization $N! = \prod \{1,\dots,N\}$, i.e., by removing some powers of $2$ from some of the terms and redistributing them to other terms.  It was also claimed that this bound could be improved to $\frac{t(N)}{N} \geq \frac{1}{4}$ for sufficiently large $N$ by rearranging powers of $2$ and $3$, however we have found surprisingly that this is not the case; see \Cref{main}(v) below.
 
-The following conjectures in \cite{guy-selfridge} were also made\footnote{The second and third conjectures also appear in \cite{guy}.}:
+The following conjectures in \cite{guy-selfridge} were also made:
 \begin{enumerate}
 \item One has $t(N) \leq N/e$ for $N \neq 1,2,4$.
 \item One has $t(N) \geq \lfloor 2N/7 \rfloor$ for $N \neq 56$.
 \item One has $t(N) \geq N/3$ for $N \geq 3 \times 10^5$.  (It was also asked if the threshold $3 \times 10^5$ could be lowered.)
 \end{enumerate}
+The second and third conjectures also appear in \cite{guy}.
 
 In this paper we answer all of these questions.
 
@@ -242,14 +237,17 @@ and for any $\alpha>0$, $f_\alpha \colon (0,\infty) \to \R$ denotes the piecewis
 \begin{equation}\label{falpha-def}
   f_\alpha(x) \coloneqq \left\lfloor \frac{1}{x} \right\rfloor \log \frac{\lceil \nicefrac{1}{\alpha x} \rceil}{\nicefrac{1}{\alpha x}}.
 \end{equation}
-In particular, \eqref{t1} and \eqref{Tbound} hold.  In fact the upper bound can be sharpened to
+In particular, \eqref{t1} and \eqref{Tbound} hold.
+\item[(v)]  The largest $N$ for which one can demonstrate $t(N) \geq N/4$ purely by rearranging powers of $2$ and $3$ in the standard factorization $N! = \prod \{1,\dots,N\}$ is $26244$.
+\end{itemize}
+\end{theorem}
+
+\begin{remark} In fact the upper bound \eqref{Tbound} can be sharpened to
 \begin{equation}\label{tna}
   \frac{t(N)}{N} \leq \frac{1}{e} - \frac{c_0}{\log N} - \frac{c_1+o(1)}{\log^2 N}
 \end{equation}
 for an explicit constant $c_1=0.75554808\dots$; see \Cref{upper-bound}.
-\item[(v)]  The largest $N$ for which one can demonstrate $t(N) \geq N/4$ purely by rearranging powers of $2$ and $3$ in the standard factorization $N! = \prod \{1,\dots,N\}$ is $26244$.
-\end{itemize}
-\end{theorem}
+\end{remark}
 
 \begin{figure}[hbp!]
   \centering
