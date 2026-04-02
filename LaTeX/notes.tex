@@ -1609,7 +1609,14 @@ where
 A_{p_1} &\coloneqq \frac{1}{N} \sum_m \nu_{p_1}(m) | \{ a \in \tuple^{(0)}: a = mp \hbox{ for a prime } p > t/K \}| \label{A-def} \\
 B_{p_1} &\coloneqq \frac{1}{N} \sum_{m \leq K} \nu_{p_1}(m) \sum_{\frac{t}{m} \leq p < \frac{t}{m-1}} \left \lfloor \frac{N}{p} \right\rfloor,\label{B-def}
 \end{align}
-with the convention that the upper bound $p < \frac{t}{m-1}$ in \eqref{B-def} is vacuous when $m=1$.  Then $t(N) \geq t$.
+with the convention that the upper bound $p < \frac{t}{m-1}$ in \eqref{B-def} is vacuous when $m=1$.  Here:
+\begin{itemize}
+  \item The set ${\mathcal B}^{(1)}$ is defined by applying steps (a) and (b) below.
+  \item The excess $\excess_t$ is defined in \eqref{excess-def}.
+  \item The function $f_{N/t}$ is defined in \eqref{falpha-def}.
+  \item The constant $\kappa_{4.5}$ is given by \eqref{kappa-45}.
+\end{itemize}
+Then $t(N) \geq t$.
 \end{proposition}
 
 In practice, the parameter $K$ will be quite small compared to $N$, and the quantities $\gamma_2, \gamma_3, \kappa_{*}$ will also be somewhat smaller than $1$.
@@ -2015,7 +2022,9 @@ One can readily check the required conditions \eqref{conditions}, \eqref{t-lower
 Many of the bounds we will use will be monotone decreasing in $N$, so that they only need to be tested at the left endpoint $N=N_0$.  However, this is not the case for all of the bounds, as some involve subtracting one monotone quantity from another.  For those estimates, we will initially only establish bounds in two extreme cases, $N=N_0$ and $N \geq 10^{70}$, and discuss how to cover the intervening ranges $N_0 < N < 10^{70}$ at the end of the section.
 
 We now bound some of the terms appearing in \Cref{repair}. From \Cref{power-lemma} we have
-$$ \kappa_{4.5} = \log \frac{4}{3} =0.28768\dots.$$
+\begin{equation}\label{kappa-45}
+  \kappa_{4.5} = \log \frac{4}{3} =0.28768\dots.
+\end{equation}
 
 From \eqref{gammas-def} one can take
 $$ \gamma_2 \coloneqq \frac{\log 2}{\log \sqrt{3}} \frac{\log(2L) + \kappa_L}{\log(N_0/3) - \log(2L)} = 0.1423165\dots$$
