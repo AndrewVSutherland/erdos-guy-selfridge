@@ -1438,10 +1438,8 @@ By \Cref{asym-crit}, it suffices to verify the conditions \eqref{i-eq}, \eqref{l
 $$ \sum_{0 \leq m \leq M}^* \frac{1}{2} \frac{m}{2^m} = 1 - O\left( \frac{M}{2^M} \right)$$
 where the $*$ means that the term with $m=M$ is doubled (so $\sum_{0 \leq m \leq M}^* f(m) = \sum_{0 \leq m<M} f(m) + 2 f(M)$).  Meanwhile, the left-hand side can be computed to equal
 \begin{align*}
-  &\sum_{m=1}^\infty \frac{C_0 m^2}{2^m} \mu_+ \\
-  & + \sum_{p_- \leq p \leq 2^{C_0} p_-} C_0 \frac{\mu_p}{p} \\
-  & + \sum_{2^{C_0} p_- < p < p_+/2} (1-c_0) \frac{\mu_p}{p} \\
-  & + \sum_{p_+/2 \leq p \leq p_+} \sum_{m=1}^\infty \frac{(C_0+m) m}{2^m} \frac{\mu_p}{p}
+  \sum_{m=1}^\infty \frac{C_0 m^2}{2^m} \mu_+ & + \sum_{p_- \leq p \leq 2^{C_0} p_-} C_0 \frac{\mu_p}{p} \\
+   + \sum_{2^{C_0} p_- < p < p_+/2} (1-c_0) \frac{\mu_p}{p} & + \sum_{p_+/2 \leq p \leq p_+} \sum_{m=1}^\infty \frac{(C_0+m) m}{2^m} \frac{\mu_p}{p}
 \end{align*}
 which simplifies using \eqref{telescope} and summation in $m$ to
 $$ 1 - c_0 + O_{C_0}\left( \mu_+ + \sum_{p_- \leq p \leq 2^{C_0} p_-} \frac{\mu_p}{p} + \sum_{p_+/2 \leq p \leq p_+} \frac{\mu_p}{p}\right).$$
@@ -1462,9 +1460,9 @@ $$ \sum_{0 \leq m \leq M}^* \frac{1}{2} \min\left( \frac{1}{2^m}, \frac{\alpha}{
 Thus it suffices to show that
 \begin{equation}\label{lint} \sum_{0 \leq m \leq M}^* \frac{1}{2} \min\left( \frac{1}{2^m}, \frac{\alpha}{\ell}\right) < \sum_{m: 2^m > \ell} \frac{C_0 m}{2^m}.
 \end{equation}
-But the left-hand side is $\ll \frac{\log (2+\ell)}{\ell}$ and the right-hand side is $\gg C_0 \frac{\log (2+\ell)}{\ell}$, giving the claim.
+But the left-hand side is $\ll \frac{\log (2+\ell)}{\ell}$ and the right-hand side is $\gg C_0 \frac{\log (2+\ell)}{\ell}$, giving the claim \eqref{l-eq} in this case.
 
-Next, we consider the case $\ell \geq p_+$.  The left-hand side of \eqref{l-eq} is at least
+Next, we consider \eqref{l-eq} in the case $\ell \geq p_+$.  The left-hand side of \eqref{l-eq} is at least
 $$ \sum_{m: 2^m > \ell} \frac{C_0 m}{2^m} \mu_+
 + \sum_{p_+/2 \leq p \leq p_+} \sum_{m: 2^{m+C_0} p > \ell} \frac{m}{2^m} \frac{\mu_p}{p}$$
 and the right-hand side is at most
@@ -1481,7 +1479,7 @@ By \eqref{mertens} and \Cref{osc-lemma}, the right-hand side may be bounded by
 $$ \ll (\log p_-) \sum_{m=0}^\infty \int_{p_-}^{p_+} \min\left(\frac{1}{2^m t}, \frac{1}{\ell}\right)\ \frac{dt}{\log^2 t}.$$
 We can perform the summation over $m$ and bound this by
 $$ \ll \frac{\log p_-}{\ell} \int_{p_-}^{p_+} \log\left(2 + \frac{\ell}{t}\right)\ \frac{dt}{\log^2 t},$$
-and the claim then follows from a routine computation.
+and the claim \eqref{l-eq} in this case then follows from a routine computation.
 
 Finally, we consider the case $2^{C_0} p_- < \ell < p_+$.
 Note that if we redefined $a_{\ell'}$ to make rules (iii), (iv) apply for all $p_- \leq p \leq p_+$, and delete rules (ii) and (v), then this amounts to transferring the mass of $a_{\ell'}$ from larger $\ell'$ to smaller $\ell'$, so that the sum $\sum_{\ell' > \ell} a_{\ell'}$ does not increase.  From this observation, we see that we can lower bound the left-hand side of \eqref{l-eq} by
