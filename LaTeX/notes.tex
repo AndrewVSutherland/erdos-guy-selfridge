@@ -1039,7 +1039,7 @@ as $N \to \infty$.
     On the interval $[1/\log^3 N,1]$, the piecewise smooth function $f_{N/t}$ is bounded by $O(1)$ thanks to \eqref{falpha-bound}, and has an (augmented) total variation of $O(\log^3\! N)$; the same is true of the rescaled function $x \mapsto f_{N/t}(x/N)$ on $[N/\log^3\! N,N]$.   This implies that $x \mapsto \frac{1}{\log x} f_{N/t}(x/N)$ has an (augmented) total variation of $O(\log^2 N)$.
    By \Cref{osc-lemma} (with classical error term), we conclude that the left-hand side of \eqref{targ-sum} is at least
     $$ \int_{N/\log^3 N}^N f_{N/t}(x/N) \frac{dx}{\log x} + O\left( N \exp(-c\sqrt{\log N}) \right)$$
-    for some $c>0$.  Performing a change of variable, we reduce to showing that
+    for some $c>0$.  Performing a change of variable, it suffices to show that
     $$  \int_{1/\log^3 N}^1 f_{N/t}(x) \frac{\log N}{\log(Nx)}\ dx
     \geq  ec_0 + \frac{ec_1 - \frac{1}{2} e^2 c_0^2 - e \eps + o(1)}{\log N}.$$
     By Taylor expansion, we have
@@ -1047,7 +1047,7 @@ as $N \to \infty$.
     and from dominated convergence we have
   $$
   \int_{1/\log^3 N}^1 f_{N/t}(x) \log \frac{1}{x}\ dx = ec'_1 + o(1)$$
-and hence by definition of $c_1$, we reduce to showing that
+and hence by definition of $c_1$, it suffices to show that
 $$  \int_{1/\log^3 N}^1 f_{N/t}(x)\ dx
 \geq  ec_0 + \frac{ec_0 c''_1 - e^2 c_0^2 - e\eps + o(1)}{\log N}.$$
 By performing a rescaling by $N/et = 1 + \frac{ec_0+o(1)}{\log N}$, the left-hand side may be written as
@@ -1082,7 +1082,7 @@ Applying \Cref{upper-crit} and \eqref{stirling}, it suffices to show that
    \sum_{p \geq \frac{N/e}{\lfloor\sqrt{N/e}\rfloor}} f_{e}(p/N) > \frac{1}{2} \log(2\pi N) + \frac{1}{12N}.
 \end{equation}
 This may be easily verified numerically in the range $80 \leq N \leq 5000$ (see \Cref{fig2}).
-We will discard the $\lfloor\sqrt{N/e}\rfloor$ denominator, and reduce to showing
+We will discard the $\lfloor\sqrt{N/e}\rfloor$ denominator, so it suffices to show
 \begin{equation}\label{test-ineq}
   \sum_{N/e < p \leq N} f_{e}(p/N) > \frac{1}{2} \log(2\pi N) + \frac{1}{12N}
 \end{equation}
