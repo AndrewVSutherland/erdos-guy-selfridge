@@ -1250,7 +1250,7 @@ Now we turn to \eqref{l-eq-1}.  For the finite number of cases $\ell \leq \ell_0
 $$ \sum_{d \in {\mathcal D}} \sigma_{d,{\mathcal D}} \min\left( \frac{1}{d}, \frac{\alpha}{\ell}\right) + O\left(\frac{1}{N} \right).$$
 Using the lower bound $a'_\ell \geq a_\ell - O(1/N)$ for $\ell \leq \sqrt{N}$, as well as \eqref{tail}, the left-hand side is at least
 $$ \sum_{\ell' > \ell} a_{\ell'} - O\left(\frac{1}{\sqrt{N}} \right) - O\left(\frac{1}{\log N} \right).$$
-Since we have strict inequality in \eqref{l-eq}, we obtain \eqref{l-eq-1} for all sufficiently large $N$ in the regime $\ell \leq \ell_0$.
+Since we have strict inequality in \eqref{l-eq}, we obtain \eqref{l-eq-1} for all sufficiently large $N$ under the regime $\ell \leq \ell_0$.
 
 In the case $\ell>N$ the claim \eqref{l-eq-1} is trivial because the right-hand side vanishes, so it remains to consider the case $\ell_0 < \ell \leq N$. Here the right-hand side can be crudely bounded by $O(1/\ell)$.  On the other hand, by using the powers of $p_0$ in $S$ one can lower bound the left-hand side by $\gg 1/\sqrt{\ell}$.  For $\ell_0$ large enough, the claim follows.
 \end{proof}
@@ -1368,11 +1368,8 @@ Suppose for contradiction that there is an $N/4$-admissible factorization of $N!
      c_2 \nu_2(\ell) + c_3 \nu_3(\ell) + \sum_{\ell' > \ell} w_{\ell'} \geq 1
   \end{equation}
   for all $3$-smooth $\ell$, we have
-  \begin{align*}
-    1 &= \sum_\ell a_\ell \\
-    &\leq c_2 \sum_\ell \nu_2(\ell) a_\ell + c_3 \sum_\ell \nu_3(\ell) a_\ell + \sum_{\ell} w_\ell \sum_{k < \ell} a_k\\
-    &\leq 1 - \eps  + \frac{C}{N}
-  \end{align*}
+  $$  1= \sum_\ell a_\ell \leq c_2 \sum_\ell \nu_2(\ell) a_\ell + c_3 \sum_\ell \nu_3(\ell) a_\ell + \sum_{\ell} w_\ell \sum_{k < \ell} a_k \leq 1 - \eps  + \frac{C}{N}
+  $$
   where
   $$ \eps \coloneqq 1 -
 c_2 - \frac{c_3}{2} - \sum_{\ell} w_\ell \sum_{d \in \N^{\langle 2,3 \rangle}: d < 4\ell} \left( \frac{1}{d} - \frac{1}{4\ell} \right),$$
