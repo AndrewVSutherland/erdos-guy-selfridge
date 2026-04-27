@@ -1,10 +1,10 @@
-This directory contains a fast, memory efficient implemention of a variant of the greedy algorithm that yields sligtly worse lower bounds on $$t(N)$$ in general, but is able to verify the Erdős-Guy-Selfridge conjecture for $$N \in [10^6,10^{14}]$$ in less then ten minutes using just a few GB of memory (the space complexity of our implemention is $$O(N^{\frac{5}{8}+\epsilon})$$).
+This directory contains a fast, memory efficient implementation of a variant of the greedy algorithm that yields slightly worse lower bounds on $$t(N)$$ in general, but is able to verify the Erdős-Guy-Selfridge conjecture for $$N \in [10^6,10^{14}]$$ in less than ten minutes using just a few GB of memory (the space complexity of our implementation is $$O(N^{\frac{5}{8}+\epsilon})$$).
 
-An implementation of the standard greedy algorithm is included in the same program, but it's range is restricted to $$N\le 10^9$$ to keep the memory requirement low.
+An implementation of the standard greedy algorithm is included in the same program, but its range is restricted to $$N\le 10^9$$ to keep the memory requirement low.
 
-This implemention depends on Kim Walisch's [primesieve](https://github.com/kimwalisch/primesieve) and [primecount](https://github.com/kimwalisch/primecount) libraries for enumerating and counting primes, which must be installed before you compile the code in this directory.
+This implementation depends on Kim Walisch's [primesieve](https://github.com/kimwalisch/primesieve) and [primecount](https://github.com/kimwalisch/primecount) libraries for enumerating and counting primes, which must be installed before you compile the code in this directory.
 
-These two libraries are used to efficiently handle factors divisible by primes in the range $$[\sqrt{t},N]$$. In this range the greedy algorithm can always use the optimal cofactor $$m = \lceil\frac{t}{p}\rceil$$ to construct $$n = v_p(N!)$$ factors $$mp \ge t$$ that are as small as possible (given that they are divisible by $p$).  To improve efficiency, the algorithm subdivides the interval $$[\sqrt{t},N]$$ into regions within which the values of $m$ and $n$ are constant and simply counts the primes in each region (for small regions it uses `primesieve` to enuemrate primes, for large regions $$[a,b]$$ it uses `primecount` to compute $$\pi(b)-\pi(a-1))$$.  See the paper for more details.
+These two libraries are used to efficiently handle factors divisible by primes in the range $$[\sqrt{t},N]$$. In this range the greedy algorithm can always use the optimal cofactor $$m = \lceil\frac{t}{p}\rceil$$ to construct $$n = v_p(N!)$$ factors $$mp \ge t$$ that are as small as possible (given that they are divisible by $p$).  To improve efficiency, the algorithm subdivides the interval $$[\sqrt{t},N]$$ into regions within which the values of $m$ and $n$ are constant and simply counts the primes in each region (for small regions it uses `primesieve` to enumerate primes, for large regions $$[a,b]$$ it uses `primecount` to compute $$\pi(b)-\pi(a-1))$$.  See the paper for more details.
 
 To verify the Erdos-Guy-Selfridge conjecture for $$N$$ in $$[67425,10^{11}]$$ (which is sufficient for the portion of our proof of Theorem 1(iii) that depends on the greedy algorithm), after installing [primesieve](https://github.com/kimwalisch/primesieve) (version 12.6 or later, note that many libprimesieve-dev apt packages are older than this) and [primecount](https://github.com/kimwalisch/primecount) (version 7.14 or later), and compiling `egs.c` using `build.sh`, you can type
 ```
@@ -58,7 +58,7 @@ Usage: egs [-v level] [-h filename] [-d filename] [-r] [-c] [-e] [-f] N-range [t
        -c            create hint-file rather than reading it (must be specified in combination with -h)
        -e            use the best t for which the algorithm can prove t(N) >= t (optional)
        -f            use fast version of greedy algorithm
-       -m            exponent for primecount/primesieve cutuff, must lie in [1/6,1/3]
+       -m            exponent for primecount/primesieve cutoff, must lie in [1/6,1/3]
        N-range       integer N or range of integers minN-maxN (required, scientific notation supported)
        t             integer t to use for single N (optional, a good t will be determined if unspecified)
        t/N ratio     a/b with integers a,b>0 specifying t = ceil(aN/b) (optional, set to 1/3 if unspecified)

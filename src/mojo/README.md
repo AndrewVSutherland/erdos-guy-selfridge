@@ -10,7 +10,7 @@ The program is written in [Mojo](https://docs.modular.com/mojo/manual/). To
 install Mojo, follow the install instructions in the [getting started
 guide](https://docs.modular.com/mojo/manual/get-started).
 
-The run the program, change into this directory and start a Magic shell
+To run the program, change into this directory and start a Magic shell
 ```sh
 cd src/mojo/
 magic shell
@@ -25,7 +25,7 @@ You should see the output
 `OEIS result: N = 300000  t(N) = 101903  T_ub = 101906`  
 as the final output line.
 
-When the program is invoked with to arguments, the second argument is a filename
+When the program is invoked with two arguments, the second argument is a filename
 and the program writes the lower bound factorization to disk.
 
 To run the program for a single fixed threshold $`t`$, invoke it with the

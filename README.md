@@ -103,10 +103,10 @@ Secondary goals are
 - [Upper and lower bounds for t(N) for randomly sampled N between 10^3 and 10^5](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/t_large_n_bounds.txt) - obtained by linear programming
 - [Upper and lower bounds for t(N) for N between 10^3 and 10^5 that are multiples of 100](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/t_large_n_bounds_2.txt) - obtained by linear programming
 - [Upper and lower bounds for t(N) for round number N between 10^5 and 10^9](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/lp_large_n.txt) - obtained by linear programming
-- [Lower bounds for t(N) for round N between 10^4 and 10^12](https://github.com/teorth/erdos-guy-selfridge/blob/main/src/fastegs/tbounds_heuristic_fast_greedy_1e4_1e12.txt) - obtained by a heuristic fast greedy method
-- [Lower bounds for t(N) for round N between 10^4 and 10^9](https://github.com/teorth/erdos-guy-selfridge/blob/main/src/fastegs/tbounds_exhaustive_fast_greedy_1e4_1e9.txt) - obtained by an exhaustive fast greedy method
+- [Lower bounds for t(N) for round N between 10^4 and 10^14](https://github.com/teorth/erdos-guy-selfridge/blob/main/src/fastegs/tbounds_heuristic_fast_1e4_1e14.txt) - obtained by a heuristic fast greedy method
+- [Lower bounds for t(N) for round N between 10^4 and 10^9](https://github.com/teorth/erdos-guy-selfridge/blob/main/src/fastegs/tbounds_exhaustive_fast_1e4_1e9.txt) - obtained by an exhaustive fast greedy method
 - [Lower bounds for t(N) for round N between 10^4 and 10^9](https://github.com/teorth/erdos-guy-selfridge/blob/main/src/fastegs/tbounds_heuristic_greedy_1e4_1e9.txt) - obtained by a heuristic greedy method
-- [Lower bounds for t(N) for round N between 10^4 and 10^8](https://github.com/teorth/erdos-guy-selfridge/blob/main/src/fastegs/tbounds_exhaustive_greedy_1e4_1e8.txt) - obtained by an exhaustive greedy method
+- [Lower bounds for t(N) for round N between 10^4 and 10^9](https://github.com/teorth/erdos-guy-selfridge/blob/main/src/fastegs/tbounds_exhaustive_greedy_1e4_1e9.txt) - obtained by an exhaustive greedy method
 - [Lower bounds for t(N) for N between 40000 and 45000](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/lp_bounds_40000-45000.txt) - uses "floor + residuals" linear programming method
 - Values of t(N) when one restricts to only being able to rearrange small primes: [2 only](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/rearrange/up_to_2.txt), [up to 3](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/rearrange/up_to_3.txt), [up to 5](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/rearrange/up_to_5.txt), [up to 7](https://github.com/teorth/erdos-guy-selfridge/blob/main/Data/rearrange/up_to_7.txt).
 
