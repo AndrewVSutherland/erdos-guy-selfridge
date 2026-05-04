@@ -654,7 +654,7 @@ static void usage (void)
         "       -c            create hint-file rather than reading it (must be specified in combination with -h)\n"
         "       -e            use the best t for which the algorithm can prove t(N) >= t (optional)\n"
         "       -f            use fast version of greedy algorithm\n"
-        "       -m            exponent for primecount/primesieve cutuff, must lie in [1/6,1/3]\n"
+        "       -m            exponent for primecount/primesieve cutoff, must lie in [1/6,1/3]\n"
         "       N-range       integer N or range of integers minN-maxN (required, scientific notation supported)\n"
         "       t             integer t to use for single N (optional, a good t will be determined if unspecified)\n"
         "       t/N ratio     a/b with integers a,b>0 specifying t = ceil(aN/b), set to 1/3 if unspecified\n");
