@@ -581,7 +581,7 @@ We will use this augmented total variation to control sums over primes.  More pr
 
 \begin{lemma}[Effective bounds for oscillatory sums over primes]\label{osc-lemma}  Let $1423 \leq y \leq x$, and let $b: (y,x] \to \R$ be of bounded total variation.
   \begin{itemize}
-    \item [(i)] Wwe have the bound
+    \item [(i)] We have the bound
 \begin{equation}\label{bv-exact}
     \sum_{y < p \leq x} b(p) \log p = \int_y^x \left(1-\frac{2}{\sqrt{t}}\right) b(t)\ dt + O_{\leq}(\|b\|_{\mathrm{TV}^*(y,x]} E(x))
 \end{equation}
@@ -698,7 +698,7 @@ The running time is then dominated by the time to precompute the prime factoriza
 \subsection{A fast variant of the greedy algorithm}\label{sec:fast-greedy}
 We now give a variant of the greedy algorithm that produces slightly weaker bounds on $t(N)$ in general, but obtains an $O(N^{\nicefrac{3}{4}+\epsilon})$ running time using $O(N^{\nicefrac{2}{3}+\epsilon})$ space (and the space can be reduced to $O(N^{\nicefrac{1}{2}+\epsilon})$).  The algorithm fixes $M$ satisfying $M(M-1)\ge t$ and treats the primes $p_i\ge M$ exactly as in the first phase of the greedy algorithm described above, using $O(N^{\nicefrac{3}{4}+\epsilon})$ time and $O(N^{\nicefrac{2}{3}+\epsilon})$ space.
 
-In the second phase, rather than precomputing a list of all candidate $m_i\le N$, the algorithm instead precomputes a list of $M$-smooth integers $m\le N^{\nicefrac{2}{3}}$.  As it considers the small primes $p_i < M$ in decreasing order, it will eventually reach a point where no precomputed value of~$m$ is a suitable cofactor for $p_i$ (this will certainly happen for $p_i < N^{1/3}$).  When this occurs it will instead look for a cofactor that is suitable for $p_i^2$, which will be smaller and easier to construct from the remaining part of the factorization of $N!$, allowing the algorithm to remove all but at most one factor of $p_i$.  It will continue in this fashion to consider suitable cofactors for both $p$ and $p^2$ until it eventually reaches a point where neither can be found, at which point all the remaining $p_i$ are either very small, $O(N^\epsilon)$, or occur with multiplicity 1.  In the final phase we simply construct factors of $N!$ larger than $t$ by combining available remaining primes in decreasing order.  This will occasionally result in factors that are substantially larger than the original greedy algorithm would use, but there are only a small number of these and the algorithm can construct them quickly using very little memory.  This allows it to handle large values of $N$ much more efficiently, as can be seen in in the timings in \Cref{greedy-table}.
+In the second phase, rather than precomputing a list of all candidate $m_i\le N$, the algorithm instead precomputes a list of $M$-smooth integers $m\le N^{\nicefrac{2}{3}}$.  As it considers the small primes $p_i < M$ in decreasing order, it will eventually reach a point where no precomputed value of~$m$ is a suitable cofactor for $p_i$ (this will certainly happen for $p_i < N^{1/3}$).  When this occurs it will instead look for a cofactor that is suitable for $p_i^2$, which will be smaller and easier to construct from the remaining part of the factorization of $N!$, allowing the algorithm to remove all but at most one factor of $p_i$.  It will continue in this fashion to consider suitable cofactors for both $p$ and $p^2$ until it eventually reaches a point where neither can be found, at which point all the remaining $p_i$ are either very small, $O(N^\epsilon)$, or occur with multiplicity 1.  In the final phase we simply construct factors of $N!$ larger than $t$ by combining available remaining primes in decreasing order.  This will occasionally result in factors that are substantially larger than the original greedy algorithm would use, but there are only a small number of these and the algorithm can construct them quickly using very little memory.  This allows it to handle large values of $N$ much more efficiently, as can be seen in the timings in \Cref{greedy-table}.
 
 For this fast variant of the greedy algorithm, in contrast to the original greedy algorithm, the computation is dominated by the first phase, which takes $O(N^{\nicefrac{3}{4}+\epsilon})$ time to handle the primes $p_i>M$; the rest of the algorithm takes only $O(N^{\nicefrac{2}{3}+\epsilon})$ time.
 
@@ -1320,7 +1320,7 @@ Now we turn to \eqref{l-eq-1}.  For the finite number of cases $\ell \leq \ell_0
 $$ \sum_{d \in {\mathcal D}} \sigma_{d,{\mathcal D}} \min\left( \frac{1}{d}, \frac{\alpha}{\ell}\right) + O\left(\frac{1}{N} \right).$$
 Using the lower bound $a'_\ell \geq a_\ell - O(1/N)$ for $\ell \leq \sqrt{N}$, as well as \eqref{tail}, the left-hand side is at least
 $$ \sum_{\ell' > \ell} a_{\ell'} - O\left(\frac{1}{\sqrt{N}} \right) - O\left(\frac{1}{\log N} \right).$$
-Since we have strict inequality in \eqref{l-eq}, we obtain \eqref{l-eq-1} for all sufficiently large $N$ under the regime $\ell \leq \ell_0$.
+Since we have strict inequality in \eqref{l-eq}, we obtain \eqref{l-eq-1} for all sufficiently large $N$ under $\ell \leq \ell_0$.
 
 In the case $\ell>N$ the claim \eqref{l-eq-1} is trivial because the right-hand side vanishes, so it remains to consider the case $\ell_0 < \ell \leq N$. Here the right-hand side can be crudely bounded by $O(1/\ell)$.  On the other hand, by using the powers of $p_0$ in $S$ one can lower bound the left-hand side by $\gg 1/\sqrt{\ell}$.  For $\ell_0$ large enough, the claim follows.
 \end{proof}
@@ -1638,7 +1638,7 @@ The analysis of the algorithm is now captured by the following proposition.
 \end{equation}
 We also assume that there are additional parameters $\kappa_* > 0$ and $0 \leq \gamma_2, \gamma_3 < 1$, such that there exist $3$-smooth numbers
 \begin{equation}\label{tlip}
-  t \leq 2^{n_2} 3^{m_2}, 2^{n_3} 3^{m_3} \leq e^{\kappa_*} t
+  t \leq 2^{n_2} 3^{m_2} \leq e^{\kappa_*} t; \qquad t \leq 2^{n_3} 3^{m_3} \leq e^{\kappa_*} t
 \end{equation}
 such that
 \begin{equation}\label{nm}
@@ -1685,7 +1685,7 @@ with the convention that the upper bound $p < \frac{t}{m-1}$ in \eqref{B-def} is
   \item The set ${\mathcal B}^{(1)}$ is defined by applying steps (a) and (b) below.
   \item The excess $\excess_t$ is defined in \eqref{excess-def}.
   \item The function $f_{N/t}$ is defined in \eqref{falpha-def}.
-  \item The constant $\kappa_{4.5}$ is given by \eqref{kappa-45}.
+  \item The constant $\kappa_{4.5}$ is given by \Cref{power-lemma}(i).
 \end{itemize}
 Then $t(N) \geq t$.
 \end{proposition}
@@ -2220,7 +2220,7 @@ This completes the proof of \Cref{main}(iii) (and hence \Cref{main}(ii)) in the 
 $\delta_5, \delta_7, \alpha_2, \alpha_5$, thus potentially verifying the conditions \eqref{delta-cond}, \eqref{alpha-cond} simultaneously for all $N$ in such an interval.  As it turns out, there is enough room to spare in these estimates, particularly for large $N$, that this strategy works using only a small number of intervals; specifically, by considering $N$ in the intervals
 $$ [10^{11}, 5 \times 10^{11}]; \quad [5 \times 10^{11}, 10^{14}]; \quad [10^{14}, 10^{20}]; \quad [10^{20}, 10^{70}]$$
 one can check that such bounds are sufficient to verify \eqref{delta-cond}, \eqref{alpha-cond} in these cases.  This now verifies \Cref{main}(ii), (iii) for all $N \geq 10^{11}$.
-(In fact, with more effort, this verification can be pushed down to $N \geq 6 \times 10^{10}$ using the same choice of parameters $A,K,L$, specifically by checking $$ [6 \times 10^{10}, 6.05 \times 10^{10}]; \ \  [6.05 \times 10^{10}, 6.1 \times 10^{10}]; \ \  [6.1 \times 10^{10}, 6.5 \times 10^{10}]; \ \  [6.5 \times 10^{10}, 7 \times 10^{10}]; \ \  [7 \times 10^{10}, 10^{11}].$$)
+In fact, with more effort, this verification can be pushed down to $N \geq 6 \times 10^{10}$ using the same choice of parameters $A,K,L$, specifically by checking $$ [6 \times 10^{10}, 6.05 \times 10^{10}]; \ \  [6.05 \times 10^{10}, 6.1 \times 10^{10}]; \ \  [6.1 \times 10^{10}, 6.5 \times 10^{10}]; \ \  [6.5 \times 10^{10}, 7 \times 10^{10}]; \ \  [7 \times 10^{10}, 10^{11}].$$
 
 \appendix
 
@@ -2264,7 +2264,7 @@ $$ \kappa_{\min( 2^{n_1+n_2},3^{m_1+m_2})/6} \leq \log \max\left(\frac{3^{m_1}}{
   t \leq 2^{n_2-1} 3^{m_1-1} \leq \max\left(\frac{3^{m_1}}{2^{n_1}}, \frac{2^{n_2}}{3^{m_2}}\right) t,
 \end{equation}
 so we are done in this case.  Now suppose that $t > 2^{n_2-1} 3^{m_1-1}$.
-If we write $\lceil t \rceil^{\langle 2,3 \rangle} =2^n 3^m$ be the smallest $3$-smooth number that is at least $t$, then we must have $n \geq n_2$ or $m \geq m_1$ (or both).  Thus at least one of $\frac{2^{n_1}}{3^{m_1}} 2^n 3^m$ and $\frac{3^{m_2}}{3^{n_2}} 2^n 3^m$ is an integer, and is thus at most $t$ by construction.  This gives \eqref{tb}, and the claim follows.
+If we let $\lceil t \rceil^{\langle 2,3 \rangle} =2^n 3^m$ be the smallest $3$-smooth number that is at least $t$, then we must have $n \geq n_2$ or $m \geq m_1$ (or both).  Thus at least one of $\frac{2^{n_1}}{3^{m_1}} 2^n 3^m$ and $\frac{3^{m_2}}{3^{n_2}} 2^n 3^m$ is an integer, and is thus at most $t$ by construction.  This gives \eqref{tb}, and the claim follows.
 \end{proof}
 
 Some efficient choices of parameters for this lemma are given in \Cref{approx-table}.  For instance, $\kappa_{4.5} \leq \log\frac{4}{3} = 0.28768\dots$ and $\kappa_{40.5} \leq \log \frac{32}{27} = 0.16989\dots$.  In fact, since $\lceil 4.5+\eps \rceil^{\langle 2,3\rangle} = 6$ and $\lceil 40.5+\eps \rceil^{\langle 2,3\rangle} = 48$ for all sufficiently small $\eps>0$, we see that these bounds are sharp (and similarly for the other entries in \Cref{approx-table}); this establishes part (i).
